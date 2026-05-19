@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>IPTV Player - دیزاینی مۆدێرن</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* ڕێگری لە هەڵبژاردنی تێکست */
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1c 0%, #06090f 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Tahoma', system-ui, -apple-system, 'Inter', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f0f3fa;
+        }
+
+        /* کانتەینەری سەرەکی بە شێوەی لەندسکەیپ (درێژی) */
+        .iptv-container {
+            display: flex;
+            width: 98vw;
+            height: 94vh;
+            max-width: 1500px;
+            background: rgba(12, 18, 28, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* ========= لای چەپ = لیستی کەناڵەکان ========= */
+        .channels-panel {
+            width: 30%;
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1.5rem 1.2rem;
+            background: linear-gradient(95deg, #0a0f1c 0%, #0f1625 100%);
+            border-bottom: 1px solid rgba(72, 187, 255, 0.2);
+        }
+
+        .panel-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #fff, #5db0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .search-box {
+            margin-top: 12px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 3rem;
+            padding: 6px 15px;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            width: 100%;
+            font-size: 0.9rem;
+            padding: 8px 0;
+        }
+
+        .search-box input::placeholder {
+            color: #9aa4bf;
+        }
+
+        .channels-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem 0;
+        }
+
+        /* ستایلی کەناڵەکان */
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin: 6px 12px;
+            border-radius: 1.2rem;
+            background: rgba(18, 24, 36, 0.6);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            gap: 14px;
+            border: 1px solid transparent;
+        }
+
+        .channel-item:hover {
+            background: rgba(42, 62, 98, 0.8);
+            transform: scale(1.01);
+            border-color: rgba(93, 176, 255, 0.4);
+        }
+
+        .channel-item.active {
+            background: linear-gradient(95deg, #1c3a6b, #0f2a4a);
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 6px 14px rgba(0, 80, 200, 0.2);
+        }
+
+        .channel-logo {
+            width: 46px;
+            height: 46px;
+            background: #111722;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .channel-info {
+            flex: 1;
+        }
+
+        .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .channel-category {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+
+        /* ========= لای ڕاست = پەنجەرەی ڤیدیۆ ========= */
+        .video-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #03060b;
+        }
+
+        .video-wrapper {
+            background: #000;
+            position: relative;
+            flex: 2;
+            min-height: 55%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            outline: none;
+        }
+
+        .epg-section {
+            background: rgba(10, 14, 23, 0.9);
+            padding: 1rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .epg-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #2a3448;
+        }
+
+        .program-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .program-card {
+            background: #111827;
+            padding: 12px 16px;
+            border-radius: 1.2rem;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transition: 0.2s;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .program-time {
+            font-family: monospace;
+            font-weight: bold;
+            color: #7aa9ff;
+            min-width: 70px;
+        }
+
+        .program-name {
+            font-weight: 500;
+        }
+
+        /* تايبة‌مەندی کەمکردنەوە بۆ شاشەی بچووک (بەڵام دەستکاری ناکەین) */
+        @media (max-width: 800px) {
+            .channels-panel { width: 38%; }
+            .panel-header h2 { font-size: 1.2rem; }
+        }
+
+        /* تۆڕی خێرا بۆ هێنانەوە */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c3e66;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="iptv-container">
+    <!-- لای چەپ: لیستی کەناڵەکان -->
+    <div class="channels-panel">
+        <div class="panel-header">
+            <h2>📺 کەناڵەکان · IPTV</h2>
+            <div class="search-box">
+                🔍 <input type="text" id="searchInput" placeholder="گەڕان بە ناوی کەناڵ...">
+            </div>
+        </div>
+        <div class="channels-list" id="channelsList">
+            <!-- کەناڵەکان لێرە دادەخرێن بە JS -->
+        </div>
+    </div>
+
+    <!-- لای ڕاست: ڤیدیۆ و EPG -->
+    <div class="video-panel">
+        <div class="video-wrapper">
+            <video id="videoPlayer" poster="https://i.imgur.com/nCcz7Jb.png" controls autoplay></video>
+        </div>
+        <div class="epg-section">
+            <div class="epg-title">
+                <span>📅 ڕێنمایی بەرنامەکان (EPG)</span>
+                <span style="font-size: 0.8rem;" id="nowPlayingBadge">⚡ ئێستا پەخش دەکرێت</span>
+            </div>
+            <div id="epgList" class="program-list">
+                <!-- بەرنامەکانی EPG لێرە دەردەکەون -->
+                <div class="program-card"><div class="program-time">--:--</div><div class="program-name">کەناڵێک هەڵبژێرە بۆ بینینی EPG</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ------- داتای نموونەیی بۆ کەناڵەکان و EPG (دەتوانیت دەستکاری بکەیت) ---------
+    const channelsData = [
+        { id: 1, name: "AL JAZEERA", category: "هەواڵ", logo: "🌍", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["06:00 - ڕووداوەکانی ڕۆژ", "09:00 - کۆڕبەندی سیاسی", "12:00 - هەواڵی ناوەڕاست", "15:00 - ئابووری", "18:00 - پەخشی ڕاستەوخۆ"] },
+        { id: 2, name: "BBC WORLD", category: "هەواڵ", logo: "🎬", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", epg: ["07:00 - Global News", "10:00 - World Business", "13:00 - Hard Talk", "16:00 - Documentaries", "19:00 - Newsnight"] },
+        { id: 3, name: "SPORT 1", category: "وەرزش", logo: "⚽", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["08:00 - پوختەی یارییەکان", "11:00 - یاری راستەوخۆ", "14:00 - گفتوگۆی وەرزشی", "17:00 - خولی پاڵەوانان", "20:00 - تایم ئاوت"] },
+        { id: 4, name: "CINEMA GOLD", category: "فیلم", logo: "🎥", url: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8", epg: ["09:30 - فیلمی ئەکشن", "12:30 - کۆمیدی", "15:30 - درامای خەیاڵی", "18:30 - فیلمی خەڵاتکراو", "21:30 - نایاب"] },
+        { id: 5, name: "MUSIC HITS", category: "مۆسیقا", logo: "🎵", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["10:00 - ڤیدیۆ کلیپ گەرمەکان", "13:00 - کلاسیک", "16:00 - چارتی هەفتەیی", "19:00 - لایڤ کۆنسێرت"] }
+    ];
+
+    let activeChannelId = 1;
+
+    // وێنەخستنی لیستی کەناڵەکان
+    function renderChannels() {
+        const container = document.getElementById('channelsList');
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const filteredChannels = channelsData.filter(ch => ch.name.toLowerCase().includes(searchTerm));
+
+        container.innerHTML = filteredChannels.map(ch => `
+            <div class="channel-item ${activeChannelId === ch.id ? 'active' : ''}" data-id="${ch.id}">
+                <div class="channel-logo" style="background: #0f1a2b;">${ch.logo}</div>
+                <div class="channel-info">
+                    <div class="channel-name">${ch.name}</div>
+                    <div class="channel-category">${ch.category}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // زیادکردنی ڕووداوی کلیک بۆ هەر کەناڵێک
+        document.querySelectorAll('.channel-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const id = parseInt(item.dataset.id);
+                if (!isNaN(id)) {
+                    changeChannel(id);
+                }
+            });
+        });
+    }
+
+    // گۆڕینی کەناڵ + نوێکردنەوەی ڤیدیۆ و EPG
+    function changeChannel(channelId) {
+        const channel = channelsData.find(c => c.id === channelId);
+        if (!channel) return;
+        activeChannelId = channelId;
+        renderChannels(); // تازەکردنەوەی لیست بۆ نیشاندانی چالاک
+        const videoElement = document.getElementById('videoPlayer');
+        // گۆڕینی سەرچاوەی ڤیدیۆ (باشترە بە .m3u8 یان URL)
+        if (videoElement) {
+            // ڕێگای سادە: سەرچاوە نوێ بکە
+            videoElement.src = channel.url;
+            videoElement.load();
+            videoElement.play().catch(e => console.log("ئۆتۆ پلەی ڕێگەپێدراو نییە", e));
+        }
+        // نوێکردنەوەی EPG
+        renderEPG(channel);
+        // نوێکردنەوەی badge
+        const badge = document.getElementById('nowPlayingBadge');
+        if(badge) badge.innerHTML = `📡 ئێستا: ${channel.name}`;
+    }
+
+    function renderEPG(channel) {
+        const epgContainer = document.getElementById('epgList');
+        if (!channel || !channel.epg) {
+            epgContainer.innerHTML = `<div class="program-card"><div class="program-time">--</div><div class="program-name">هیچ EPG بەردەست نییە</div></div>`;
+            return;
+        }
+        const epgItems = channel.epg.map(program => {
+            const [time, ...titleParts] = program.split(' - ');
+            const title = titleParts.join(' - ');
+            return `<div class="program-card"><div class="program-time">${time}</div><div class="program-name">${title}</div></div>`;
+        }).join('');
+        epgContainer.innerHTML = epgItems;
+    }
+
+    // گەڕان (فیلترکردن)
+    document.getElementById('searchInput').addEventListener('input', () => {
+        renderChannels();
+    });
+
+    // دەستپێکردن بە کەناڵی یەکەم
+    function init() {
+        renderChannels();
+        const defaultChannel = channelsData[0];
+        if(defaultChannel) {
+            activeChannelId = defaultChannel.id;
+            renderChannels(); // دووبارە بۆ نیشاندانی active
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = defaultChannel.url;
+            videoPlayer.load();
+            renderEPG(defaultChannel);
+            document.getElementById('nowPlayingBadge').innerHTML = `📡 ئێستا: ${defaultChannel.name}`;
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>
