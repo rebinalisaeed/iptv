@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV - دیزاینی درێژی بۆ مۆبایل</title>
+    <title>IPTV - درێژی بە زۆر (بەبێ ئاگاداری)</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ڕێگاگرتن لە هەر گۆڕانێکی ئاراستە */
+        /* زۆرکردنی درێژی بە زۆر لەسەر هەموو شتێک */
         html, body {
             width: 100%;
             height: 100%;
@@ -24,14 +25,11 @@
 
         body {
             background: #000;
-            font-family: system-ui, 'Segoe UI', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
-        /* کانتێنەری سەرەکی بە شێوەی درێژی زۆر */
-        .iptv-root {
+        /* کانتێنەری سەرەکی - هەمیشە بە شێوەی ڕیز (ئاسۆیی) */
+        .iptv-app {
             position: absolute;
             top: 0;
             left: 0;
@@ -39,69 +37,44 @@
             height: 100%;
             background: #0a0f1c;
             display: flex;
-            flex-direction: row; /* ئاسۆیی */
+            flex-direction: row; /* landscape force */
             overflow: hidden;
         }
 
-        /* ڕێگای سادە بۆ ناچاری درێژی لەسەر مۆبایل */
-        @media (orientation: portrait) {
-            .orientation-warning {
-                display: flex;
-                position: fixed;
-                inset: 0;
-                background: #000000dd;
-                backdrop-filter: blur(12px);
-                z-index: 9999;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                color: white;
-                text-align: center;
-                font-size: 1.4rem;
-                font-weight: bold;
-            }
-            .iptv-root {
-                filter: blur(4px);
-                pointer-events: none;
-            }
-        }
-
-        @media (orientation: landscape) {
-            .orientation-warning {
-                display: none;
-            }
-            .iptv-root {
-                filter: blur(0);
-                pointer-events: auto;
-            }
-        }
-
         /* لای چەپ - لیستی کەناڵەکان */
-        .channels-side {
+        .channels-panel {
             width: 32%;
-            background: rgba(8, 12, 25, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(6, 10, 20, 0.96);
+            backdrop-filter: blur(12px);
             border-right: 1px solid rgba(255,255,255,0.1);
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            overflow: hidden;
         }
 
-        .side-header {
+        .panel-header {
             padding: 1rem;
             background: #03060c;
         }
 
-        .search-bar {
+        .panel-header h2 {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #fff, #5db0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .search-box {
             background: #1e2a3a;
             border-radius: 2rem;
-            padding: 0.5rem 1rem;
-            margin-top: 8px;
+            padding: 0.4rem 1rem;
+            margin-top: 10px;
             display: flex;
             gap: 8px;
         }
 
-        .search-bar input {
+        .search-box input {
             background: transparent;
             border: none;
             color: white;
@@ -111,6 +84,7 @@
 
         .channels-list {
             flex: 1;
+            overflow-y: auto;
             padding: 0.6rem;
         }
 
@@ -120,26 +94,29 @@
             gap: 12px;
             background: #111a2a;
             margin-bottom: 8px;
-            padding: 12px;
+            padding: 10px 12px;
             border-radius: 1.2rem;
             cursor: pointer;
             border-left: 3px solid transparent;
+            transition: 0.1s;
         }
 
         .channel-card.active {
             background: #1f3a60;
             border-left-color: #3b82f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
         .delete-btn {
             margin-left: auto;
             background: none;
             border: none;
-            color: #ff8a7a;
+            color: #ff9f8f;
             font-size: 1.2rem;
+            cursor: pointer;
         }
 
-        /* بەشی ڕاست (ڤیدیۆ + EPG) */
+        /* بەشی ڕاست */
         .video-area {
             flex: 1;
             display: flex;
@@ -147,8 +124,8 @@
             background: #010101;
         }
 
-        .player-box {
-            background: black;
+        .player-container {
+            background: #000;
             flex: 2;
             min-height: 55%;
         }
@@ -159,107 +136,109 @@
             object-fit: contain;
         }
 
-        .epg-box {
+        .epg-container {
             background: #0a0e16e6;
             padding: 0.8rem;
             flex: 1;
             overflow-y: auto;
         }
 
-        .epg-single {
+        .epg-item {
             background: #111b26;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             padding: 10px;
             border-radius: 14px;
             display: flex;
             gap: 12px;
+            align-items: center;
         }
 
         button {
             background: #2d4a7c;
             border: none;
-            padding: 8px 12px;
-            border-radius: 28px;
+            padding: 8px 0;
+            border-radius: 2rem;
             color: white;
             font-weight: bold;
+            width: 100%;
+            cursor: pointer;
         }
 
-        /* ڕێکخستن بۆ مۆبایلە بچووکەکان */
-        @media (max-width: 700px) and (orientation: landscape) {
-            .channels-side { width: 38%; }
-            .channel-card { padding: 8px; }
+        @media (max-width: 700px) {
+            .channels-panel { width: 38%; }
+            .channel-card { padding: 6px 10px; }
+            .panel-header h2 { font-size: 1rem; }
         }
+
+        /* هیچ orientation-warning یەک نییە - بە زۆر درێژی */
     </style>
 </head>
 <body>
 
-<div class="iptv-root">
+<div class="iptv-app">
     <!-- لای چەپ -->
-    <div class="channels-side">
-        <div class="side-header">
-            <h2 style="font-size:1.3rem;">📡 IPTV پلەیەر</h2>
-            <div class="search-bar">
+    <div class="channels-panel">
+        <div class="panel-header">
+            <h2>📡 IPTV پلەیەر (درێژی)</h2>
+            <div class="search-box">
                 <span>🔍</span>
-                <input type="text" id="searchChannel" placeholder="گەڕان بە کەناڵ...">
+                <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
             </div>
         </div>
-        <div class="channels-list" id="channelsContainer"></div>
-        <div style="padding:10px;">
-            <button id="addNewBtn" style="width:100%;">+ کەناڵی نوێ</button>
+        <div class="channels-list" id="channelsList"></div>
+        <div style="padding: 10px;">
+            <button id="addChannelBtn">+ کەناڵی نوێ</button>
         </div>
     </div>
 
     <!-- لای ڕاست -->
     <div class="video-area">
-        <div class="player-box">
-            <video id="mainVideo" controls autoplay playsinline></video>
+        <div class="player-container">
+            <video id="videoPlayer" controls autoplay playsinline></video>
         </div>
-        <div class="epg-box">
-            <div id="epgContent">🏷️ کەناڵێک هەڵبژێرە بۆ بینینی بەرنامەکان</div>
+        <div class="epg-container">
+            <div id="epgInfo">📺 کەناڵێک هەڵبژێرە</div>
         </div>
     </div>
 </div>
 
-<div class="orientation-warning" id="warningMsg">
-    ⚠️ تکایە مۆبایلەکە بە شێوەی درێژی (لەندسکەیپ) ڕابگرە ⚠️
-    <br>
-    <span style="font-size:0.9rem;">🔁 مۆبایلەکە بسوڕێنە</span>
-</div>
-
 <script>
     // داتای بنەڕەتی
-    let channelsList = [
-        { id: 1, name: "AL JAZEERA", logo: "🌍", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["06:00 - هەواڵ", "12:00 - کۆڕبەندی", "18:00 - پەخشی راستەوخۆ"] },
-        { id: 2, name: "BBC WORLD", logo: "📺", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", epg: ["07:00 - News", "15:00 - Tech", "21:00 - Drama"] },
-        { id: 3, name: "SPORT 24", logo: "⚽", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["10:00 - پوختە", "16:00 - یاری راستەوخۆ"] }
+    let channels = [
+        { id: 1, name: "AL JAZEERA", logo: "🌍", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["06:00 - هەواڵی بەیانی", "12:00 - کۆڕبەندی سیاسی", "18:00 - پەخشی ڕاستەوخۆ"] },
+        { id: 2, name: "BBC WORLD", logo: "📺", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", epg: ["07:00 - Global News", "14:00 - Tech Life", "20:00 - Documentary"] },
+        { id: 3, name: "SPORT 24", logo: "⚽", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["09:00 - پوختەی یارییەکان", "16:00 - یاری راستەوخۆ", "22:00 - گفتوگۆ"] }
     ];
-
     let activeId = 1;
 
-    // هەڵگرتن لە LocalStorage
-    function saveChannels() {
-        localStorage.setItem("mobiptv_channels", JSON.stringify(channelsList));
+    // LocalStorage
+    function saveToLocal() {
+        localStorage.setItem("iptv_forced_channels", JSON.stringify(channels));
     }
 
-    function loadChannels() {
-        const stored = localStorage.getItem("mobiptv_channels");
-        if(stored) channelsList = JSON.parse(stored);
-        if(!channelsList.length) channelsList = [...channelsList];
-        activeId = channelsList[0].id;
+    function loadFromLocal() {
+        const stored = localStorage.getItem("iptv_forced_channels");
+        if(stored) {
+            channels = JSON.parse(stored);
+        }
+        if(!channels.length) channels = [...channels];
+        activeId = channels[0].id;
     }
 
+    // نمایش کەناڵەکان
     function renderChannels() {
-        const term = document.getElementById("searchChannel").value.toLowerCase();
-        const filtered = channelsList.filter(c => c.name.toLowerCase().includes(term));
-        const container = document.getElementById("channelsContainer");
+        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        const filtered = channels.filter(c => c.name.toLowerCase().includes(searchTerm));
+        const container = document.getElementById("channelsList");
         container.innerHTML = filtered.map(ch => `
             <div class="channel-card ${activeId === ch.id ? 'active' : ''}" data-id="${ch.id}">
-                <div style="font-size:1.6rem;">${ch.logo || "📡"}</div>
+                <div style="font-size:1.5rem;">${ch.logo || "📡"}</div>
                 <div style="flex:1; font-weight:500;">${ch.name}</div>
-                <button class="delete-btn" data-id="${ch.id}" style="background:transparent;">🗑️</button>
+                <button class="delete-btn" data-id="${ch.id}">🗑️</button>
             </div>
         `).join("");
 
+        // کلیک لە کارت
         document.querySelectorAll(".channel-card").forEach(card => {
             card.addEventListener("click", (e) => {
                 if(e.target.classList.contains("delete-btn")) return;
@@ -268,68 +247,80 @@
             });
         });
 
+        // دوگمەی سڕینەوە
         document.querySelectorAll(".delete-btn").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 const id = parseInt(btn.dataset.id);
-                deleteChannelById(id);
+                deleteChannel(id);
             });
         });
     }
 
     function setActiveChannel(id) {
-        const channel = channelsList.find(c => c.id === id);
+        const channel = channels.find(ch => ch.id === id);
         if(!channel) return;
         activeId = id;
-        const video = document.getElementById("mainVideo");
+        const video = document.getElementById("videoPlayer");
         video.src = channel.url;
         video.load();
-        video.play().catch(e=>console.log);
+        video.play().catch(e => console.log("Auto-play prevented"));
         renderChannels();
+        // نمایش EPG
+        const epgDiv = document.getElementById("epgInfo");
         if(channel.epg && channel.epg.length) {
-            document.getElementById("epgContent").innerHTML = channel.epg.map(p => `<div class="epg-single"><span style="min-width:70px;">⏰ ${p.split(' - ')[0]}</span><span>${p.split(' - ')[1] || p}</span></div>`).join("");
+            epgDiv.innerHTML = channel.epg.map(prog => {
+                const [time, title] = prog.split(" - ");
+                return `<div class="epg-item"><span style="min-width:70px;">⏰ ${time}</span><span>${title || prog}</span></div>`;
+            }).join("");
         } else {
-            document.getElementById("epgContent").innerHTML = "هیچ EPG بەردەست نییە";
+            epgDiv.innerHTML = "<div style='padding:10px;'>هیچ EPG بەردەست نییە</div>";
         }
     }
 
-    function deleteChannelById(id) {
-        if(channelsList.length === 1) { alert("ناتوانی هەموو کەناڵەکان بسڕیتەوە"); return; }
-        channelsList = channelsList.filter(ch => ch.id !== id);
-        if(activeId === id) setActiveChannel(channelsList[0].id);
-        saveChannels();
+    function deleteChannel(id) {
+        if(channels.length <= 1) {
+            alert("ناتوانیت هەموو کەناڵەکان بسڕیتەوە، لانیکەم یەک کەناڵ دەبێت بمێنێت");
+            return;
+        }
+        channels = channels.filter(ch => ch.id !== id);
+        if(activeId === id) setActiveChannel(channels[0].id);
+        saveToLocal();
         renderChannels();
     }
 
-    function addChannel() {
+    function addNewChannel() {
         let name = prompt("ناوی کەناڵ:");
         if(!name) return;
         let url = prompt("URL ی پەخش (m3u8 یان mp4):");
         if(!url) return;
         const newId = Date.now();
-        channelsList.push({ id: newId, name: name, logo: "📺", url: url, epg: ["بەرنامەی نوێ - کاتێک دیار نییە"] });
-        saveChannels();
+        channels.push({
+            id: newId,
+            name: name,
+            logo: "📡",
+            url: url,
+            epg: ["بەرنامەی نوێ - بێ کات"]
+        });
+        saveToLocal();
         renderChannels();
         setActiveChannel(newId);
     }
 
-    document.getElementById("addNewBtn").onclick = addChannel;
-    document.getElementById("searchChannel").addEventListener("input", renderChannels);
-    loadChannels();
+    // بارکردن و ڕێکخستنی سەرەتایی
+    loadFromLocal();
     renderChannels();
     setActiveChannel(activeId);
 
-    // ئەگەر شاشەکە بە ستوونی بوو، پیام پیشان بدە
-    function checkOrientation() {
-        if(window.matchMedia("(orientation: portrait)").matches) {
-            document.getElementById("warningMsg").style.display = "flex";
-        } else {
-            document.getElementById("warningMsg").style.display = "none";
-        }
-    }
-    window.addEventListener("resize", checkOrientation);
-    window.addEventListener("load", checkOrientation);
-    checkOrientation();
+    document.getElementById("addChannelBtn").onclick = addNewChannel;
+    document.getElementById("searchInput").addEventListener("input", renderChannels);
+
+    // ڕێگریکردن لە گۆڕینی orientation لە ڕێگەی CSS و metadata
+    window.addEventListener("resize", () => {
+        // هیچ کارێکی زیادە ناکات، تەنیا دڵنیابێتەوە شتێک نەگۆڕێت
+        document.documentElement.style.width = "100%";
+        document.body.style.width = "100%";
+    });
 </script>
 </body>
 </html>
