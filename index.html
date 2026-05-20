@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV - هەمیشە درێژی (بەبێ ئاگاداری)</title>
+    <title>IPTV - دیزاینی هەمیشە درێژی</title>
     <style>
         * {
             margin: 0;
@@ -12,64 +12,46 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ڕێگریکردن لە گۆڕانی orientation */
         html, body {
             width: 100%;
             height: 100%;
+            background: #0a0f1c;
             overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #000;
         }
 
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
-        /*
-          هەمیشە شاشەکە بە شێوەی ئاسۆیی (درێژی) ڕێک بخە
-          تەنانەت ئەگەر مۆبایلەکە بە ستونی راگیرابێت
+        /* 
+          کانتێنەری سەرەکی: بە شێوەی ڕیز (ئاسۆیی) ڕێک دەخرێت 
+          و هەمیشە پانتایی و بەرزی تەواوی شاشە دەگرێت
         */
-        .force-landscape {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vh;  /* بەرزی مۆبایل دەکاتە پانی */
-            height: 100vw; /* پانی مۆبایل دەکاتە بەرز */
-            transform-origin: 0 0;
-            transform: rotate(90deg) translateY(-100%);
-            background: #0a0f1c;
+        .iptv-container {
             display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
         }
 
-        /* ئەگەر مۆبایلەکە لە بارێکی درێژیدا بوو، rotation لاببە */
-        @media (orientation: landscape) {
-            .force-landscape {
-                width: 100%;
-                height: 100%;
-                transform: rotate(0deg) translateY(0);
-            }
-        }
-
         /* لای چەپ - لیستی کەناڵەکان */
-        .channels-panel {
-            width: 32%;
-            background: rgba(6, 10, 20, 0.96);
-            backdrop-filter: blur(12px);
+        .channels-side {
+            width: 35%;
+            background: rgba(8, 12, 25, 0.98);
+            backdrop-filter: blur(10px);
             border-right: 1px solid rgba(255,255,255,0.1);
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
-        .panel-header {
+        .header {
             padding: 1rem;
             background: #03060c;
         }
 
-        .panel-header h2 {
+        .header h2 {
             font-size: 1.2rem;
             background: linear-gradient(135deg, #fff, #5db0ff);
             -webkit-background-clip: text;
@@ -77,30 +59,31 @@
             color: transparent;
         }
 
-        .search-box {
+        .search-area {
             background: #1e2a3a;
             border-radius: 2rem;
-            padding: 0.4rem 1rem;
-            margin-top: 10px;
+            padding: 0.5rem 1rem;
+            margin-top: 12px;
             display: flex;
             gap: 8px;
         }
 
-        .search-box input {
+        .search-area input {
             background: transparent;
             border: none;
             color: white;
             width: 100%;
             outline: none;
+            font-size: 0.9rem;
         }
 
         .channels-list {
             flex: 1;
             overflow-y: auto;
-            padding: 0.6rem;
+            padding: 0.8rem;
         }
 
-        .channel-card {
+        .channel-item {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -110,14 +93,15 @@
             border-radius: 1.2rem;
             cursor: pointer;
             border-left: 3px solid transparent;
+            transition: all 0.1s;
         }
 
-        .channel-card.active {
+        .channel-item.active {
             background: #1f3a60;
             border-left-color: #3b82f6;
         }
 
-        .delete-btn {
+        .delete-channel {
             margin-left: auto;
             background: none;
             border: none;
@@ -126,15 +110,15 @@
             cursor: pointer;
         }
 
-        /* بەشی ڕاست */
-        .video-area {
+        /* لای ڕاست - ڤیدیۆ و EPG */
+        .video-side {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: #010101;
+            background: #000;
         }
 
-        .player-container {
+        .player-wrapper {
             background: #000;
             flex: 2;
             min-height: 55%;
@@ -146,14 +130,14 @@
             object-fit: contain;
         }
 
-        .epg-container {
+        .epg-wrapper {
             background: #0a0e16e6;
             padding: 0.8rem;
             flex: 1;
             overflow-y: auto;
         }
 
-        .epg-item {
+        .epg-card {
             background: #111b26;
             margin-bottom: 8px;
             padding: 10px;
@@ -173,147 +157,154 @@
             cursor: pointer;
         }
 
+        /* ڕێکخستن بۆ شاشەی بچووک - بەڵام هەر بە شێوەی ڕیز */
         @media (max-width: 700px) {
-            .channels-panel { width: 38%; }
+            .channels-side {
+                width: 40%;
+            }
+            .header h2 {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="force-landscape">
+<div class="iptv-container">
     <!-- لای چەپ -->
-    <div class="channels-panel">
-        <div class="panel-header">
-            <h2>📡 IPTV (هەمیشە درێژی)</h2>
-            <div class="search-box">
+    <div class="channels-side">
+        <div class="header">
+            <h2>📡 IPTV پلەیەر</h2>
+            <div class="search-area">
                 <span>🔍</span>
-                <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
+                <input type="text" id="searchChannel" placeholder="گەڕان بە کەناڵ...">
             </div>
         </div>
         <div class="channels-list" id="channelsList"></div>
         <div style="padding: 10px;">
-            <button id="addChannelBtn">+ کەناڵی نوێ</button>
+            <button id="addBtn">+ کەناڵی نوێ</button>
         </div>
     </div>
 
     <!-- لای ڕاست -->
-    <div class="video-area">
-        <div class="player-container">
-            <video id="videoPlayer" controls autoplay playsinline></video>
+    <div class="video-side">
+        <div class="player-wrapper">
+            <video id="mainVideo" controls autoplay playsinline></video>
         </div>
-        <div class="epg-container">
-            <div id="epgInfo">📺 کەناڵێک هەڵبژێرە</div>
+        <div class="epg-wrapper">
+            <div id="epgContent">📺 کەناڵێک هەڵبژێرە</div>
         </div>
     </div>
 </div>
 
 <script>
     // داتای بنەڕەتی
-    let channels = [
+    let channelsData = [
         { id: 1, name: "AL JAZEERA", logo: "🌍", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["06:00 - هەواڵی بەیانی", "12:00 - کۆڕبەندی سیاسی", "18:00 - پەخشی ڕاستەوخۆ"] },
         { id: 2, name: "BBC WORLD", logo: "📺", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", epg: ["07:00 - Global News", "14:00 - Tech Life", "20:00 - Documentary"] },
         { id: 3, name: "SPORT 24", logo: "⚽", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["09:00 - پوختەی یارییەکان", "16:00 - یاری راستەوخۆ", "22:00 - گفتوگۆ"] }
     ];
-    let activeId = 1;
+    let currentActiveId = 1;
 
-    function saveToLocal() {
-        localStorage.setItem("iptv_forced_fixed", JSON.stringify(channels));
+    // LocalStorage
+    function saveData() {
+        localStorage.setItem("iptv_permanent_landscape", JSON.stringify(channelsData));
     }
 
-    function loadFromLocal() {
-        const stored = localStorage.getItem("iptv_forced_fixed");
+    function loadData() {
+        const stored = localStorage.getItem("iptv_permanent_landscape");
         if(stored) {
-            channels = JSON.parse(stored);
+            channelsData = JSON.parse(stored);
         }
-        if(!channels.length) channels = [...channels];
-        activeId = channels[0].id;
+        if(!channelsData.length) channelsData = [...channelsData];
+        currentActiveId = channelsData[0].id;
     }
 
-    function renderChannels() {
-        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-        const filtered = channels.filter(c => c.name.toLowerCase().includes(searchTerm));
+    function renderList() {
+        const searchWord = document.getElementById("searchChannel").value.toLowerCase();
+        const filtered = channelsData.filter(c => c.name.toLowerCase().includes(searchWord));
         const container = document.getElementById("channelsList");
         container.innerHTML = filtered.map(ch => `
-            <div class="channel-card ${activeId === ch.id ? 'active' : ''}" data-id="${ch.id}">
+            <div class="channel-item ${currentActiveId === ch.id ? 'active' : ''}" data-id="${ch.id}">
                 <div style="font-size:1.5rem;">${ch.logo || "📡"}</div>
                 <div style="flex:1; font-weight:500;">${ch.name}</div>
-                <button class="delete-btn" data-id="${ch.id}">🗑️</button>
+                <button class="delete-channel" data-id="${ch.id}">🗑️</button>
             </div>
         `).join("");
 
-        document.querySelectorAll(".channel-card").forEach(card => {
-            card.addEventListener("click", (e) => {
-                if(e.target.classList.contains("delete-btn")) return;
-                const id = parseInt(card.dataset.id);
-                if(id) setActiveChannel(id);
+        document.querySelectorAll(".channel-item").forEach(el => {
+            el.addEventListener("click", (e) => {
+                if(e.target.classList.contains("delete-channel")) return;
+                const id = parseInt(el.dataset.id);
+                if(id) setActive(id);
             });
         });
 
-        document.querySelectorAll(".delete-btn").forEach(btn => {
+        document.querySelectorAll(".delete-channel").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 const id = parseInt(btn.dataset.id);
-                deleteChannel(id);
+                deleteById(id);
             });
         });
     }
 
-    function setActiveChannel(id) {
-        const channel = channels.find(ch => ch.id === id);
+    function setActive(id) {
+        const channel = channelsData.find(c => c.id === id);
         if(!channel) return;
-        activeId = id;
-        const video = document.getElementById("videoPlayer");
+        currentActiveId = id;
+        const video = document.getElementById("mainVideo");
         video.src = channel.url;
         video.load();
-        video.play().catch(e => console.log("auto-play blocked"));
-        renderChannels();
+        video.play().catch(e => console.log("play error"));
+        renderList();
         
-        const epgDiv = document.getElementById("epgInfo");
+        const epgDiv = document.getElementById("epgContent");
         if(channel.epg && channel.epg.length) {
             epgDiv.innerHTML = channel.epg.map(prog => {
-                const [time, title] = prog.split(" - ");
-                return `<div class="epg-item"><span style="min-width:70px;">⏰ ${time}</span><span>${title || prog}</span></div>`;
+                const parts = prog.split(" - ");
+                return `<div class="epg-card"><span style="min-width:70px;">⏰ ${parts[0]}</span><span>${parts[1] || prog}</span></div>`;
             }).join("");
         } else {
-            epgDiv.innerHTML = "<div style='padding:10px;'>هیچ EPG بەردەست نییە</div>";
+            epgDiv.innerHTML = "<div style='padding:10px;'>EPG بەردەست نییە</div>";
         }
     }
 
-    function deleteChannel(id) {
-        if(channels.length <= 1) {
-            alert("ناتوانیت هەموو کەناڵەکان بسڕیتەوە");
+    function deleteById(id) {
+        if(channelsData.length <= 1) {
+            alert("پێویستە لانیکەم یەک کەناڵ هەبێت");
             return;
         }
-        channels = channels.filter(ch => ch.id !== id);
-        if(activeId === id) setActiveChannel(channels[0].id);
-        saveToLocal();
-        renderChannels();
+        channelsData = channelsData.filter(c => c.id !== id);
+        if(currentActiveId === id) setActive(channelsData[0].id);
+        saveData();
+        renderList();
     }
 
-    function addNewChannel() {
+    function addChannel() {
         let name = prompt("ناوی کەناڵ:");
         if(!name) return;
         let url = prompt("URL ی پەخش (m3u8 یان mp4):");
         if(!url) return;
         const newId = Date.now();
-        channels.push({
+        channelsData.push({
             id: newId,
             name: name,
             logo: "📡",
             url: url,
             epg: ["بەرنامەی نوێ - کات دیار نییە"]
         });
-        saveToLocal();
-        renderChannels();
-        setActiveChannel(newId);
+        saveData();
+        renderList();
+        setActive(newId);
     }
 
-    loadFromLocal();
-    renderChannels();
-    setActiveChannel(activeId);
+    loadData();
+    renderList();
+    setActive(currentActiveId);
 
-    document.getElementById("addChannelBtn").onclick = addNewChannel;
-    document.getElementById("searchInput").addEventListener("input", renderChannels);
+    document.getElementById("addBtn").onclick = addChannel;
+    document.getElementById("searchChannel").addEventListener("input", renderList);
 </script>
 </body>
 </html>
