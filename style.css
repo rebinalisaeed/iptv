@@ -16,13 +16,41 @@ body {
     font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-/* کانتێنەری سەرەکی - دیزاینی درێژی (ئاسۆیی) */
-.app-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+/*
+  ==================================================
+  ڕێکخستنی سەرەکی - هەمیشە دیزاین بە شێوەی ڕیز (ئاسۆیی)
+  لە هەردوو حاڵەتی درێژی و ستونیدا
+  ==================================================
+*/
+
+/* حاڵەتی درێژی (landscape) - دیزاینەکە بە شێوەی ئاسایی */
+@media screen and (orientation: landscape) {
+    .app-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
+}
+
+/* حاڵەتی ستونی (portrait) - پەڕەکە دەخولێنینەوە بەڵام قەبارەکان ڕێکدەخەین */
+@media screen and (orientation: portrait) {
+    .app-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vh;
+        height: 100vw;
+        transform: rotate(-90deg);
+        transform-origin: 0% 0%;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
 }
 
 /* لای چەپ - لیستی کەناڵەکان */
@@ -37,10 +65,11 @@ body {
     overflow: hidden;
 }
 
-/* بۆ شاشەی بچووک */
+/* قەبارەدانەوە بۆ شاشەی بچووک */
 @media (max-width: 700px) {
     .channels-sidebar {
         width: 40%;
+        min-width: 140px;
     }
 }
 
@@ -116,6 +145,7 @@ body {
     flex: 1;
     font-weight: 500;
     color: #f0f3fa;
+    font-size: 0.9rem;
 }
 
 .delete-channel {
@@ -154,12 +184,13 @@ body {
     display: flex;
     flex-direction: column;
     background: #010101;
+    overflow: hidden;
 }
 
 .video-wrapper {
     background: #000;
     flex: 2;
-    min-height: 55%;
+    min-height: 50%;
 }
 
 video {
@@ -194,6 +225,7 @@ video {
     display: flex;
     gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .epg-time {
@@ -201,39 +233,35 @@ video {
     min-width: 70px;
     color: #7aa9ff;
     font-weight: bold;
+    font-size: 0.85rem;
 }
 
 .epg-title {
     color: #e0e4f0;
+    font-size: 0.85rem;
 }
 
-/* 
-   ============================================
-   فێڵکردن لە براوزەر - ڕێگای سەرەکی
-   کاتێک مۆبایلەکە بە ستونی بێت،
-   تەواوی پەڕەکە بە 90 پلە دەسوڕێنین بە درێژی
-   ============================================
-*/
-@media screen and (orientation: portrait) {
-    .app-container {
-        position: absolute;
-        top: 0;
-        left: 100vw;           /* بەرەو دەرەوەی شاشە */
-        width: 100vh;          /* بەرزی دەکاتە پانی */
-        height: 100vw;         /* پانی دەکاتە بەرز */
-        transform: rotate(90deg);
-        transform-origin: 0% 0%;
+/* ڕێکخستنی قەبارە بۆ شاشەی زۆر بچووک */
+@media (max-width: 500px) {
+    .channel-name {
+        font-size: 0.75rem;
+    }
+    .channel-logo {
+        font-size: 1.2rem;
+    }
+    .epg-time {
+        min-width: 55px;
+        font-size: 0.7rem;
+    }
+    .epg-title {
+        font-size: 0.75rem;
+    }
+    .sidebar-header h2 {
+        font-size: 1rem;
     }
 }
 
-/* کاتێک بە درێژی بێت، دیزاینەکە بە شێوەی ئاسایی */
-@media screen and (orientation: landscape) {
-    .app-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        transform: rotate(0deg);
-    }
+/* ڕێگری کردن لە پیامی orientation */
+body {
+    -webkit-text-size-adjust: none;
 }
