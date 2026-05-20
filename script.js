@@ -132,26 +132,6 @@ function addNewChannel() {
     setActiveChannel(newId);
 }
 
-// هەڵگرتنی orientation لە LocalStorage
-function saveOrientationState() {
-    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-    localStorage.setItem("iptv_orientation", isPortrait ? "portrait" : "landscape");
-}
-
-// چاودێری گۆڕانی orientation
-function watchOrientation() {
-    const mql = window.matchMedia("(orientation: portrait)");
-    
-    const handler = (e) => {
-        saveOrientationState();
-        // هەر کات orientation گۆڕا، پەڕەکە دووبارە بار ناکەینەوە
-        // CSS خۆی rotation کارا دەکات
-    };
-    
-    mql.addEventListener("change", handler);
-    saveOrientationState();
-}
-
 // گەڕان
 document.getElementById("searchInput").addEventListener("input", renderChannels);
 document.getElementById("addChannelBtn").addEventListener("click", addNewChannel);
@@ -160,4 +140,3 @@ document.getElementById("addChannelBtn").addEventListener("click", addNewChannel
 loadFromStorage();
 renderChannels();
 setActiveChannel(activeChannelId);
-watchOrientation();
