@@ -16,7 +16,7 @@ body {
     font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-/* کانتێنەری سەرەکی - هەمیشە بە شێوەی ڕیز (ئاسۆیی) */
+/* کانتێنەری سەرەکی - دیزاینی درێژی (ئاسۆیی) */
 .app-container {
     display: flex;
     flex-direction: row;
@@ -207,7 +207,33 @@ video {
     color: #e0e4f0;
 }
 
-/* ڕێگری کردن لە پیامی orientation */
-body {
-    -webkit-text-size-adjust: none;
+/* 
+   ============================================
+   فێڵکردن لە براوزەر - ڕێگای سەرەکی
+   کاتێک مۆبایلەکە بە ستونی بێت،
+   تەواوی پەڕەکە بە 90 پلە دەسوڕێنین بە درێژی
+   ============================================
+*/
+@media screen and (orientation: portrait) {
+    .app-container {
+        position: absolute;
+        top: 0;
+        left: 100vw;           /* بەرەو دەرەوەی شاشە */
+        width: 100vh;          /* بەرزی دەکاتە پانی */
+        height: 100vw;         /* پانی دەکاتە بەرز */
+        transform: rotate(90deg);
+        transform-origin: 0% 0%;
+    }
+}
+
+/* کاتێک بە درێژی بێت، دیزاینەکە بە شێوەی ئاسایی */
+@media screen and (orientation: landscape) {
+    .app-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        transform: rotate(0deg);
+    }
 }
