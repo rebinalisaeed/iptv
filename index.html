@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV - درێژی بە زۆر (بەبێ ئاگاداری)</title>
+    <title>IPTV - هەمیشە درێژی (بەبێ ئاگاداری)</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* زۆرکردنی درێژی بە زۆر لەسەر هەموو شتێک */
+        /* ڕێگریکردن لە گۆڕانی orientation */
         html, body {
             width: 100%;
             height: 100%;
@@ -21,24 +20,37 @@
             position: fixed;
             top: 0;
             left: 0;
+            background: #000;
         }
 
         body {
-            background: #000;
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
-        /* کانتێنەری سەرەکی - هەمیشە بە شێوەی ڕیز (ئاسۆیی) */
-        .iptv-app {
+        /*
+          هەمیشە شاشەکە بە شێوەی ئاسۆیی (درێژی) ڕێک بخە
+          تەنانەت ئەگەر مۆبایلەکە بە ستونی راگیرابێت
+        */
+        .force-landscape {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vh;  /* بەرزی مۆبایل دەکاتە پانی */
+            height: 100vw; /* پانی مۆبایل دەکاتە بەرز */
+            transform-origin: 0 0;
+            transform: rotate(90deg) translateY(-100%);
             background: #0a0f1c;
             display: flex;
-            flex-direction: row; /* landscape force */
             overflow: hidden;
+        }
+
+        /* ئەگەر مۆبایلەکە لە بارێکی درێژیدا بوو، rotation لاببە */
+        @media (orientation: landscape) {
+            .force-landscape {
+                width: 100%;
+                height: 100%;
+                transform: rotate(0deg) translateY(0);
+            }
         }
 
         /* لای چەپ - لیستی کەناڵەکان */
@@ -98,13 +110,11 @@
             border-radius: 1.2rem;
             cursor: pointer;
             border-left: 3px solid transparent;
-            transition: 0.1s;
         }
 
         .channel-card.active {
             background: #1f3a60;
             border-left-color: #3b82f6;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
         .delete-btn {
@@ -150,7 +160,6 @@
             border-radius: 14px;
             display: flex;
             gap: 12px;
-            align-items: center;
         }
 
         button {
@@ -166,20 +175,16 @@
 
         @media (max-width: 700px) {
             .channels-panel { width: 38%; }
-            .channel-card { padding: 6px 10px; }
-            .panel-header h2 { font-size: 1rem; }
         }
-
-        /* هیچ orientation-warning یەک نییە - بە زۆر درێژی */
     </style>
 </head>
 <body>
 
-<div class="iptv-app">
+<div class="force-landscape">
     <!-- لای چەپ -->
     <div class="channels-panel">
         <div class="panel-header">
-            <h2>📡 IPTV پلەیەر (درێژی)</h2>
+            <h2>📡 IPTV (هەمیشە درێژی)</h2>
             <div class="search-box">
                 <span>🔍</span>
                 <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
@@ -211,13 +216,12 @@
     ];
     let activeId = 1;
 
-    // LocalStorage
     function saveToLocal() {
-        localStorage.setItem("iptv_forced_channels", JSON.stringify(channels));
+        localStorage.setItem("iptv_forced_fixed", JSON.stringify(channels));
     }
 
     function loadFromLocal() {
-        const stored = localStorage.getItem("iptv_forced_channels");
+        const stored = localStorage.getItem("iptv_forced_fixed");
         if(stored) {
             channels = JSON.parse(stored);
         }
@@ -225,7 +229,6 @@
         activeId = channels[0].id;
     }
 
-    // نمایش کەناڵەکان
     function renderChannels() {
         const searchTerm = document.getElementById("searchInput").value.toLowerCase();
         const filtered = channels.filter(c => c.name.toLowerCase().includes(searchTerm));
@@ -238,7 +241,6 @@
             </div>
         `).join("");
 
-        // کلیک لە کارت
         document.querySelectorAll(".channel-card").forEach(card => {
             card.addEventListener("click", (e) => {
                 if(e.target.classList.contains("delete-btn")) return;
@@ -247,7 +249,6 @@
             });
         });
 
-        // دوگمەی سڕینەوە
         document.querySelectorAll(".delete-btn").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -264,9 +265,9 @@
         const video = document.getElementById("videoPlayer");
         video.src = channel.url;
         video.load();
-        video.play().catch(e => console.log("Auto-play prevented"));
+        video.play().catch(e => console.log("auto-play blocked"));
         renderChannels();
-        // نمایش EPG
+        
         const epgDiv = document.getElementById("epgInfo");
         if(channel.epg && channel.epg.length) {
             epgDiv.innerHTML = channel.epg.map(prog => {
@@ -280,7 +281,7 @@
 
     function deleteChannel(id) {
         if(channels.length <= 1) {
-            alert("ناتوانیت هەموو کەناڵەکان بسڕیتەوە، لانیکەم یەک کەناڵ دەبێت بمێنێت");
+            alert("ناتوانیت هەموو کەناڵەکان بسڕیتەوە");
             return;
         }
         channels = channels.filter(ch => ch.id !== id);
@@ -300,27 +301,19 @@
             name: name,
             logo: "📡",
             url: url,
-            epg: ["بەرنامەی نوێ - بێ کات"]
+            epg: ["بەرنامەی نوێ - کات دیار نییە"]
         });
         saveToLocal();
         renderChannels();
         setActiveChannel(newId);
     }
 
-    // بارکردن و ڕێکخستنی سەرەتایی
     loadFromLocal();
     renderChannels();
     setActiveChannel(activeId);
 
     document.getElementById("addChannelBtn").onclick = addNewChannel;
     document.getElementById("searchInput").addEventListener("input", renderChannels);
-
-    // ڕێگریکردن لە گۆڕینی orientation لە ڕێگەی CSS و metadata
-    window.addEventListener("resize", () => {
-        // هیچ کارێکی زیادە ناکات، تەنیا دڵنیابێتەوە شتێک نەگۆڕێت
-        document.documentElement.style.width = "100%";
-        document.body.style.width = "100%";
-    });
 </script>
 </body>
 </html>
