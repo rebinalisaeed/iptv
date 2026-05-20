@@ -3,310 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV - هەمیشە وەک درێژی (بە ستونی و درێژی)</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #0a0f1c;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-            overflow: hidden;
-        }
-
-        /*
-          ڕێگای سەرەکی: بە زۆر ڕووکارەکە بە شێوەی ڕیز (ئاسۆیی) ڕێک بخە
-          بەپێی پانی و بەرزی شاشە، نەک بەپێی orientation
-        */
-        .main-layout {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        /* لای چەپ - لیستی کەناڵەکان */
-        .channels-panel {
-            width: 35%;
-            background: rgba(6, 10, 20, 0.98);
-            backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .panel-header {
-            padding: 1rem;
-            background: #03060c;
-        }
-
-        .panel-header h2 {
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, #fff, #5db0ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .search-box {
-            background: #1e2a3a;
-            border-radius: 2rem;
-            padding: 0.4rem 1rem;
-            margin-top: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .search-box input {
-            background: transparent;
-            border: none;
-            color: white;
-            width: 100%;
-            outline: none;
-        }
-
-        .channels-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0.6rem;
-        }
-
-        .channel-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #111a2a;
-            margin-bottom: 8px;
-            padding: 12px;
-            border-radius: 1.2rem;
-            cursor: pointer;
-            border-left: 3px solid transparent;
-        }
-
-        .channel-card.active {
-            background: #1f3a60;
-            border-left-color: #3b82f6;
-        }
-
-        .delete-btn {
-            margin-left: auto;
-            background: none;
-            border: none;
-            color: #ff9f8f;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        /* لای ڕاست - ڤیدیۆ + EPG */
-        .video-panel {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #010101;
-        }
-
-        .player-area {
-            background: #000;
-            flex: 2;
-            min-height: 55%;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .epg-area {
-            background: #0a0e16e6;
-            padding: 0.8rem;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .epg-item {
-            background: #111b26;
-            margin-bottom: 8px;
-            padding: 10px;
-            border-radius: 14px;
-            display: flex;
-            gap: 12px;
-        }
-
-        .add-btn {
-            background: #2d4a7c;
-            border: none;
-            padding: 10px 0;
-            border-radius: 2rem;
-            color: white;
-            font-weight: bold;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        /* دیزاین بۆ شاشە زۆر بچووکەکان، بەڵام هەر بە شێوەی ڕیز */
-        @media (max-width: 600px) {
-            .channels-panel {
-                width: 40%;
-            }
-            .channel-card {
-                padding: 8px;
-            }
-        }
-    </style>
+    <title>IPTV Player</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="main-layout">
-    <!-- لای چەپ: کەناڵەکان -->
-    <div class="channels-panel">
-        <div class="panel-header">
-            <h2>📡 پلەیەر</h2>
-            <div class="search-box">
-                <span>🔍</span>
-                <input type="text" id="searchChannel" placeholder="گەڕان بە کەناڵ...">
+    <div class="app-container">
+        <!-- لای چەپ: لیستی کەناڵەکان -->
+        <div class="channels-sidebar">
+            <div class="sidebar-header">
+                <h2>📡 پلەیەر</h2>
+                <div class="search-wrapper">
+                    <span>🔍</span>
+                    <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
+                </div>
             </div>
+            <div class="channels-list" id="channelsList">
+                <!-- کەناڵەکان لێرە دەردەکەون -->
+            </div>
+            <button class="add-channel-btn" id="addChannelBtn">+ کەناڵی نوێ</button>
         </div>
-        <div class="channels-list" id="channelsContainer"></div>
-        <div style="padding: 10px;">
-            <button class="add-btn" id="addChannelBtn">+ کەناڵی نوێ</button>
+
+        <!-- لای ڕاست: ڤیدیۆ و EPG -->
+        <div class="video-area">
+            <div class="video-wrapper">
+                <video id="videoPlayer" controls autoplay playsinline></video>
+            </div>
+            <div class="epg-section">
+                <h4>📺 ڕێنمایی کەناڵ (EPG)</h4>
+                <div id="epgContent" class="epg-list"></div>
+            </div>
         </div>
     </div>
 
-    <!-- لای ڕاست: ڤیدیۆ و EPG -->
-    <div class="video-panel">
-        <div class="player-area">
-            <video id="videoPlayer" controls autoplay playsinline></video>
-        </div>
-        <div class="epg-area">
-            <div id="epgContainer">📺 کەناڵێک هەڵبژێرە</div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // داتای بنەڕەتی - هەمان شێوەی وێنەکانت
-    let channels = [
-        { id: 1, name: "AL JAZEERA", logo: "🌍", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["06:00 - هەواڵی بەیانی", "12:00 - کۆڕبەندی سیاسی", "18:00 - پەخشی ڕاستەوخۆ"] },
-        { id: 2, name: "BBC WORLD", logo: "📺", url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", epg: ["07:00 - Global News", "14:00 - Tech Life", "20:00 - Documentary"] },
-        { id: 3, name: "SPORT 24", logo: "⚽", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", epg: ["09:00 - پوختەی یارییەکان", "16:00 - یاری راستەوخۆ", "22:00 - گفتوگۆ"] }
-    ];
-    let activeId = 1;
-
-    function saveToStorage() {
-        localStorage.setItem("iptv_horizontal_always", JSON.stringify(channels));
-    }
-
-    function loadFromStorage() {
-        const saved = localStorage.getItem("iptv_horizontal_always");
-        if(saved) {
-            channels = JSON.parse(saved);
-        }
-        if(!channels.length) channels = [...channels];
-        activeId = channels[0].id;
-    }
-
-    function renderChannels() {
-        const term = document.getElementById("searchChannel").value.toLowerCase();
-        const filtered = channels.filter(c => c.name.toLowerCase().includes(term));
-        const container = document.getElementById("channelsContainer");
-        container.innerHTML = filtered.map(ch => `
-            <div class="channel-card ${activeId === ch.id ? 'active' : ''}" data-id="${ch.id}">
-                <div style="font-size:1.5rem;">${ch.logo || "📡"}</div>
-                <div style="flex:1; font-weight:500;">${ch.name}</div>
-                <button class="delete-btn" data-id="${ch.id}">🗑️</button>
-            </div>
-        `).join("");
-
-        document.querySelectorAll(".channel-card").forEach(card => {
-            card.addEventListener("click", (e) => {
-                if(e.target.classList.contains("delete-btn")) return;
-                const id = parseInt(card.dataset.id);
-                if(id) activateChannel(id);
-            });
-        });
-
-        document.querySelectorAll(".delete-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                const id = parseInt(btn.dataset.id);
-                deleteChannel(id);
-            });
-        });
-    }
-
-    function activateChannel(id) {
-        const channel = channels.find(ch => ch.id === id);
-        if(!channel) return;
-        activeId = id;
-        const video = document.getElementById("videoPlayer");
-        video.src = channel.url;
-        video.load();
-        video.play().catch(e => console.log("auto-play not allowed"));
-        renderChannels();
-        
-        const epgDiv = document.getElementById("epgContainer");
-        if(channel.epg && channel.epg.length) {
-            epgDiv.innerHTML = channel.epg.map(prog => {
-                const [time, title] = prog.split(" - ");
-                return `<div class="epg-item"><span style="min-width:70px;">⏰ ${time}</span><span>${title || prog}</span></div>`;
-            }).join("");
-        } else {
-            epgDiv.innerHTML = "<div style='padding:10px;'>EPG بەردەست نییە</div>";
-        }
-    }
-
-    function deleteChannel(id) {
-        if(channels.length <= 1) {
-            alert("پێویستە لانیکەم یەک کەناڵ هەبێت");
-            return;
-        }
-        channels = channels.filter(ch => ch.id !== id);
-        if(activeId === id) activateChannel(channels[0].id);
-        saveToStorage();
-        renderChannels();
-    }
-
-    function addNewChannel() {
-        let name = prompt("ناوی کەناڵ:");
-        if(!name) return;
-        let url = prompt("URL ی پەخش (m3u8 یان mp4):");
-        if(!url) return;
-        const newId = Date.now();
-        channels.push({
-            id: newId,
-            name: name,
-            logo: "📡",
-            url: url,
-            epg: ["بەرنامەی نوێ - کات دیار نییە"]
-        });
-        saveToStorage();
-        renderChannels();
-        activateChannel(newId);
-    }
-
-    loadFromStorage();
-    renderChannels();
-    activateChannel(activeId);
-
-    document.getElementById("addChannelBtn").onclick = addNewChannel;
-    document.getElementById("searchChannel").addEventListener("input", renderChannels);
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
