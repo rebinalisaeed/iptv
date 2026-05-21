@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV Player - دیزاینی گروپی</title>
+    <title>IPTV Player - دیزاینی نوێ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container" id="appContainer">
-        <!-- لای چەپ: لیستی گروپەکان -->
-        <div class="groups-sidebar">
-            <div class="groups-header">
-                <h2>📡 IPTV</h2>
-                <button class="add-group-btn" id="addGroupBtn">+ Add group +</button>
+        <!-- لای چەپ: ڤیدیۆ پلەیەر -->
+        <div class="video-area">
+            <div class="video-wrapper">
+                <video id="videoPlayer" controls autoplay playsinline></video>
             </div>
-            <div class="groups-list" id="groupsList">
-                <!-- گروپەکان لێرە دەردەکەون -->
+            <div class="favorite-section">
+                <div class="favorite-btn" id="addFavoriteBtn">
+                    ⭐ زیادکردن بۆ دڵخوازەکان
+                </div>
             </div>
         </div>
 
-        <!-- ناوەڕاست: لیستی کەناڵەکان بەپێی گروپ -->
+        <!-- ناوەڕاست: لیستی کەناڵەکان (20% بچووکتر) -->
         <div class="channels-area">
             <div class="channels-header">
-                <h3 id="currentGroupTitle">All Channels</h3>
+                <h3 id="currentGroupTitle">هەموو کەناڵەکان</h3>
                 <div class="search-wrapper">
                     <span>🔍</span>
                     <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
@@ -33,15 +34,14 @@
             </div>
         </div>
 
-        <!-- لای ڕاست: ڤیدیۆ پلەیەر -->
-        <div class="video-area">
-            <div class="video-wrapper">
-                <video id="videoPlayer" controls autoplay playsinline></video>
+        <!-- لای ڕاست: لیستی گروپەکان -->
+        <div class="groups-sidebar">
+            <div class="groups-header">
+                <h2>📡 IPTV</h2>
+                <button class="add-group-btn" id="addGroupBtn">+ زیادکردنی گروپ</button>
             </div>
-            <div class="favorite-section">
-                <div class="favorite-btn" id="addFavoriteBtn">
-                    ⭐ Add Favorite
-                </div>
+            <div class="groups-list" id="groupsList">
+                <!-- گروپەکان لێرە دەردەکەون -->
             </div>
         </div>
     </div>
