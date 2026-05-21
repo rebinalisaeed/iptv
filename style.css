@@ -16,14 +16,10 @@ body {
     font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-/*
-  ==================================================
-  ڕێکخستنی سەرەکی - هەمیشە دیزاین بە شێوەی ڕیز (ئاسۆیی)
-  لە هەردوو حاڵەتی درێژی و ستونیدا
-  ==================================================
-*/
+/* ============================================
+   فێڵکردن لە براوزەر بۆ هەمیشە درێژی
+   ============================================ */
 
-/* حاڵەتی درێژی (landscape) - دیزاینەکە بە شێوەی ئاسایی */
 @media screen and (orientation: landscape) {
     .app-container {
         position: absolute;
@@ -37,7 +33,6 @@ body {
     }
 }
 
-/* حاڵەتی ستونی (portrait) - پەڕەکە دەخولێنینەوە بەڵام قەبارەکان ڕێکدەخەین */
 @media screen and (orientation: portrait) {
     .app-container {
         position: absolute;
@@ -53,11 +48,14 @@ body {
     }
 }
 
-/* لای چەپ - لیستی کەناڵەکان */
-.channels-sidebar {
-    width: 35%;
-    min-width: 180px;
-    background: rgba(8, 12, 25, 0.98);
+/* ============================================
+   لای چەپ - لیستی گروپەکان
+   ============================================ */
+
+.groups-sidebar {
+    width: 25%;
+    min-width: 150px;
+    background: rgba(6, 10, 20, 0.98);
     backdrop-filter: blur(10px);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
@@ -65,32 +63,108 @@ body {
     overflow: hidden;
 }
 
-/* قەبارەدانەوە بۆ شاشەی بچووک */
-@media (max-width: 700px) {
-    .channels-sidebar {
-        width: 40%;
-        min-width: 140px;
-    }
-}
-
-.sidebar-header {
+.groups-header {
     padding: 1rem;
     background: #03060c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.sidebar-header h2 {
+.groups-header h2 {
     font-size: 1.2rem;
     background: linear-gradient(135deg, #fff, #5db0ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    margin-bottom: 10px;
+}
+
+.add-group-btn {
+    background: #2d4a7c;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 2rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.groups-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.group-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 5px;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: #c0c8e0;
+}
+
+.group-item:hover {
+    background: #1a2638;
+}
+
+.group-item.active {
+    background: #1f3a60;
+    color: white;
+}
+
+.group-icon {
+    font-size: 1.2rem;
+}
+
+.group-name {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.delete-group {
+    background: none;
+    border: none;
+    color: #ff9f8f;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+/* ============================================
+   ناوەڕاست - لیستی کەناڵەکان
+   ============================================ */
+
+.channels-area {
+    width: 40%;
+    min-width: 250px;
+    background: rgba(8, 12, 25, 0.95);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.channels-header {
+    padding: 1rem;
+    background: #03060c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.channels-header h3 {
+    color: #5db0ff;
+    margin-bottom: 10px;
+    font-size: 1rem;
 }
 
 .search-wrapper {
     background: #1e2a3a;
     border-radius: 2rem;
-    padding: 0.5rem 1rem;
-    margin-top: 12px;
+    padding: 0.4rem 1rem;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -102,7 +176,7 @@ body {
     color: white;
     width: 100%;
     outline: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .search-wrapper input::placeholder {
@@ -112,20 +186,20 @@ body {
 .channels-list {
     flex: 1;
     overflow-y: auto;
-    padding: 0.8rem;
+    padding: 0.6rem;
 }
 
 .channel-card {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: #111a2a;
-    margin-bottom: 8px;
-    padding: 12px;
-    border-radius: 1.2rem;
+    margin-bottom: 6px;
+    padding: 10px;
+    border-radius: 1rem;
     cursor: pointer;
     border-left: 3px solid transparent;
-    transition: all 0.15s;
+    transition: all 0.1s;
 }
 
 .channel-card:hover {
@@ -138,59 +212,32 @@ body {
 }
 
 .channel-logo {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .channel-name {
     flex: 1;
     font-weight: 500;
     color: #f0f3fa;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-.delete-channel {
-    background: none;
-    border: none;
-    color: #ff9f8f;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 2rem;
-}
+/* ============================================
+   لای ڕاست - ڤیدیۆ و فەیڤەریت
+   ============================================ */
 
-.delete-channel:hover {
-    background: rgba(255, 100, 100, 0.2);
-}
-
-.add-channel-btn {
-    background: #2d4a7c;
-    border: none;
-    padding: 12px;
-    margin: 10px;
-    border-radius: 2rem;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.add-channel-btn:hover {
-    background: #3d5a8c;
-}
-
-/* لای ڕاست */
 .video-area {
-    flex: 1;
+    width: 35%;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     background: #010101;
-    overflow: hidden;
 }
 
 .video-wrapper {
     background: #000;
-    flex: 2;
-    min-height: 50%;
+    flex: 3;
+    min-height: 60%;
 }
 
 video {
@@ -199,69 +246,64 @@ video {
     object-fit: contain;
 }
 
-.epg-section {
-    background: #0a0e16e6;
-    padding: 0.8rem;
+.favorite-section {
     flex: 1;
-    overflow-y: auto;
-}
-
-.epg-section h4 {
-    color: #a0b4e0;
-    margin-bottom: 12px;
-    font-size: 0.9rem;
-}
-
-.epg-list {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.epg-item {
-    background: #111b26;
-    padding: 10px 12px;
-    border-radius: 14px;
-    display: flex;
-    gap: 12px;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+    background: #0a0e16;
+    padding: 1rem;
 }
 
-.epg-time {
-    font-family: monospace;
-    min-width: 70px;
-    color: #7aa9ff;
+.favorite-btn {
+    background: linear-gradient(135deg, #f5af19, #f12711);
+    padding: 14px 20px;
+    border-radius: 3rem;
+    text-align: center;
     font-weight: bold;
-    font-size: 0.85rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s;
+    font-size: 1rem;
 }
 
-.epg-title {
-    color: #e0e4f0;
-    font-size: 0.85rem;
+.favorite-btn:active {
+    transform: scale(0.97);
 }
 
-/* ڕێکخستنی قەبارە بۆ شاشەی زۆر بچووک */
-@media (max-width: 500px) {
+/* ڕێکخستن بۆ شاشەی بچووک */
+@media (max-width: 800px) {
+    .groups-sidebar {
+        width: 28%;
+        min-width: 120px;
+    }
+    .channels-area {
+        width: 38%;
+        min-width: 200px;
+    }
+    .video-area {
+        width: 34%;
+    }
+    .group-name {
+        font-size: 0.75rem;
+    }
     .channel-name {
         font-size: 0.75rem;
     }
-    .channel-logo {
-        font-size: 1.2rem;
-    }
-    .epg-time {
-        min-width: 55px;
-        font-size: 0.7rem;
-    }
-    .epg-title {
-        font-size: 0.75rem;
-    }
-    .sidebar-header h2 {
-        font-size: 1rem;
+    .favorite-btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
     }
 }
 
-/* ڕێگری کردن لە پیامی orientation */
-body {
-    -webkit-text-size-adjust: none;
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0f1c;
+}
+::-webkit-scrollbar-thumb {
+    background: #2d4a7c;
+    border-radius: 10px;
 }
