@@ -1,15 +1,16 @@
 // ============================================
-// داتا - گروپەکان و کەناڵەکان
+// داتا - گروپەکان و کەناڵەکان (بە کوردی)
 // ============================================
 
 let groups = [
-    { id: 1, name: "Recently Viewed", icon: "🕐" },
-    { id: 2, name: "All", icon: "📺" },
-    { id: 3, name: "Favorite", icon: "⭐" },
-    { id: 4, name: "Kurdish Channel", icon: "🏔️" },
-    { id: 5, name: "Sport Channel", icon: "⚽" }
+    { id: 1, name: "دوایین بینراوەکان", icon: "🕐" },
+    { id: 2, name: "هەموو کەناڵەکان", icon: "📺" },
+    { id: 3, name: "دڵخوازەکان", icon: "⭐" },
+    { id: 4, name: "کەناڵە کوردیەکان", icon: "🏔️" },
+    { id: 5, name: "کەناڵە وەرزشیەکان", icon: "⚽" }
 ];
 
+// هەموو کەناڵەکان
 let allChannels = [
     { id: 1, name: "AL JAZEERA", logo: "🌍", groupId: 2, url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
     { id: 2, name: "BBC WORLD", logo: "📺", groupId: 2, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" },
@@ -17,12 +18,15 @@ let allChannels = [
     { id: 4, name: "KURDISTAN 24", logo: "🏔️", groupId: 4, url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
     { id: 5, name: "RUDAW", logo: "📡", groupId: 4, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" },
     { id: 6, name: "CNN", logo: "🌎", groupId: 2, url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
-    { id: 7, name: "FOX SPORTS", logo: "🏈", groupId: 5, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" }
+    { id: 7, name: "FOX SPORTS", logo: "🏈", groupId: 5, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" },
+    { id: 8, name: "NRT", logo: "📺", groupId: 4, url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
+    { id: 9, name: "KURDMAX", logo: "🎬", groupId: 4, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" },
+    { id: 10, name: "BEIN SPORTS", logo: "⚽", groupId: 5, url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" }
 ];
 
-let favoriteChannels = []; // کەناڵەکانی فەیڤەریت
-let recentlyViewed = [];   // دوایین کەناڵە بینراوەکان
-let activeGroupId = 2;     // گروپی چالاک (بە دەستپێک All)
+let favoriteChannels = [];     // ئایدی کەناڵە دڵخوازەکان
+let recentlyViewed = [];       // ئایدی دوایین کەناڵە بینراوەکان
+let activeGroupId = 2;         // گروپی چالاک (بە دەستپێک: هەموو کەناڵەکان)
 let activeChannelId = null;
 
 // ============================================
@@ -47,9 +51,9 @@ function loadData() {
     if (savedFav) favoriteChannels = JSON.parse(savedFav);
     if (savedRecent) recentlyViewed = JSON.parse(savedRecent);
     
-    // گروپی All دەبێت هەمیشە هەبێت
-    if (!groups.find(g => g.name === "All")) {
-        groups.push({ id: 2, name: "All", icon: "📺" });
+    // دڵنیابوون لە بوونی گروپی "هەموو کەناڵەکان"
+    if (!groups.find(g => g.name === "هەموو کەناڵەکان")) {
+        groups.unshift({ id: 2, name: "هەموو کەناڵەکان", icon: "📺" });
     }
 }
 
@@ -58,17 +62,23 @@ function loadData() {
 // ============================================
 
 function getChannelsByGroup(groupId) {
-    if (groupId === 3) { // Favorite
+    const group = groups.find(g => g.id === groupId);
+    
+    if (group?.name === "دڵخوازەکان") {
         return favoriteChannels.map(favId => allChannels.find(ch => ch.id === favId)).filter(ch => ch);
     }
-    if (groupId === 1) { // Recently Viewed
+    if (group?.name === "دوایین بینراوەکان") {
         return recentlyViewed.map(recId => allChannels.find(ch => ch.id === recId)).filter(ch => ch);
     }
+    if (group?.name === "هەموو کەناڵەکان") {
+        return allChannels; // هەموو کەناڵەکان
+    }
+    // بۆ گروپەکانی تر (کوردی، وەرزشی، یان گروپی زیادکراو)
     return allChannels.filter(ch => ch.groupId === groupId);
 }
 
 // ============================================
-// نمایش گروپەکان
+// نمایش گروپەکان (لای ڕاست)
 // ============================================
 
 function renderGroups() {
@@ -77,7 +87,7 @@ function renderGroups() {
         <div class="group-item ${activeGroupId === group.id ? 'active' : ''}" data-id="${group.id}">
             <span class="group-icon">${group.icon}</span>
             <span class="group-name">${group.name}</span>
-            ${group.name !== "All" && group.name !== "Recently Viewed" && group.name !== "Favorite" ? 
+            ${group.name !== "هەموو کەناڵەکان" && group.name !== "دوایین بینراوەکان" && group.name !== "دڵخوازەکان" ? 
                 `<button class="delete-group" data-id="${group.id}">🗑️</button>` : ''}
         </div>
     `).join("");
@@ -102,7 +112,14 @@ function renderGroups() {
 function setActiveGroup(groupId) {
     activeGroupId = groupId;
     const group = groups.find(g => g.id === groupId);
-    document.getElementById("currentGroupTitle").innerText = group ? group.name : "Channels";
+    const titleMap = {
+        "هەموو کەناڵەکان": "📺 هەموو کەناڵەکان",
+        "دڵخوازەکان": "⭐ دڵخوازەکان",
+        "دوایین بینراوەکان": "🕐 دوایین بینراوەکان",
+        "کەناڵە کوردیەکان": "🏔️ کەناڵە کوردیەکان",
+        "کەناڵە وەرزشیەکان": "⚽ کەناڵە وەرزشیەکان"
+    };
+    document.getElementById("currentGroupTitle").innerText = titleMap[group?.name] || group?.name || "کەناڵەکان";
     renderGroups();
     renderChannels();
 }
@@ -129,6 +146,11 @@ function renderChannels() {
     channelsList = channelsList.filter(ch => ch.name.toLowerCase().includes(searchTerm));
     
     const container = document.getElementById("channelsList");
+    if (channelsList.length === 0) {
+        container.innerHTML = '<div style="color:#888; text-align:center; padding:20px;">هیچ کەناڵێک نەدۆزرایەوە</div>';
+        return;
+    }
+    
     container.innerHTML = channelsList.map(ch => `
         <div class="channel-card ${activeChannelId === ch.id ? 'active' : ''}" data-id="${ch.id}">
             <span class="channel-logo">${ch.logo || "📡"}</span>
@@ -154,19 +176,23 @@ function playChannel(id) {
     video.load();
     video.play().catch(e => console.log("auto-play blocked"));
     
-    // زیادکردن بۆ Recently Viewed
-    if (!recentlyViewed.includes(id)) {
-        recentlyViewed.unshift(id);
-        if (recentlyViewed.length > 10) recentlyViewed.pop();
-        saveData();
-        renderGroups(); // تازەکردنەوەی گروپەکان بۆ نیشاندانی ژمارە
+    // زیادکردن بۆ دوایین بینراوەکان
+    recentlyViewed = recentlyViewed.filter(rid => rid !== id);
+    recentlyViewed.unshift(id);
+    if (recentlyViewed.length > 10) recentlyViewed.pop();
+    saveData();
+    
+    // تازەکردنەوەی گروپی "دوایین بینراوەکان" ئەگەر چالاک بێت
+    const activeGroup = groups.find(g => g.id === activeGroupId);
+    if (activeGroup?.name === "دوایین بینراوەکان") {
+        renderChannels();
     }
     
     renderChannels();
 }
 
 // ============================================
-// زیادکردن بۆ Favorite
+// زیادکردن بۆ دڵخوازەکان (Favorite)
 // ============================================
 
 function addToFavorite() {
@@ -176,22 +202,20 @@ function addToFavorite() {
     }
     
     if (favoriteChannels.includes(activeChannelId)) {
-        alert("ئەم کەناڵە پێشتر لە فەیڤەریتدا هەیە");
+        alert("ئەم کەناڵە پێشتر لە دڵخوازەکاندا هەیە");
         return;
     }
     
     favoriteChannels.push(activeChannelId);
     saveData();
     
-    // تازەکردنەوەی گروپەکان بۆ نیشاندانی فەیڤەریت
-    renderGroups();
-    
-    // ئەگەر گروپی چالاک Favorite بێت، لیستەکە تازە بکەوە
-    if (activeGroupId === 3) {
+    // تازەکردنەوەی گروپی "دڵخوازەکان" ئەگەر چالاک بێت
+    const activeGroup = groups.find(g => g.id === activeGroupId);
+    if (activeGroup?.name === "دڵخوازەکان") {
         renderChannels();
     }
     
-    alert("✅ کەناڵەکە زیاد کرا بۆ Favorite");
+    alert("✅ کەناڵەکە زیاد کرا بۆ دڵخوازەکان");
 }
 
 // ============================================
@@ -199,7 +223,7 @@ function addToFavorite() {
 // ============================================
 
 function addNewGroup() {
-    const name = prompt("ناوی گروپی نوێ:");
+    const name = prompt("ناوی گروپی نوێ (بە کوردی یان ئینگلیزی):");
     if (!name || name.trim() === "") return;
     
     const newId = Date.now();
