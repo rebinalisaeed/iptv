@@ -3,34 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>IPTV Player - هەمیشە درێژی</title>
+    <title>IPTV Player - دیزاینی گروپی</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container" id="appContainer">
-        <!-- لای چەپ: لیستی کەناڵەکان -->
-        <div class="channels-sidebar">
-            <div class="sidebar-header">
-                <h2>📡 پلەیەر</h2>
+        <!-- لای چەپ: لیستی گروپەکان -->
+        <div class="groups-sidebar">
+            <div class="groups-header">
+                <h2>📡 IPTV</h2>
+                <button class="add-group-btn" id="addGroupBtn">+ Add group +</button>
+            </div>
+            <div class="groups-list" id="groupsList">
+                <!-- گروپەکان لێرە دەردەکەون -->
+            </div>
+        </div>
+
+        <!-- ناوەڕاست: لیستی کەناڵەکان بەپێی گروپ -->
+        <div class="channels-area">
+            <div class="channels-header">
+                <h3 id="currentGroupTitle">All Channels</h3>
                 <div class="search-wrapper">
                     <span>🔍</span>
                     <input type="text" id="searchInput" placeholder="گەڕان بە کەناڵ...">
                 </div>
             </div>
             <div class="channels-list" id="channelsList">
-                <!-- کەناڵەکان لێرە دەردەکەون -->
+                <!-- کەناڵەکانی گروپە چالاکەکە لێرە دەردەکەون -->
             </div>
-            <button class="add-channel-btn" id="addChannelBtn">+ کەناڵی نوێ</button>
         </div>
 
-        <!-- لای ڕاست: ڤیدیۆ و EPG -->
+        <!-- لای ڕاست: ڤیدیۆ پلەیەر -->
         <div class="video-area">
             <div class="video-wrapper">
                 <video id="videoPlayer" controls autoplay playsinline></video>
             </div>
-            <div class="epg-section">
-                <h4>📺 ڕێنمایی کەناڵ (EPG)</h4>
-                <div id="epgContent" class="epg-list"></div>
+            <div class="favorite-section">
+                <div class="favorite-btn" id="addFavoriteBtn">
+                    ⭐ Add Favorite
+                </div>
             </div>
         </div>
     </div>
