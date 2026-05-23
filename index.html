@@ -3,91 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXINFLIX - چوونەژوورەوە / تۆمارکردن</title>
+  <title>EXINFLIX - ماڵەوە</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
     * { font-family: 'Poppins', sans-serif; }
-    body { background: radial-gradient(circle at 20% 30%, #0B0B12, #030308); min-height: 100vh; }
-    .glass-deep {
-      background: rgba(15, 15, 30, 0.7);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 2rem;
-    }
-    .neon-input {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s;
-    }
-    .neon-input:focus {
-      border-color: #FF006E;
-      box-shadow: 0 0 15px rgba(255, 0, 110, 0.3);
-      outline: none;
-    }
-    .gradient-btn {
-      background: linear-gradient(135deg, #FF006E, #FF7A00);
-      transition: transform 0.2s;
-    }
-    .gradient-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
+    body { background: #0B0B12; }
+    .glass-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s; }
+    .glass-card:hover { border-color: rgba(255, 0, 110, 0.4); transform: translateY(-3px); }
+    .search-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 3rem; }
+    .search-input:focus { border-color: #FF006E; outline: none; }
+    .genre-chip { background: rgba(255, 255, 255, 0.08); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.9rem; transition: all 0.2s; cursor: pointer; }
+    .genre-chip:hover, .genre-chip.active { background: linear-gradient(135deg, #FF006E, #FF7A00); }
   </style>
 </head>
-<body class="flex items-center justify-center p-4">
-  <div class="w-full max-w-md glass-deep p-8 rounded-3xl shadow-2xl">
-    <div class="text-center mb-6">
-      <!-- لۆگۆ -->
-      <svg width="120" height="60" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-auto">
-        <defs>
-          <linearGradient id="loginGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF006E"/><stop offset="100%" stop-color="#FF7A00"/></linearGradient>
-          <filter id="glowLogin"><feGaussianBlur stdDeviation="4"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <g filter="url(#glowLogin)">
-          <path d="M80 30 L170 30 L120 80 L80 60 Z" fill="url(#loginGrad)"/>
-          <path d="M90 95 L150 130 L90 165 Z" fill="url(#loginGrad)"/>
-          <path d="M80 190 L120 170 L170 220 L100 220 Z" fill="url(#loginGrad)"/>
-        </g>
-        <text x="220" y="165" font-family="Poppins" font-size="75" font-weight="700" fill="white" letter-spacing="2">inflix</text>
+<body class="text-white">
+  <!-- Navbar -->
+  <nav class="glass-card mx-4 md:mx-8 my-4 px-6 py-3 flex justify-between items-center sticky top-4 z-50">
+    <div class="flex items-center gap-3">
+      <svg width="45" height="45" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto">
+        <defs><linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF006E"/><stop offset="100%" stop-color="#FF7A00"/></linearGradient></defs>
+        <g><path d="M80 30 L170 30 L120 80 L80 60 Z" fill="url(#navGrad)"/><path d="M90 95 L150 130 L90 165 Z" fill="url(#navGrad)"/><path d="M80 190 L120 170 L170 220 L100 220 Z" fill="url(#navGrad)"/></g>
+        <text x="220" y="165" font-family="Poppins" font-size="75" font-weight="600" fill="url(#navGrad)" letter-spacing="2">inflix</text>
       </svg>
-      <h2 class="text-3xl font-bold mt-4 bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</h2>
+      <span class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</span>
+    </div>
+    <div class="flex gap-4">
+      <i class="fas fa-search text-xl text-gray-300 hover:text-pink-400 cursor-pointer"></i>
+      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 to-orange-500 flex items-center justify-center cursor-pointer">
+        <i class="fas fa-user text-white text-sm"></i>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-6 py-6">
+    <!-- SEARCH BAR -->
+    <div class="relative mb-8">
+      <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input type="text" placeholder="گەڕان بۆ فیلم، زنجیرە، یان ئەکتەر... / Search for movies, series..." class="search-input w-full py-4 pl-14 pr-5 text-white text-lg">
     </div>
 
-    <!-- Tab buttons -->
-    <div class="flex gap-2 mb-6 bg-white/5 p-1 rounded-full">
-      <button id="loginTab" class="w-1/2 py-2 rounded-full font-semibold transition bg-pink-600 text-white">چوونەژوورەوە</button>
-      <button id="registerTab" class="w-1/2 py-2 rounded-full font-semibold transition text-gray-300">تۆمارکردن</button>
-    </div>
-
-    <!-- Login Form -->
-    <div id="loginForm">
-      <div class="space-y-4">
-        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl text-white">
-        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl text-white">
-        <div class="text-right"><a href="#" class="text-sm text-pink-400 hover:underline">تێپەڕەوشەت لەبیر کردووە؟</a></div>
-        <button class="w-full gradient-btn py-3 rounded-xl font-bold text-white">چوونەژوورەوە</button>
-        <div class="flex gap-3 mt-4"><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-google"></i> Google</button><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-apple"></i> Apple</button></div>
+    <!-- GENRE (چەشنەکان) -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-tags text-pink-400"></i> چەشنەکان / GENRE</h2>
+      <div class="flex flex-wrap gap-3">
+        <span class="genre-chip active">هەموو</span>
+        <span class="genre-chip">ئەکشن</span>
+        <span class="genre-chip">دراما</span>
+        <span class="genre-chip">کۆمێدی</span>
+        <span class="genre-chip">ڕۆمانسی</span>
+        <span class="genre-chip">ترسناک</span>
+        <span class="genre-chip">فانتازی</span>
       </div>
     </div>
 
-    <!-- Register Form (hidden at start) -->
-    <div id="registerForm" class="hidden">
-      <div class="space-y-4">
-        <input type="text" placeholder="ناوی تەواو" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="password" placeholder="دووبارە تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
-        <button class="w-full gradient-btn py-3 rounded-xl font-bold">دروستکردنی هەژمار</button>
+    <!-- SUGGESTION (پێشنیارەکان) -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-star text-yellow-500"></i> پێشنیار بۆ تۆ / SUGGESTION</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
+          <img src="https://placehold.co/400x500/FF006E/white?text=SUGGEST+1" class="w-full h-48 object-cover">
+          <div class="p-3"><h3 class="font-bold">ئاگر لە دڵدا</h3><p class="text-xs text-gray-400">ئەکشن · ٢٠٢٥</p></div>
+        </div>
+        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
+          <img src="https://placehold.co/400x500/FF7A00/white?text=SUGGEST+2" class="w-full h-48 object-cover">
+          <div class="p-3"><h3 class="font-bold">ڕێگای مانگ</h3><p class="text-xs text-gray-400">دراما · ٢٠٢٤</p></div>
+        </div>
+        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
+          <img src="https://placehold.co/400x500/7B2CFF/white?text=SUGGEST+3" class="w-full h-48 object-cover">
+          <div class="p-3"><h3 class="font-bold">زنجیرەی تاوان</h3><p class="text-xs text-gray-400">زنجیرە · ٨.٩</p></div>
+        </div>
+        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
+          <img src="https://placehold.co/400x500/FF006E/white?text=SUGGEST+4" class="w-full h-48 object-cover">
+          <div class="p-3"><h3 class="font-bold">پەیکەری خوێن</h3><p class="text-xs text-gray-400">فانتازی</p></div>
+        </div>
       </div>
+    </div>
+
+    <!-- PUBLIC ROOMS + CREATE ROOM + JOIN ROOM -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-users text-pink-400"></i> ژووری گشتی / PUBLIC ROOMS</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="glass-card p-5 text-center">
+          <i class="fas fa-door-open text-4xl text-pink-400"></i>
+          <h3 class="font-bold mt-2">دروستکردنی ژوور</h3>
+          <p class="text-sm text-gray-400">CREATE ROOM</p>
+          <button class="mt-3 gradient-btn px-6 py-2 rounded-full text-sm font-bold">دروست بکە</button>
+        </div>
+        <div class="glass-card p-5 text-center">
+          <i class="fas fa-sign-in-alt text-4xl text-pink-400"></i>
+          <h3 class="font-bold mt-2">پەیوەندیکردن بە ژوور</h3>
+          <p class="text-sm text-gray-400">JOIN ROOM</p>
+          <div class="flex gap-2 mt-3"><input type="text" placeholder="کۆدی ژوور" class="bg-black/50 border border-white/20 rounded-full px-3 py-1 text-sm flex-1"><button class="bg-pink-600 px-3 py-1 rounded-full text-sm">چوون</button></div>
+        </div>
+        <div class="glass-card p-5">
+          <h3 class="font-bold mb-2">ژوورە چالاکەکان</h3>
+          <div class="space-y-2 text-sm"><div class="flex justify-between"><span>🎬 فیلمی ئەکشن</span><span class="text-green-400">١٢ کەس</span></div><div class="flex justify-between"><span>📺 زنجیرەی تاوان</span><span class="text-green-400">٨ کەس</span></div><div class="flex justify-between"><span>🍿 کۆمێدی</span><span class="text-green-400">٥ کەس</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOK TICKETS بەشی خێرا -->
+    <div class="glass-card p-5 flex justify-between items-center flex-wrap gap-4">
+      <div><i class="fas fa-ticket-alt text-3xl text-pink-400"></i><span class="font-bold ml-2">بووکینگی تیکەت / BOOK TICKETS</span></div>
+      <button class="gradient-btn px-6 py-2 rounded-full">بڕۆ بۆ بووکینگ</button>
     </div>
   </div>
-
-  <script>
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    loginTab.onclick = () => { loginForm.classList.remove('hidden'); registerForm.classList.add('hidden'); loginTab.classList.add('bg-pink-600','text-white'); loginTab.classList.remove('text-gray-300'); registerTab.classList.remove('bg-pink-600','text-white'); registerTab.classList.add('text-gray-300'); };
-    registerTab.onclick = () => { registerForm.classList.remove('hidden'); loginForm.classList.add('hidden'); registerTab.classList.add('bg-pink-600','text-white'); registerTab.classList.remove('text-gray-300'); loginTab.classList.remove('bg-pink-600','text-white'); loginTab.classList.add('text-gray-300'); };
-  </script>
 </body>
 </html>
