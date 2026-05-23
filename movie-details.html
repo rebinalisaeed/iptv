@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXINFLIX - وردەکاری فیلم</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    body { background: #0B0B12; }
+    .glass-card { background: rgba(20,20,35,0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; }
+    .play-btn { background: linear-gradient(135deg, #FF006E, #FF7A00); box-shadow: 0 0 20px rgba(255,0,110,0.5); }
+  </style>
+</head>
+<body class="text-white">
+  <!-- Navbar سادە -->
+  <div class="glass-card mx-4 my-4 px-6 py-3 flex justify-between items-center"><span class="text-xl font-bold text-pink-400">EXINFLIX</span><a href="#" class="text-gray-300"><i class="fas fa-arrow-right"></i> گەڕانەوە</a></div>
+
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row gap-8">
+      <img src="https://placehold.co/400x550/FF006E/white?text=FILM+POSTER" class="w-full md:w-80 rounded-2xl shadow-2xl">
+      <div class="flex-1">
+        <h1 class="text-5xl font-black">ئاگر لە دڵدا</h1>
+        <div class="flex gap-4 mt-2 text-gray-300"><span><i class="fas fa-star text-yellow-500"></i> 8.7</span><span>٢٠٢٥</span><span>ئەکشن / دراما</span><span>١٢٠ خولەک</span></div>
+        <p class="mt-4 text-gray-200 leading-relaxed">چیرۆکی ئەو کوڕەی کە لە شەڕی نێو شاردا دەبێتە پاڵەوان... فیلمێکی هەستبزوێن و پڕ لە دیمەنی ئەکشنی بەهێز.</p>
+        <div class="mt-6"><button class="play-btn px-8 py-3 rounded-full font-bold"><i class="fas fa-play mr-2"></i>بینینی ئێستا</button><button class="ml-4 glass-card px-6 py-3 rounded-full"><i class="fas fa-plus"></i> دڵخواز</button></div>
+        <div class="mt-8"><h3 class="font-bold text-xl">ئەکتەرەکان</h3><div class="flex gap-3 mt-2"><span class="glass-card px-4 py-1 rounded-full">ڕەزا کەریمی</span><span class="glass-card px-4 py-1 rounded-full">نیگار جەوهەری</span><span class="glass-card px-4 py-1 rounded-full">حەمید فرەجی</span></div></div>
+      </div>
+    </div>
+    <div class="mt-12"><h2 class="text-2xl font-bold border-r-4 border-pink-500 pr-3">پێشنیار بۆ تۆ</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-4"><div class="glass-card p-2 rounded-xl text-center">فیلمی تر</div></div></div>
+  </div>
+</body>
+</html>
