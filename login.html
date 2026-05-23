@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXINFLIX - چوونەژوورەوە / تۆمارکردن</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    body { background: radial-gradient(circle at 20% 30%, #0B0B12, #030308); min-height: 100vh; }
+    .glass-deep {
+      background: rgba(15, 15, 30, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+    }
+    .neon-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+    .neon-input:focus {
+      border-color: #FF006E;
+      box-shadow: 0 0 15px rgba(255, 0, 110, 0.3);
+      outline: none;
+    }
+    .gradient-btn {
+      background: linear-gradient(135deg, #FF006E, #FF7A00);
+      transition: transform 0.2s;
+    }
+    .gradient-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4">
+  <div class="w-full max-w-md glass-deep p-8 rounded-3xl shadow-2xl">
+    <div class="text-center mb-6">
+      <!-- لۆگۆ -->
+      <svg width="120" height="60" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-auto">
+        <defs>
+          <linearGradient id="loginGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF006E"/><stop offset="100%" stop-color="#FF7A00"/></linearGradient>
+          <filter id="glowLogin"><feGaussianBlur stdDeviation="4"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g filter="url(#glowLogin)">
+          <path d="M80 30 L170 30 L120 80 L80 60 Z" fill="url(#loginGrad)"/>
+          <path d="M90 95 L150 130 L90 165 Z" fill="url(#loginGrad)"/>
+          <path d="M80 190 L120 170 L170 220 L100 220 Z" fill="url(#loginGrad)"/>
+        </g>
+        <text x="220" y="165" font-family="Poppins" font-size="75" font-weight="700" fill="white" letter-spacing="2">inflix</text>
+      </svg>
+      <h2 class="text-3xl font-bold mt-4 bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</h2>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="flex gap-2 mb-6 bg-white/5 p-1 rounded-full">
+      <button id="loginTab" class="w-1/2 py-2 rounded-full font-semibold transition bg-pink-600 text-white">چوونەژوورەوە</button>
+      <button id="registerTab" class="w-1/2 py-2 rounded-full font-semibold transition text-gray-300">تۆمارکردن</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <div class="space-y-4">
+        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl text-white">
+        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl text-white">
+        <div class="text-right"><a href="#" class="text-sm text-pink-400 hover:underline">تێپەڕەوشەت لەبیر کردووە؟</a></div>
+        <button class="w-full gradient-btn py-3 rounded-xl font-bold text-white">چوونەژوورەوە</button>
+        <div class="flex gap-3 mt-4"><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-google"></i> Google</button><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-apple"></i> Apple</button></div>
+      </div>
+    </div>
+
+    <!-- Register Form (hidden at start) -->
+    <div id="registerForm" class="hidden">
+      <div class="space-y-4">
+        <input type="text" placeholder="ناوی تەواو" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="password" placeholder="دووبارە تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
+        <button class="w-full gradient-btn py-3 rounded-xl font-bold">دروستکردنی هەژمار</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    loginTab.onclick = () => { loginForm.classList.remove('hidden'); registerForm.classList.add('hidden'); loginTab.classList.add('bg-pink-600','text-white'); loginTab.classList.remove('text-gray-300'); registerTab.classList.remove('bg-pink-600','text-white'); registerTab.classList.add('text-gray-300'); };
+    registerTab.onclick = () => { registerForm.classList.remove('hidden'); loginForm.classList.add('hidden'); registerTab.classList.add('bg-pink-600','text-white'); registerTab.classList.remove('text-gray-300'); loginTab.classList.remove('bg-pink-600','text-white'); loginTab.classList.add('text-gray-300'); };
+  </script>
+</body>
+</html>
