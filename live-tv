@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXINFLIX - تەلەڤزیۆنی ڕاستەوخۆ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style> *{font-family:'Poppins',sans-serif;} body{background:#0B0B12;} .glass-card{background:rgba(20,20,35,0.6);backdrop-filter:blur(12px);border-radius:1.5rem;} </style>
+</head>
+<body class="text-white p-5">
+  <h1 class="text-3xl font-bold mb-6"><i class="fas fa-tv text-pink-500"></i> کەناڵە ڕاستەوخۆکان</h1>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-futbol text-5xl text-pink-400"></i></div><h3 class="font-bold mt-3">کەناڵی وەرزش</h3><span class="text-green-400 text-sm"><i class="fas fa-circle text-[8px]"></i> ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
+    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-film text-5xl text-orange-400"></i></div><h3 class="font-bold mt-3">سینەمایی ١</h3><span class="text-green-400">ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
+    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-newspaper text-5xl text-purple-400"></i></div><h3 class="font-bold mt-3">هەواڵەکان</h3><span class="text-green-400">ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
+  </div>
+</body>
+</html>
