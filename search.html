@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXINFLIX - گەڕان</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    body { background: #0B0B12; }
+    .glass-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
+    .search-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 3rem; transition: all 0.3s; }
+    .search-input:focus { border-color: #FF006E; box-shadow: 0 0 15px rgba(255, 0, 110, 0.3); outline: none; }
+  </style>
+</head>
+<body class="text-white">
+  <!-- Navbar -->
+  <div class="glass-card mx-4 my-4 px-6 py-3 flex justify-between items-center">
+    <span class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</span>
+    <a href="#" class="text-gray-300 hover:text-pink-400"><i class="fas fa-home"></i> ماڵەوە</a>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <!-- گەڕان -->
+    <div class="relative">
+      <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input type="text" placeholder="گەڕان بۆ فیلم، زنجیرە، ئەکتەر..." class="search-input w-full py-4 pl-14 pr-5 text-white text-lg">
+    </div>
+
+    <!-- فلتەرەکان -->
+    <div class="flex flex-wrap gap-3 mt-6">
+      <span class="glass-card px-4 py-2 text-sm cursor-pointer hover:border-pink-500">هەموو</span>
+      <span class="glass-card px-4 py-2 text-sm cursor-pointer hover:border-pink-500">فیلم</span>
+      <span class="glass-card px-4 py-2 text-sm cursor-pointer hover:border-pink-500">زنجیرە</span>
+      <span class="glass-card px-4 py-2 text-sm cursor-pointer hover:border-pink-500">ئەکتەر</span>
+      <span class="glass-card px-4 py-2 text-sm cursor-pointer hover:border-pink-500">٢٠٢٤-٢٠٢٥</span>
+    </div>
+
+    <!-- ئەنجامەکان -->
+    <h2 class="text-2xl font-bold mt-10 border-r-4 border-pink-500 pr-3">ئەنجامەکان (١٢)</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-6">
+      <div class="glass-card rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition">
+        <img src="https://placehold.co/400x500/FF006E/white?text=FILM" class="w-full h-48 object-cover">
+        <div class="p-3"><h3 class="font-bold">ئاگر لە دڵدا</h3><p class="text-xs text-gray-400">فیلم · ئەکشن</p></div>
+      </div>
+      <div class="glass-card rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition">
+        <img src="https://placehold.co/400x500/FF7A00/white?text=SERIES" class="w-full h-48 object-cover">
+        <div class="p-3"><h3 class="font-bold">زنجیرەی تاوان</h3><p class="text-xs text-gray-400">زنجیرە · دراما</p></div>
+      </div>
+      <div class="glass-card rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition">
+        <img src="https://placehold.co/400x500/7B2CFF/white?text=ACTOR" class="w-full h-48 object-cover">
+        <div class="p-3"><h3 class="font-bold">ڕەزا کەریمی</h3><p class="text-xs text-gray-400">ئەکتەر</p></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
