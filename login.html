@@ -11,7 +11,7 @@
     * { font-family: 'Poppins', sans-serif; }
     body { background: radial-gradient(circle at 20% 30%, #0B0B12, #030308); min-height: 100vh; }
     .glass-deep {
-      background: rgba(15, 15, 30, 0.7);
+      background: rgba(15, 15, 30, 0.75);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 2rem;
@@ -52,6 +52,16 @@
       <h2 class="text-3xl font-bold mt-4 bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</h2>
     </div>
 
+    <!-- هەڵبژاردنی زمان -->
+    <div class="mb-6">
+      <label class="text-sm text-gray-400 block mb-2">هەڵبژاردنی زمان / Choose language</label>
+      <select class="w-full neon-input px-4 py-2 rounded-xl text-white bg-black/30">
+        <option value="ckb">کوردی (سۆرانی)</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+
     <!-- Tab buttons -->
     <div class="flex gap-2 mb-6 bg-white/5 p-1 rounded-full">
       <button id="loginTab" class="w-1/2 py-2 rounded-full font-semibold transition bg-pink-600 text-white">چوونەژوورەوە</button>
@@ -61,21 +71,21 @@
     <!-- Login Form -->
     <div id="loginForm">
       <div class="space-y-4">
-        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl text-white">
-        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl text-white">
+        <input type="email" placeholder="ئیمەیڵ / Email" class="w-full neon-input px-5 py-3 rounded-xl text-white">
+        <input type="password" placeholder="تێپەڕەوشە / Password" class="w-full neon-input px-5 py-3 rounded-xl text-white">
         <div class="text-right"><a href="#" class="text-sm text-pink-400 hover:underline">تێپەڕەوشەت لەبیر کردووە؟</a></div>
         <button class="w-full gradient-btn py-3 rounded-xl font-bold text-white">چوونەژوورەوە</button>
         <div class="flex gap-3 mt-4"><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-google"></i> Google</button><button class="w-full bg-white/10 py-2 rounded-xl"><i class="fab fa-apple"></i> Apple</button></div>
       </div>
     </div>
 
-    <!-- Register Form (hidden at start) -->
+    <!-- Register Form -->
     <div id="registerForm" class="hidden">
       <div class="space-y-4">
-        <input type="text" placeholder="ناوی تەواو" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="email" placeholder="ئیمەیڵ" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="password" placeholder="تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
-        <input type="password" placeholder="دووبارە تێپەڕەوشە" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="text" placeholder="ناوی تەواو / Full Name" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="email" placeholder="ئیمەیڵ / Email" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="password" placeholder="تێپەڕەوشە / Password" class="w-full neon-input px-5 py-3 rounded-xl">
+        <input type="password" placeholder="دووبارە تێپەڕەوشە / Confirm Password" class="w-full neon-input px-5 py-3 rounded-xl">
         <button class="w-full gradient-btn py-3 rounded-xl font-bold">دروستکردنی هەژمار</button>
       </div>
     </div>
