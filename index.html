@@ -29,15 +29,20 @@
     
     body {
       font-family: 'Exinflix Regular', 'Poppins', sans-serif;
-      background: #0B0B12;
       min-height: 100vh;
+      /* پاشبنەمای وێنە */
+      background-image: url('assets/images/background/9736.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     
-    /* شێوازی بانەڕ */
+    /* شێوازی بانەڕ - ڕوونتر بۆ دیاربوونی لەسەر وێنە */
     .navbar {
-      background: rgba(20, 20, 35, 0.8);
+      background: rgba(20, 20, 35, 0.7);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 0.5rem 1.5rem;
       position: sticky;
       top: 0;
@@ -74,8 +79,8 @@
     
     /* ئایکۆنی زمان - لای ڕاست */
     .language-icon {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 0.5rem;
       padding: 0.35rem 0.7rem;
       cursor: pointer;
@@ -87,7 +92,7 @@
     }
     
     .language-icon:hover {
-      background: rgba(255, 0, 110, 0.2);
+      background: rgba(255, 0, 110, 0.3);
       border-color: #FF006E;
     }
     
@@ -143,7 +148,7 @@
       position: relative;
     }
     
-    /* ==================== شێوازی بۆکسە چوارگۆشەکان ==================== */
+    /* ==================== بۆکسە چوارگۆشەکان ==================== */
     .boxes-wrapper {
       display: flex;
       justify-content: center;
@@ -169,6 +174,15 @@
       cursor: pointer;
       border-radius: 1.5rem;
       transition: all 0.3s ease;
+      background-color: rgba(0, 0, 0, 0.4);
+      background-blend-mode: overlay;
+    }
+    
+    /* بۆکسەکان شەفاف بن بۆ دیاربوونی وێنەی پاشبنەما */
+    .square-box {
+      background: rgba(20, 20, 35, 0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .square-box::before {
@@ -178,7 +192,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
       z-index: 1;
     }
     
@@ -196,8 +210,9 @@
     
     .square-box:hover {
       transform: translateY(-8px) scale(1.02);
-      border-color: rgba(255, 0, 110, 0.5);
-      box-shadow: 0 0 30px rgba(255, 0, 110, 0.3);
+      border-color: rgba(255, 0, 110, 0.6);
+      box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
+      background: rgba(255, 0, 110, 0.2);
     }
     
     @keyframes fadeIn {
@@ -259,9 +274,7 @@
     <div class="boxes-container">
       
       <!-- بۆکسی چەپ: کەناڵە جیهانییەکان (TV) -->
-      <div class="square-box" 
-           style="background-image: url('https://placehold.co/400x400/1A1A2E/FF006E?text=TV');"
-           onclick="window.location.href='live-tv.html'">
+      <div class="square-box" onclick="window.location.href='live-tv.html'">
         <div class="content">
           <i class="fas fa-tv text-4xl text-white opacity-90 mb-3"></i>
           <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
@@ -270,9 +283,7 @@
       </div>
 
       <!-- بۆکسی ڕاست: فیلم و زنجیرە -->
-      <div class="square-box" 
-           style="background-image: url('https://placehold.co/400x400/1A1E2F/FF7A00?text=Movies');"
-           onclick="window.location.href='movies-series.html'">
+      <div class="square-box" onclick="window.location.href='movies-series.html'">
         <div class="content">
           <i class="fas fa-play-circle text-4xl text-white opacity-90 mb-3"></i>
           <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
