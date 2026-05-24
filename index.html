@@ -2,7 +2,7 @@
 <html lang="ckb">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>EXINFLIX - فیلم و زنجیرە و تەلەڤزیۆنی ڕاستەوخۆ</title>
   
   <!-- فۆنتە تایبەتەکانی EXINFLIX -->
@@ -27,6 +27,11 @@
       box-sizing: border-box;
     }
     
+    html, body {
+      height: 100%;
+      overflow: hidden; /* لابردنی هەموو سکرۆڵ لە پەڕەکە */
+    }
+    
     body {
       font-family: 'Exinflix Regular', 'Poppins', sans-serif;
       min-height: 100vh;
@@ -36,6 +41,7 @@
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+      overflow: hidden;
     }
     
     /* شێوازی بانەڕ - ڕوونتر بۆ دیاربوونی لەسەر وێنە */
@@ -77,38 +83,63 @@
       color: #FF006E;
     }
     
-    /* ئایکۆنی زمان - لای ڕاست */
+    /* ==================== ئایکۆنی زمان - شێوازی نوێ ==================== */
     .language-icon {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 0.5rem;
-      padding: 0.35rem 0.7rem;
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(255, 122, 0, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
       cursor: pointer;
       font-size: 0.85rem;
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      color: white;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
     }
     
     .language-icon:hover {
-      background: rgba(255, 0, 110, 0.3);
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.4), rgba(255, 122, 0, 0.4));
       border-color: #FF006E;
+      transform: scale(1.02);
     }
     
-    /* لیستی زمانەکان (Dropdown) */
+    .language-icon i {
+      font-size: 1rem;
+    }
+    
+    /* لیستی زمانەکان (Dropdown) - سکرۆڵی تایبەت */
     .language-dropdown {
       position: absolute;
-      top: 45px;
+      top: 50px;
       right: 0;
       background: rgba(20, 20, 35, 0.95);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 0.75rem;
       padding: 0.5rem;
-      min-width: 180px;
+      min-width: 200px;
+      max-height: 300px;
+      overflow-y: auto; /* سکرۆڵ بۆ لیستی زمانەکان */
       z-index: 100;
       display: none;
+    }
+    
+    /* شێوازی سکرۆڵ بۆ لیستی زمانەکان */
+    .language-dropdown::-webkit-scrollbar {
+      width: 5px;
+    }
+    
+    .language-dropdown::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    
+    .language-dropdown::-webkit-scrollbar-thumb {
+      background: #FF006E;
+      border-radius: 10px;
     }
     
     .language-dropdown.show {
@@ -153,7 +184,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: calc(100vh - 60px);
+      height: calc(100vh - 60px);
+      overflow: hidden;
     }
     
     .boxes-container {
@@ -167,19 +199,11 @@
     .square-box {
       width: 200px;
       height: 200px;
-      background-size: cover;
-      background-position: center;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       border-radius: 1.5rem;
       transition: all 0.3s ease;
-      background-color: rgba(0, 0, 0, 0.4);
-      background-blend-mode: overlay;
-    }
-    
-    /* بۆکسەکان شەفاف بن بۆ دیاربوونی وێنەی پاشبنەما */
-    .square-box {
       background: rgba(20, 20, 35, 0.5);
       backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -240,11 +264,13 @@
         <a href="live-tv.html" class="menu-link">کەناڵەکان</a>
       </div>
       
-      <!-- لای ڕاست: ئایکۆنی زمان -->
+      <!-- لای ڕاست: ئایکۆنی زمان - شێوازی نوێ -->
       <div class="navbar-right">
         <div class="language-container">
           <div class="language-icon" id="languageIcon">
-            <i class="fas fa-globe"></i> <span>زمان</span> <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-globe"></i>
+            <span>زمان</span>
+            <i class="fas fa-chevron-down"></i>
           </div>
           <div class="language-dropdown" id="languageDropdown">
             <div class="language-option" data-lang="ckb">کوردی (سۆرانی) - Sorani</div>
