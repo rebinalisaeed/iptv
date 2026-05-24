@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXINFLIX - ماڵەوە</title>
+  <title>EXINFLIX - پلاتفۆرمی فیلم و تەلەڤزیۆن</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
     * { font-family: 'Poppins', sans-serif; }
@@ -16,17 +16,17 @@
     .search-input:focus { border-color: #FF006E; outline: none; }
     .genre-chip { background: rgba(255, 255, 255, 0.08); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.9rem; transition: all 0.2s; cursor: pointer; }
     .genre-chip:hover, .genre-chip.active { background: linear-gradient(135deg, #FF006E, #FF7A00); }
+    .gradient-btn { background: linear-gradient(135deg, #FF006E, #FF7A00); transition: transform 0.2s; }
+    .gradient-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
   </style>
 </head>
 <body class="text-white">
-  <!-- Navbar -->
+
+  <!-- ==================== NAVBAR ==================== -->
   <nav class="glass-card mx-4 md:mx-8 my-4 px-6 py-3 flex justify-between items-center sticky top-4 z-50">
+    <!-- لۆگۆی PNG -->
     <div class="flex items-center gap-3">
-      <svg width="45" height="45" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto">
-        <defs><linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF006E"/><stop offset="100%" stop-color="#FF7A00"/></linearGradient></defs>
-        <g><path d="M80 30 L170 30 L120 80 L80 60 Z" fill="url(#navGrad)"/><path d="M90 95 L150 130 L90 165 Z" fill="url(#navGrad)"/><path d="M80 190 L120 170 L170 220 L100 220 Z" fill="url(#navGrad)"/></g>
-        <text x="220" y="165" font-family="Poppins" font-size="75" font-weight="600" fill="url(#navGrad)" letter-spacing="2">inflix</text>
-      </svg>
+      <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
       <span class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">EXINFLIX</span>
     </div>
     <div class="flex gap-4">
@@ -44,7 +44,7 @@
       <input type="text" placeholder="گەڕان بۆ فیلم، زنجیرە، یان ئەکتەر... / Search for movies, series..." class="search-input w-full py-4 pl-14 pr-5 text-white text-lg">
     </div>
 
-    <!-- GENRE (چەشنەکان) -->
+    <!-- GENRE -->
     <div class="mb-10">
       <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-tags text-pink-400"></i> چەشنەکان / GENRE</h2>
       <div class="flex flex-wrap gap-3">
@@ -58,30 +58,30 @@
       </div>
     </div>
 
-    <!-- SUGGESTION (پێشنیارەکان) -->
+    <!-- SUGGESTION -->
     <div class="mb-12">
       <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-star text-yellow-500"></i> پێشنیار بۆ تۆ / SUGGESTION</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
         <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF006E/white?text=SUGGEST+1" class="w-full h-48 object-cover">
+          <img src="https://placehold.co/400x500/FF006E/white?text=FILM+1" class="w-full h-48 object-cover">
           <div class="p-3"><h3 class="font-bold">ئاگر لە دڵدا</h3><p class="text-xs text-gray-400">ئەکشن · ٢٠٢٥</p></div>
         </div>
         <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF7A00/white?text=SUGGEST+2" class="w-full h-48 object-cover">
+          <img src="https://placehold.co/400x500/FF7A00/white?text=FILM+2" class="w-full h-48 object-cover">
           <div class="p-3"><h3 class="font-bold">ڕێگای مانگ</h3><p class="text-xs text-gray-400">دراما · ٢٠٢٤</p></div>
         </div>
         <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/7B2CFF/white?text=SUGGEST+3" class="w-full h-48 object-cover">
+          <img src="https://placehold.co/400x500/7B2CFF/white?text=SERIES" class="w-full h-48 object-cover">
           <div class="p-3"><h3 class="font-bold">زنجیرەی تاوان</h3><p class="text-xs text-gray-400">زنجیرە · ٨.٩</p></div>
         </div>
         <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF006E/white?text=SUGGEST+4" class="w-full h-48 object-cover">
+          <img src="https://placehold.co/400x500/FF006E/white?text=FILM+4" class="w-full h-48 object-cover">
           <div class="p-3"><h3 class="font-bold">پەیکەری خوێن</h3><p class="text-xs text-gray-400">فانتازی</p></div>
         </div>
       </div>
     </div>
 
-    <!-- PUBLIC ROOMS + CREATE ROOM + JOIN ROOM -->
+    <!-- PUBLIC ROOMS -->
     <div class="mb-10">
       <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-users text-pink-400"></i> ژووری گشتی / PUBLIC ROOMS</h2>
       <div class="grid md:grid-cols-3 gap-5">
@@ -104,11 +104,21 @@
       </div>
     </div>
 
-    <!-- BOOK TICKETS بەشی خێرا -->
+    <!-- BOOK TICKETS -->
     <div class="glass-card p-5 flex justify-between items-center flex-wrap gap-4">
       <div><i class="fas fa-ticket-alt text-3xl text-pink-400"></i><span class="font-bold ml-2">بووکینگی تیکەت / BOOK TICKETS</span></div>
       <button class="gradient-btn px-6 py-2 rounded-full">بڕۆ بۆ بووکینگ</button>
     </div>
   </div>
+
+  <footer class="border-t border-white/10 mt-12 py-8 text-center text-gray-400 text-sm">
+    <div class="flex flex-wrap justify-center gap-6 mb-4">
+      <a href="#" class="hover:text-pink-400">پشتیوانی</a>
+      <a href="#" class="hover:text-pink-400">دابەزاندنی ئەپ</a>
+      <a href="#" class="hover:text-pink-400">نرخەکان</a>
+      <a href="#" class="hover:text-pink-400">بڵۆگ</a>
+    </div>
+    <p>© 2026 EXINFLIX - هەموو مافەکان پارێزراوە | دیزاین بە شێوازی Dark Neon + Glassmorphism</p>
+  </footer>
 </body>
 </html>
