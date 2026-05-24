@@ -99,8 +99,8 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 0.75rem;
       padding: 0.5rem;
-      min-width: 200px;
-      max-height: 300px;
+      min-width: 220px;
+      max-height: 350px;
       overflow-y: auto;
       z-index: 100;
       display: none;
@@ -241,7 +241,6 @@
     
     .box-card:hover .icon { background: rgba(255, 0, 110, 0.4); transform: scale(1.1); }
     
-    /* بۆکسی ژووری سینەما - ڕەنگی جیاواز */
     .box-card.cinema-room {
       border-color: rgba(123, 44, 255, 0.5);
     }
@@ -256,7 +255,6 @@
     }
     .animate-fade { animation: fadeIn 0.6s ease forwards; }
     
-    /* ڕێکخستنی سکرۆڵ بۆ ناوەڕۆک */
     .boxes-wrapper::-webkit-scrollbar {
       width: 5px;
     }
@@ -305,8 +303,12 @@
             <div class="language-option" data-lang="de">Deutsch - German</div>
             <div class="language-option" data-lang="sv">Svenska - Swedish</div>
             <div class="language-option" data-lang="it">Italiano - Italian</div>
-            <div class="language-option" data-lang="zh">中文 - Chinese</div>
+            <div class="language-option" data-lang="zh-CN">中文 (简体) - Simplified Chinese</div>
+            <div class="language-option" data-lang="zh-TW">中文 (繁體) - Traditional Chinese</div>
             <div class="language-option" data-lang="ko">한국어 - Korean</div>
+            <div class="language-option" data-lang="hi">हिन्दी - Hindi</div>
+            <div class="language-option" data-lang="ja">日本語 - Japanese</div>
+            <div class="language-option" data-lang="pl">Polski - Polish</div>
           </div>
         </div>
       </div>
@@ -315,7 +317,6 @@
 
   <div class="boxes-wrapper">
     <div class="boxes-container">
-      <!-- بۆکسی 1: تەلەڤزیۆن -->
       <div class="box-card" id="boxTv">
         <div class="content">
           <div class="icon"><i class="fas fa-tv"></i></div>
@@ -324,8 +325,6 @@
           <div class="badge" id="boxTvBadge">ڕاستەوخۆ</div>
         </div>
       </div>
-
-      <!-- بۆکسی 2: فیلم -->
       <div class="box-card" id="boxMovies">
         <div class="content">
           <div class="icon"><i class="fas fa-film"></i></div>
@@ -334,8 +333,6 @@
           <div class="badge" id="boxMoviesBadge">نوێترین فیلمەکان</div>
         </div>
       </div>
-
-      <!-- بۆکسی 3: زنجیرە -->
       <div class="box-card" id="boxSeries">
         <div class="content">
           <div class="icon"><i class="fas fa-play-circle"></i></div>
@@ -344,8 +341,6 @@
           <div class="badge" id="boxSeriesBadge">بەردەوام بینین</div>
         </div>
       </div>
-
-      <!-- بۆکسی 4: ژووری سینەما (Cinema Room) -->
       <div class="box-card cinema-room" id="boxCinemaRoom">
         <div class="content">
           <div class="icon"><i class="fas fa-users"></i></div>
