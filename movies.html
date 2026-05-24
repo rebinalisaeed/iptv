@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EXINFLIX - فیلمەکان</title>
+  
   <style>
     @font-face {
       font-family: 'Exinflix Bold';
@@ -17,21 +18,32 @@
       font-weight: normal;
       font-display: swap;
     }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
-      font-family: 'Exinflix Regular', sans-serif;
-      background: #0B0B12;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+      background-image: url('assets/images/background/9736.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       min-height: 100vh;
     }
+    
+    body.rtl { direction: rtl; text-align: right; }
+    body.ltr { direction: ltr; text-align: left; }
+    
+    /* بانەڕ */
     .navbar {
-      background: rgba(20, 20, 35, 0.9);
+      background: rgba(20, 20, 35, 0.8);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.5rem 1.5rem;
+      padding: 0.75rem 1.5rem;
       position: sticky;
       top: 0;
       z-index: 50;
     }
+    
     .navbar-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -39,57 +51,537 @@
       justify-content: space-between;
       align-items: center;
     }
+    
     .navbar-logo { height: 32px; width: auto; }
-    .nav-menu { display: flex; gap: 1.5rem; }
-    .menu-link { color: #e5e5e5; text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
-    .menu-link:hover { color: #FF006E; }
-    .glass-card {
-      background: rgba(20, 20, 35, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    
+    .back-link {
+      color: #FF006E;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      font-family: 'Exinflix Regular', sans-serif;
+    }
+    
+    .back-link:hover { opacity: 0.8; transform: translateX(-4px); }
+    body.rtl .back-link:hover { transform: translateX(4px); }
+    
+    /* سلایدەر */
+    .slider-container {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    
+    .slider-title {
+      font-size: 1.5rem;
+      font-family: 'Exinflix Bold', sans-serif;
+      color: white;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .slider-title i { color: #FF006E; font-size: 1.3rem; }
+    
+    .slider-wrapper {
+      position: relative;
+      overflow: hidden;
       border-radius: 1rem;
+    }
+    
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .slide {
+      min-width: 100%;
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      height: 400px;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .slide-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      padding: 3rem 2rem 2rem;
+      color: white;
+    }
+    
+    .slide-content h2 {
+      font-size: 2rem;
+      font-family: 'Exinflix Bold', sans-serif;
+      margin-bottom: 0.5rem;
+    }
+    
+    .slide-content p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      max-width: 60%;
+    }
+    
+    .slide-btn {
+      background: linear-gradient(135deg, #FF006E, #FF7A00);
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      color: white;
+      font-family: 'Exinflix Bold', sans-serif;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .slide-btn:hover { transform: scale(1.05); opacity: 0.9; }
+    
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    
+    .slider-btn:hover { background: #FF006E; }
+    
+    .slider-prev { left: 10px; }
+    .slider-next { right: 10px; }
+    
+    /* لیستی فیلمەکان */
+    .movies-section {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-family: 'Exinflix Bold', sans-serif;
+      color: white;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-right: 4px solid #FF006E;
+      padding-right: 15px;
+    }
+    body.rtl .section-title { border-right: none; border-left: 4px solid #FF006E; padding-right: 0; padding-left: 15px; }
+    
+    .movies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .movie-card {
+      background: rgba(20, 20, 35, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
       transition: all 0.3s;
       cursor: pointer;
     }
-    .glass-card:hover { transform: translateY(-5px); border-color: #FF006E; }
-    .movie-card { overflow: hidden; }
-    .movie-card img { width: 100%; height: 200px; object-fit: cover; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-    h1 { font-size: 2rem; margin-bottom: 1.5rem; color: white; font-family: 'Exinflix Bold', sans-serif; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-    .back-link { color: #FF006E; text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    
+    .movie-card:hover {
+      transform: translateY(-8px);
+      border-color: #FF006E;
+      box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+    }
+    
+    .movie-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .movie-info {
+      padding: 1rem;
+    }
+    
+    .movie-title {
+      font-family: 'Exinflix Bold', sans-serif;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .movie-year {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75rem;
+    }
+    
+    .movie-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0.5rem;
+      color: #FFD700;
+      font-size: 0.8rem;
+    }
+    
+    /* کاتێک هیچ فیلمێک نییە */
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      background: rgba(20, 20, 35, 0.5);
+      border-radius: 1rem;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade { animation: fadeIn 0.5s ease forwards; }
+    
+    /* ڕەنگەکان بۆ RTL */
+    body.rtl .slider-btn.slider-prev { left: auto; right: 10px; }
+    body.rtl .slider-btn.slider-next { right: auto; left: 10px; }
   </style>
 </head>
-<body>
+<body class="ltr">
+
   <div class="navbar">
     <div class="navbar-container">
       <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
-      <div class="nav-menu">
-        <a href="index.html" class="menu-link">ماڵەوە</a>
-        <a href="movies.html" class="menu-link">فیلم</a>
-        <a href="series.html" class="menu-link">زنجیرە</a>
-        <a href="live-tv.html" class="menu-link">تەلەڤزیۆن</a>
-      </div>
+      <a href="index.html" class="back-link" id="backLink">
+        <i class="fas fa-arrow-left"></i> <span id="backText">گەڕانەوە</span>
+      </a>
     </div>
   </div>
-  <div class="container">
-    <a href="index.html" class="back-link">← گەڕانەوە</a>
-    <h1>فیلمەکان</h1>
-    <div class="grid">
-      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/FF006E/white?text=ACTION+MOVIE">
-        <div class="p-3"><h3 style="color:white;">ئاگر لە دڵدا</h3><p style="color:gray; font-size:0.75rem;">ئەکشن · ٢٠٢٥</p></div>
+
+  <!-- سلایدەر -->
+  <div class="slider-container">
+    <div class="slider-title">
+      <i class="fas fa-fire"></i>
+      <span id="sliderTitle">بەناوبانگەکانی ئەم هەفتەیە</span>
+    </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn slider-prev" id="prevBtn">❮</button>
+      <div class="slider" id="slider">
+        <div class="slide">
+          <img src="https://placehold.co/1280x400/1A1A2E/FF006E?text=Movie+1">
+          <div class="slide-content">
+            <h2 id="slide1Title">ئاگر لە دڵدا</h2>
+            <p id="slide1Desc">فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە</p>
+            <button class="slide-btn" id="slide1Btn">بینینی ئێستا</button>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://placehold.co/1280x400/1E1E2F/FF7A00?text=Movie+2">
+          <div class="slide-content">
+            <h2 id="slide2Title">ڕێگای مانگ</h2>
+            <p id="slide2Desc">درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە</p>
+            <button class="slide-btn" id="slide2Btn">بینینی ئێستا</button>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://placehold.co/1280x400/1A1E2F/7B2CFF?text=Movie+3">
+          <div class="slide-content">
+            <h2 id="slide3Title">پەیکەری خوێن</h2>
+            <p id="slide3Desc">فیلمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی</p>
+            <button class="slide-btn" id="slide3Btn">بینینی ئێستا</button>
+          </div>
+        </div>
       </div>
-      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/FF7A00/white?text=DRAMA+MOVIE">
-        <div class="p-3"><h3 style="color:white;">ڕێگای مانگ</h3><p style="color:gray; font-size:0.75rem;">دراما · ٢٠٢٤</p></div>
-      </div>
-      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/7B2CFF/white?text=COMEDY">
-        <div class="p-3"><h3 style="color:white;">پێکەنین لە هەولێر</h3><p style="color:gray; font-size:0.75rem;">کۆمێدی · ٢٠٢٥</p></div>
-      </div>
+      <button class="slider-btn slider-next" id="nextBtn">❯</button>
     </div>
   </div>
-  <style>.p-3 { padding: 0.75rem; }</style>
+
+  <!-- لیستی فیلمەکان -->
+  <div class="movies-section">
+    <div class="section-title">
+      <i class="fas fa-film"></i>
+      <span id="moviesTitle">فیلمەکان</span>
+    </div>
+    <div class="movies-grid" id="moviesGrid">
+      <!-- فیلمەکان لە لایەن JavaScriptەوە زیاد دەکرێن -->
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+  <script>
+    // ==================== تەرجەمەکان ====================
+    const translations = {
+      ckb: {
+        back: 'گەڕانەوە',
+        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە',
+        moviesTitle: 'فیلمەکان',
+        slide1Title: 'ئاگر لە دڵدا',
+        slide1Desc: 'فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ',
+        slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن',
+        slide3Desc: 'فیلمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        watchBtn: 'بینینی ئێستا',
+        movies: [
+          { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
+          { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
+          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
+          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' },
+          { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
+        ]
+      },
+      'ckb-badini': {
+        back: 'گەڕانەوە', sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
+        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        watchBtn: 'بینینی ئێستا',
+        movies: [
+          { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
+          { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
+          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
+          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' },
+          { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
+        ]
+      },
+      kmr: {
+        back: 'Vegere', sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
+        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
+        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
+        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
+        watchBtn: 'Temaşe bike',
+        movies: [
+          { title: 'Agir di dil de', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+          { title: 'Rêya Heyvê', year: '2024', rating: '8.2', genre: 'Drama' },
+          { title: 'Peykerê Xwînê', year: '2025', rating: '7.9', genre: 'Fantazî' }
+        ]
+      },
+      ar: {
+        back: 'رجوع', sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
+        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
+        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
+        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
+        watchBtn: 'مشاهدة الآن',
+        movies: [
+          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
+          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' },
+          { title: 'تمثال الدم', year: '2025', rating: '7.9', genre: 'خيال' }
+        ]
+      },
+      en: {
+        back: 'Back', sliderTitle: 'This Week\'s Top Picks', moviesTitle: 'Movies',
+        slide1Title: 'Fire in the Heart', slide1Desc: 'An exciting action movie about a young hero\'s journey',
+        slide2Title: 'Moon Road', slide2Desc: 'A heartfelt drama about a human adventure journey',
+        slide3Title: 'Blood Statue', slide3Desc: 'A fantasy action movie full of adventure',
+        watchBtn: 'Watch Now',
+        movies: [
+          { title: 'Fire in the Heart', year: '2025', rating: '8.7', genre: 'Action' },
+          { title: 'Moon Road', year: '2024', rating: '8.2', genre: 'Drama' },
+          { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
+        ]
+      },
+      tr: {
+        back: 'Geri', sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
+        slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
+        slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
+        slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
+        watchBtn: 'Şimdi İzle',
+        movies: [
+          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' },
+          { title: 'Kan Heykeli', year: '2025', rating: '7.9', genre: 'Fantastik' }
+        ]
+      },
+      fa: {
+        back: 'بازگشت', sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
+        slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
+        slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه انسانی',
+        slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
+        watchBtn: 'تماشا کن',
+        movies: [
+          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
+          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' },
+          { title: 'مجسمه خون', year: '2025', rating: '7.9', genre: 'فانتزی' }
+        ]
+      },
+      ru: {
+        back: 'Назад', sliderTitle: 'Популярные на этой неделе', moviesTitle: 'Фильмы',
+        slide1Title: 'Огонь в сердце', slide1Desc: 'Захватывающий боевик о молодом герое',
+        slide2Title: 'Лунная дорога', slide2Desc: 'Проникновенная драма о человеческом приключении',
+        slide3Title: 'Кровавая статуя', slide3Desc: 'Фэнтезийный боевик, полный приключений',
+        watchBtn: 'Смотреть сейчас',
+        movies: [
+          { title: 'Огонь в сердце', year: '2025', rating: '8.7', genre: 'Боевик' },
+          { title: 'Лунная дорога', year: '2024', rating: '8.2', genre: 'Драма' },
+          { title: 'Кровавая статуя', year: '2025', rating: '7.9', genre: 'Фэнтези' }
+        ]
+      },
+      fr: {
+        back: 'Retour', sliderTitle: 'Les plus populaires de la semaine', moviesTitle: 'Films',
+        slide1Title: 'Feu dans le cœur', slide1Desc: 'Un film d\'action passionnant sur un jeune héros',
+        slide2Title: 'Route de la lune', slide2Desc: 'Un drame poignant sur une aventure humaine',
+        slide3Title: 'Statue de sang', slide3Desc: 'Un film d\'action fantastique plein d\'aventures',
+        watchBtn: 'Regarder maintenant',
+        movies: [{ title: 'Feu dans le cœur', year: '2025', rating: '8.7', genre: 'Action' }]
+      },
+      es: {
+        back: 'Volver', sliderTitle: 'Los más populares de la semana', moviesTitle: 'Películas',
+        slide1Title: 'Fuego en el corazón', slide1Desc: 'Una emocionante película de acción sobre un joven héroe',
+        slide2Title: 'Camino de la luna', slide2Desc: 'Un drama conmovedor sobre una aventura humana',
+        slide3Title: 'Estatua de sangre', slide3Desc: 'Una película de acción fantástica llena de aventuras',
+        watchBtn: 'Ver ahora',
+        movies: [{ title: 'Fuego en el corazón', year: '2025', rating: '8.7', genre: 'Acción' }]
+      },
+      pt: {
+        back: 'Voltar', sliderTitle: 'Os mais populares desta semana', moviesTitle: 'Filmes',
+        slide1Title: 'Fogo no coração', slide1Desc: 'Um emocionante filme de ação sobre um jovem herói',
+        slide2Title: 'Estrada da lua', slide2Desc: 'Um drama comovente sobre uma aventura humana',
+        slide3Title: 'Estátua de sangue', slide3Desc: 'Um filme de ação fantástico cheio de aventura',
+        watchBtn: 'Assistir agora',
+        movies: [{ title: 'Fogo no coração', year: '2025', rating: '8.7', genre: 'Ação' }]
+      },
+      de: {
+        back: 'Zurück', sliderTitle: 'Die beliebtesten dieser Woche', moviesTitle: 'Filme',
+        slide1Title: 'Feuer im Herzen', slide1Desc: 'Ein aufregender Actionfilm über einen jungen Helden',
+        slide2Title: 'Mondstraße', slide2Desc: 'Ein herzliches Drama über eine menschliche Abenteuerreise',
+        slide3Title: 'Blutstatue', slide3Desc: 'Ein fantastischer Actionfilm voller Abenteuer',
+        watchBtn: 'Jetzt ansehen',
+        movies: [{ title: 'Feuer im Herzen', year: '2025', rating: '8.7', genre: 'Action' }]
+      },
+      sv: {
+        back: 'Tillbaka', sliderTitle: 'Den här veckans populäraste', moviesTitle: 'Filmer',
+        slide1Title: 'Eld i hjärtat', slide1Desc: 'En spännande actionfilm om en ung hjälte',
+        slide2Title: 'Månvägen', slide2Desc: 'En hjärtlig dramafilm om en mänsklig äventyrsresa',
+        slide3Title: 'Blodstatyn', slide3Desc: 'En fantasy actionfilm full av äventyr',
+        watchBtn: 'Titta nu',
+        movies: [{ title: 'Eld i hjärtat', year: '2025', rating: '8.7', genre: 'Action' }]
+      },
+      it: {
+        back: 'Indietro', sliderTitle: 'I più popolari di questa settimana', moviesTitle: 'Film',
+        slide1Title: 'Fuoco nel cuore', slide1Desc: 'Un emozionante film d\'azione su un giovane eroe',
+        slide2Title: 'Strada della luna', slide2Desc: 'Un dramma sentito su un\'avventura umana',
+        slide3Title: 'Statua di sangue', slide3Desc: 'Un film d\'azione fantasy pieno di avventure',
+        watchBtn: 'Guarda ora',
+        movies: [{ title: 'Fuoco nel cuore', year: '2025', rating: '8.7', genre: 'Azione' }]
+      },
+      zh: {
+        back: '返回', sliderTitle: '本周最受欢迎', moviesTitle: '电影',
+        slide1Title: '心中的火', slide1Desc: '一部关于年轻英雄的激动人心的动作片',
+        slide2Title: '月亮之路', slide2Desc: '一部关于人类冒险之旅的感人戏剧',
+        slide3Title: '血雕像', slide3Desc: '一部充满冒险的奇幻动作片',
+        watchBtn: '立即观看',
+        movies: [{ title: '心中的火', year: '2025', rating: '8.7', genre: '动作' }]
+      },
+      ko: {
+        back: '뒤로', sliderTitle: '이번 주 인기 순위', moviesTitle: '영화',
+        slide1Title: '마음 속의 불', slide1Desc: '젊은 영웅에 관한 흥미진진한 액션 영화',
+        slide2Title: '달의 길', slide2Desc: '인간 모험 여정에 관한 진심 어린 드라마',
+        slide3Title: '피의 조각상', slide3Desc: '모험으로 가득한 판타지 액션 영화',
+        watchBtn: '지금 시청',
+        movies: [{ title: '마음 속의 불', year: '2025', rating: '8.7', genre: '액션' }]
+      }
+    };
+
+    // RTL زمانەکان
+    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa'];
+
+    function getCurrentLanguage() {
+      let savedLang = localStorage.getItem('exinflix_language');
+      if (savedLang && translations[savedLang]) return savedLang;
+      let browserLang = navigator.language.split('-')[0];
+      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
+      if (browserLang === 'ar') return 'ar';
+      if (browserLang === 'en') return 'en';
+      if (browserLang === 'fa') return 'fa';
+      return 'ckb';
+    }
+
+    let currentLang = getCurrentLanguage();
+    const t = translations[currentLang];
+
+    // RTL یان LTR دیاری بکە
+    if (rtlLanguages.includes(currentLang)) {
+      document.body.classList.add('rtl');
+      document.body.classList.remove('ltr');
+    } else {
+      document.body.classList.add('ltr');
+      document.body.classList.remove('rtl');
+    }
+
+    // تەرجەمەکردنی ناوەڕۆک
+    document.getElementById('backText').innerText = t.back;
+    document.getElementById('sliderTitle').innerHTML = `<i class="fas fa-fire"></i> ${t.sliderTitle}`;
+    document.getElementById('moviesTitle').innerHTML = `<i class="fas fa-film"></i> ${t.moviesTitle}`;
+    document.getElementById('slide1Title').innerText = t.slide1Title;
+    document.getElementById('slide1Desc').innerText = t.slide1Desc;
+    document.getElementById('slide2Title').innerText = t.slide2Title;
+    document.getElementById('slide2Desc').innerText = t.slide2Desc;
+    document.getElementById('slide3Title').innerText = t.slide3Title;
+    document.getElementById('slide3Desc').innerText = t.slide3Desc;
+    
+    document.querySelectorAll('.slide-btn').forEach(btn => btn.innerText = t.watchBtn);
+
+    // لیستی فیلمەکان دروست بکە
+    const moviesGrid = document.getElementById('moviesGrid');
+    moviesGrid.innerHTML = '';
+    if (t.movies && t.movies.length) {
+      t.movies.forEach(movie => {
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.onclick = () => alert(`فیلمی ${movie.title} - لە داهاتوودا زیاد دەکرێت`);
+        card.innerHTML = `
+          <img src="https://placehold.co/300x450/1A1E2F/FF006E?text=${encodeURIComponent(movie.title)}">
+          <div class="movie-info">
+            <div class="movie-title">${movie.title}</div>
+            <div class="movie-year">${movie.year} • ${movie.genre}</div>
+            <div class="movie-rating"><i class="fas fa-star"></i> ${movie.rating}</div>
+          </div>
+        `;
+        moviesGrid.appendChild(card);
+      });
+    } else {
+      moviesGrid.innerHTML = '<div class="empty-state">هیچ فیلمێک نەدۆزرایەوە</div>';
+    }
+
+    // سلایدەر
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    });
+  </script>
 </body>
 </html>
