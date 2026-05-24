@@ -3,18 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXINFLIX - تەلەڤزیۆنی ڕاستەوخۆ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style> *{font-family:'Poppins',sans-serif;} body{background:#0B0B12;} .glass-card{background:rgba(20,20,35,0.6);backdrop-filter:blur(12px);border-radius:1.5rem;} </style>
+  <title>EXINFLIX - کەناڵە جیهانییەکان</title>
+  <style>
+    @font-face {
+      font-family: 'Exinflix Bold';
+      src: url('fonts/Exinflix-Bd.ttf') format('truetype');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Exinflix Regular';
+      src: url('fonts/Exinflix-Reg.ttf') format('truetype');
+      font-weight: normal;
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Exinflix Regular', sans-serif;
+      background: #0B0B12;
+      min-height: 100vh;
+    }
+    .glass-card {
+      background: rgba(20, 20, 35, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.5rem;
+      transition: all 0.3s;
+    }
+    .glass-card:hover {
+      border-color: #FF006E;
+      transform: translateY(-5px);
+    }
+  </style>
 </head>
-<body class="text-white p-5">
-  <h1 class="text-3xl font-bold mb-6"><i class="fas fa-tv text-pink-500"></i> کەناڵە ڕاستەوخۆکان</h1>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-futbol text-5xl text-pink-400"></i></div><h3 class="font-bold mt-3">کەناڵی وەرزش</h3><span class="text-green-400 text-sm"><i class="fas fa-circle text-[8px]"></i> ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
-    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-film text-5xl text-orange-400"></i></div><h3 class="font-bold mt-3">سینەمایی ١</h3><span class="text-green-400">ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
-    <div class="glass-card p-4"><div class="bg-gray-800 h-40 rounded-xl flex items-center justify-center"><i class="fas fa-newspaper text-5xl text-purple-400"></i></div><h3 class="font-bold mt-3">هەواڵەکان</h3><span class="text-green-400">ڕاستەوخۆ</span><button class="mt-3 w-full bg-pink-600 py-2 rounded-full">بینین</button></div>
+<body>
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <div class="flex justify-between items-center mb-8">
+      <img src="assets/logo/logo.png" alt="EXINFLIX" class="h-12 w-auto">
+      <a href="index.html" class="glass-card px-5 py-2 rounded-full text-white text-sm hover:text-pink-400">← گەڕانەوە</a>
+    </div>
+    <h1 class="text-3xl font-bold text-white mb-6" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h1>
+    <div class="grid md:grid-cols-4 gap-5">
+      <div class="glass-card p-5 text-center cursor-pointer hover:border-pink-500"><i class="fas fa-futbol text-3xl text-pink-400"></i><h3 class="font-bold text-white mt-2">کەناڵی وەرزش</h3><span class="text-green-400 text-sm">ڕاستەوخۆ</span></div>
+      <div class="glass-card p-5 text-center cursor-pointer"><i class="fas fa-newspaper text-3xl text-pink-400"></i><h3 class="font-bold text-white mt-2">هەواڵەکان</h3><span class="text-green-400 text-sm">ڕاستەوخۆ</span></div>
+      <div class="glass-card p-5 text-center cursor-pointer"><i class="fas fa-film text-3xl text-pink-400"></i><h3 class="font-bold text-white mt-2">سینەمایی</h3></div>
+      <div class="glass-card p-5 text-center cursor-pointer"><i class="fas fa-music text-3xl text-pink-400"></i><h3 class="font-bold text-white mt-2">مۆسیقا</h3></div>
+    </div>
   </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </body>
 </html>
