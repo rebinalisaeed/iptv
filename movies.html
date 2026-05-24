@@ -33,7 +33,6 @@
     body.rtl { direction: rtl; text-align: right; }
     body.ltr { direction: ltr; text-align: left; }
     
-    /* بانەڕ */
     .navbar {
       background: rgba(20, 20, 35, 0.8);
       backdrop-filter: blur(12px);
@@ -68,7 +67,6 @@
     .back-link:hover { opacity: 0.8; transform: translateX(-4px); }
     body.rtl .back-link:hover { transform: translateX(4px); }
     
-    /* سلایدەر */
     .slider-container {
       max-width: 1280px;
       margin: 2rem auto;
@@ -169,8 +167,9 @@
     
     .slider-prev { left: 10px; }
     .slider-next { right: 10px; }
+    body.rtl .slider-prev { left: auto; right: 10px; }
+    body.rtl .slider-next { right: auto; left: 10px; }
     
-    /* لیستی فیلمەکان */
     .movies-section {
       max-width: 1280px;
       margin: 2rem auto;
@@ -243,7 +242,6 @@
       font-size: 0.8rem;
     }
     
-    /* کاتێک هیچ فیلمێک نییە */
     .empty-state {
       text-align: center;
       padding: 3rem;
@@ -257,10 +255,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade { animation: fadeIn 0.5s ease forwards; }
-    
-    /* ڕەنگەکان بۆ RTL */
-    body.rtl .slider-btn.slider-prev { left: auto; right: 10px; }
-    body.rtl .slider-btn.slider-next { right: auto; left: 10px; }
   </style>
 </head>
 <body class="ltr">
@@ -274,7 +268,6 @@
     </div>
   </div>
 
-  <!-- سلایدەر -->
   <div class="slider-container">
     <div class="slider-title">
       <i class="fas fa-fire"></i>
@@ -312,31 +305,22 @@
     </div>
   </div>
 
-  <!-- لیستی فیلمەکان -->
   <div class="movies-section">
     <div class="section-title">
       <i class="fas fa-film"></i>
       <span id="moviesTitle">فیلمەکان</span>
     </div>
-    <div class="movies-grid" id="moviesGrid">
-      <!-- فیلمەکان لە لایەن JavaScriptەوە زیاد دەکرێن -->
-    </div>
+    <div class="movies-grid" id="moviesGrid"></div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== تەرجەمەکان ====================
     const translations = {
       ckb: {
-        back: 'گەڕانەوە',
-        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە',
-        moviesTitle: 'فیلمەکان',
-        slide1Title: 'ئاگر لە دڵدا',
-        slide1Desc: 'فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
-        slide2Title: 'ڕێگای مانگ',
-        slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
-        slide3Title: 'پەیکەری خوێن',
-        slide3Desc: 'فیلمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        back: 'گەڕانەوە', sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فیلمەکان',
+        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فیلمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
         watchBtn: 'بینینی ئێستا',
         movies: [
           { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
@@ -356,10 +340,7 @@
         movies: [
           { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
           { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
-          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
-          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' },
-          { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' }
         ]
       },
       kmr: {
@@ -440,7 +421,10 @@
         slide2Title: 'Route de la lune', slide2Desc: 'Un drame poignant sur une aventure humaine',
         slide3Title: 'Statue de sang', slide3Desc: 'Un film d\'action fantastique plein d\'aventures',
         watchBtn: 'Regarder maintenant',
-        movies: [{ title: 'Feu dans le cœur', year: '2025', rating: '8.7', genre: 'Action' }]
+        movies: [
+          { title: 'Feu dans le cœur', year: '2025', rating: '8.7', genre: 'Action' },
+          { title: 'Route de la lune', year: '2024', rating: '8.2', genre: 'Drame' }
+        ]
       },
       es: {
         back: 'Volver', sliderTitle: 'Los más populares de la semana', moviesTitle: 'Películas',
@@ -448,7 +432,10 @@
         slide2Title: 'Camino de la luna', slide2Desc: 'Un drama conmovedor sobre una aventura humana',
         slide3Title: 'Estatua de sangre', slide3Desc: 'Una película de acción fantástica llena de aventuras',
         watchBtn: 'Ver ahora',
-        movies: [{ title: 'Fuego en el corazón', year: '2025', rating: '8.7', genre: 'Acción' }]
+        movies: [
+          { title: 'Fuego en el corazón', year: '2025', rating: '8.7', genre: 'Acción' },
+          { title: 'Camino de la luna', year: '2024', rating: '8.2', genre: 'Drama' }
+        ]
       },
       pt: {
         back: 'Voltar', sliderTitle: 'Os mais populares desta semana', moviesTitle: 'Filmes',
@@ -456,7 +443,10 @@
         slide2Title: 'Estrada da lua', slide2Desc: 'Um drama comovente sobre uma aventura humana',
         slide3Title: 'Estátua de sangue', slide3Desc: 'Um filme de ação fantástico cheio de aventura',
         watchBtn: 'Assistir agora',
-        movies: [{ title: 'Fogo no coração', year: '2025', rating: '8.7', genre: 'Ação' }]
+        movies: [
+          { title: 'Fogo no coração', year: '2025', rating: '8.7', genre: 'Ação' },
+          { title: 'Estrada da lua', year: '2024', rating: '8.2', genre: 'Drama' }
+        ]
       },
       de: {
         back: 'Zurück', sliderTitle: 'Die beliebtesten dieser Woche', moviesTitle: 'Filme',
@@ -464,7 +454,10 @@
         slide2Title: 'Mondstraße', slide2Desc: 'Ein herzliches Drama über eine menschliche Abenteuerreise',
         slide3Title: 'Blutstatue', slide3Desc: 'Ein fantastischer Actionfilm voller Abenteuer',
         watchBtn: 'Jetzt ansehen',
-        movies: [{ title: 'Feuer im Herzen', year: '2025', rating: '8.7', genre: 'Action' }]
+        movies: [
+          { title: 'Feuer im Herzen', year: '2025', rating: '8.7', genre: 'Action' },
+          { title: 'Mondstraße', year: '2024', rating: '8.2', genre: 'Drama' }
+        ]
       },
       sv: {
         back: 'Tillbaka', sliderTitle: 'Den här veckans populäraste', moviesTitle: 'Filmer',
@@ -472,7 +465,10 @@
         slide2Title: 'Månvägen', slide2Desc: 'En hjärtlig dramafilm om en mänsklig äventyrsresa',
         slide3Title: 'Blodstatyn', slide3Desc: 'En fantasy actionfilm full av äventyr',
         watchBtn: 'Titta nu',
-        movies: [{ title: 'Eld i hjärtat', year: '2025', rating: '8.7', genre: 'Action' }]
+        movies: [
+          { title: 'Eld i hjärtat', year: '2025', rating: '8.7', genre: 'Action' },
+          { title: 'Månvägen', year: '2024', rating: '8.2', genre: 'Drama' }
+        ]
       },
       it: {
         back: 'Indietro', sliderTitle: 'I più popolari di questa settimana', moviesTitle: 'Film',
@@ -480,15 +476,34 @@
         slide2Title: 'Strada della luna', slide2Desc: 'Un dramma sentito su un\'avventura umana',
         slide3Title: 'Statua di sangue', slide3Desc: 'Un film d\'azione fantasy pieno di avventure',
         watchBtn: 'Guarda ora',
-        movies: [{ title: 'Fuoco nel cuore', year: '2025', rating: '8.7', genre: 'Azione' }]
+        movies: [
+          { title: 'Fuoco nel cuore', year: '2025', rating: '8.7', genre: 'Azione' },
+          { title: 'Strada della luna', year: '2024', rating: '8.2', genre: 'Dramma' }
+        ]
       },
-      zh: {
+      'zh-CN': {
         back: '返回', sliderTitle: '本周最受欢迎', moviesTitle: '电影',
         slide1Title: '心中的火', slide1Desc: '一部关于年轻英雄的激动人心的动作片',
         slide2Title: '月亮之路', slide2Desc: '一部关于人类冒险之旅的感人戏剧',
         slide3Title: '血雕像', slide3Desc: '一部充满冒险的奇幻动作片',
         watchBtn: '立即观看',
-        movies: [{ title: '心中的火', year: '2025', rating: '8.7', genre: '动作' }]
+        movies: [
+          { title: '心中的火', year: '2025', rating: '8.7', genre: '动作' },
+          { title: '月亮之路', year: '2024', rating: '8.2', genre: '戏剧' },
+          { title: '血雕像', year: '2025', rating: '7.9', genre: '奇幻' }
+        ]
+      },
+      'zh-TW': {
+        back: '返回', sliderTitle: '本週最受歡迎', moviesTitle: '電影',
+        slide1Title: '心中的火', slide1Desc: '一部關於年輕英雄的激動人心的動作片',
+        slide2Title: '月亮之路', slide2Desc: '一部關於人類冒險之旅的感人戲劇',
+        slide3Title: '血雕像', slide3Desc: '一部充滿冒險的奇幻動作片',
+        watchBtn: '立即觀看',
+        movies: [
+          { title: '心中的火', year: '2025', rating: '8.7', genre: '動作' },
+          { title: '月亮之路', year: '2024', rating: '8.2', genre: '戲劇' },
+          { title: '血雕像', year: '2025', rating: '7.9', genre: '奇幻' }
+        ]
       },
       ko: {
         back: '뒤로', sliderTitle: '이번 주 인기 순위', moviesTitle: '영화',
@@ -496,28 +511,67 @@
         slide2Title: '달의 길', slide2Desc: '인간 모험 여정에 관한 진심 어린 드라마',
         slide3Title: '피의 조각상', slide3Desc: '모험으로 가득한 판타지 액션 영화',
         watchBtn: '지금 시청',
-        movies: [{ title: '마음 속의 불', year: '2025', rating: '8.7', genre: '액션' }]
+        movies: [
+          { title: '마음 속의 불', year: '2025', rating: '8.7', genre: '액션' },
+          { title: '달의 길', year: '2024', rating: '8.2', genre: '드라마' },
+          { title: '피의 조각상', year: '2025', rating: '7.9', genre: '판타지' }
+        ]
+      },
+      hi: {
+        back: 'वापस', sliderTitle: 'इस सप्ताह के लोकप्रिय', moviesTitle: 'फिल्में',
+        slide1Title: 'दिल में आग', slide1Desc: 'एक युवा नायक के बारे में एक रोमांचक एक्शन फिल्म',
+        slide2Title: 'चाँद की सड़क', slide2Desc: 'एक मानव साहसिक यात्रा के बारे में एक हार्दिक नाटक',
+        slide3Title: 'खून की मूर्ति', slide3Desc: 'रोमांच से भरी एक फंतासी एक्शन फिल्म',
+        watchBtn: 'अभी देखें',
+        movies: [
+          { title: 'दिल में आग', year: '2025', rating: '8.7', genre: 'एक्शन' },
+          { title: 'चाँद की सड़क', year: '2024', rating: '8.2', genre: 'नाटक' },
+          { title: 'खून की मूर्ति', year: '2025', rating: '7.9', genre: 'फंतासी' }
+        ]
+      },
+      ja: {
+        back: '戻る', sliderTitle: '今週の人気作品', moviesTitle: '映画',
+        slide1Title: '心の中の火', slide1Desc: '若きヒーローについてのエキサイティングなアクション映画',
+        slide2Title: '月の道', slide2Desc: '人間の冒険の旅についての心温まるドラマ',
+        slide3Title: '血の像', slide3Desc: '冒険に満ちたファンタジーアクション映画',
+        watchBtn: '今すぐ見る',
+        movies: [
+          { title: '心の中の火', year: '2025', rating: '8.7', genre: 'アクション' },
+          { title: '月の道', year: '2024', rating: '8.2', genre: 'ドラマ' },
+          { title: '血の像', year: '2025', rating: '7.9', genre: 'ファンタジー' }
+        ]
+      },
+      pl: {
+        back: 'Wróć', sliderTitle: 'Najpopularniejsze w tym tygodniu', moviesTitle: 'Filmy',
+        slide1Title: 'Ogień w sercu', slide1Desc: 'Ekscytujący film akcji o młodym bohaterze',
+        slide2Title: 'Księżycowa droga', slide2Desc: 'Serdeczny dramat o ludzkiej podróży pełnej przygód',
+        slide3Title: 'Krwawy posąg', slide3Desc: 'Fantastyczny film akcji pełen przygód',
+        watchBtn: 'Oglądaj teraz',
+        movies: [
+          { title: 'Ogień w sercu', year: '2025', rating: '8.7', genre: 'Akcja' },
+          { title: 'Księżycowa droga', year: '2024', rating: '8.2', genre: 'Dramat' },
+          { title: 'Krwawy posąg', year: '2025', rating: '7.9', genre: 'Fantasy' }
+        ]
       }
     };
 
-    // RTL زمانەکان
     const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa'];
 
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && translations[savedLang]) return savedLang;
+      if (navigator.language === 'zh-CN') return 'zh-CN';
+      if (navigator.language === 'zh-TW' || navigator.language === 'zh-HK') return 'zh-TW';
       let browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
-      if (browserLang === 'ar') return 'ar';
-      if (browserLang === 'en') return 'en';
-      if (browserLang === 'fa') return 'fa';
+      if (browserLang === 'hi') return 'hi';
+      if (browserLang === 'ja') return 'ja';
+      if (browserLang === 'pl') return 'pl';
       return 'ckb';
     }
 
     let currentLang = getCurrentLanguage();
     const t = translations[currentLang];
 
-    // RTL یان LTR دیاری بکە
     if (rtlLanguages.includes(currentLang)) {
       document.body.classList.add('rtl');
       document.body.classList.remove('ltr');
@@ -526,7 +580,6 @@
       document.body.classList.remove('rtl');
     }
 
-    // تەرجەمەکردنی ناوەڕۆک
     document.getElementById('backText').innerText = t.back;
     document.getElementById('sliderTitle').innerHTML = `<i class="fas fa-fire"></i> ${t.sliderTitle}`;
     document.getElementById('moviesTitle').innerHTML = `<i class="fas fa-film"></i> ${t.moviesTitle}`;
@@ -539,7 +592,6 @@
     
     document.querySelectorAll('.slide-btn').forEach(btn => btn.innerText = t.watchBtn);
 
-    // لیستی فیلمەکان دروست بکە
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
     if (t.movies && t.movies.length) {
@@ -561,7 +613,6 @@
       moviesGrid.innerHTML = '<div class="empty-state">هیچ فیلمێک نەدۆزرایەوە</div>';
     }
 
-    // سلایدەر
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
