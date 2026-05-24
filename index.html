@@ -4,11 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EXINFLIX - فیلم و زنجیرە و تەلەڤزیۆنی ڕاستەوخۆ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <!-- فۆنتە تایبەتەکانی EXINFLIX -->
   <style>
-    * { font-family: 'Poppins', sans-serif; }
+    @font-face {
+      font-family: 'Exinflix Bold';
+      src: url('fonts/Exinflix-Bd.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'Exinflix Regular';
+      src: url('fonts/Exinflix-Reg.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    * {
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+    
+    h1, h2, h3, h4, .font-bold, .font-black, .font-semibold, 
+    button, .bold-text, nav .font-bold, .genre-chip, .gradient-btn {
+      font-family: 'Exinflix Bold', 'Poppins', sans-serif;
+      font-weight: bold;
+    }
+    
+    body {
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+  </style>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0B0B12; min-height: 100vh; }
     .glass-card {
       background: rgba(20, 20, 35, 0.6);
@@ -37,7 +71,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
       z-index: 1;
     }
     .big-box .content {
@@ -54,7 +88,8 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
-      min-width: 200px;
+      min-width: 220px;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
     }
     .language-select:hover {
       border-color: #FF006E;
@@ -82,12 +117,12 @@
       <!-- لۆگۆ بە گەورەیی -->
       <div class="text-center md:text-left">
         <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-28 md:h-36 w-auto mx-auto md:mx-0">
-        <p class="text-gray-400 mt-2 text-sm tracking-wider">EXPERIENCE THE FUTURE</p>
+        <p class="text-gray-400 mt-2 text-sm tracking-wider" style="font-family: 'Exinflix Regular', sans-serif;">EXPERIENCE THE FUTURE</p>
       </div>
 
       <!-- لیستی هەڵبژاردنی زمان -->
       <div class="w-full md:w-auto">
-        <select id="languageSelect" class="language-select w-full md:w-72">
+        <select id="languageSelect" class="language-select w-full md:w-80">
           <option value="ckb" selected>🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (سۆرانی) - Sorani</option>
           <option value="ckb-badini">🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (بادینی) - Badini</option>
           <option value="kmr">🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (کورمانجی) - Kurmanji</option>
@@ -105,7 +140,7 @@
           <option value="zh">🇨🇳 中文 - Chinese</option>
           <option value="ko">🇰🇷 한국어 - Korean</option>
         </select>
-        <p class="text-xs text-gray-500 mt-2 text-center md:text-right">لە داهاتوودا ئەپ و وێبسایت بەم زمانانە دەبێت</p>
+        <p class="text-xs text-gray-500 mt-2 text-center md:text-right" style="font-family: 'Exinflix Regular', sans-serif;">لە داهاتوودا ئەپ و وێبسایت بەم زمانانە دەبێت</p>
       </div>
     </div>
 
@@ -119,42 +154,42 @@
         <div class="content flex flex-col justify-end h-full p-8">
           <div class="inline-flex items-center gap-2 bg-pink-600/80 backdrop-blur px-4 py-2 rounded-full w-fit mb-4">
             <i class="fas fa-satellite-dish text-white"></i>
-            <span class="text-sm font-semibold">ڕاستەوخۆ / LIVE</span>
+            <span class="text-sm font-semibold" style="font-family: 'Exinflix Bold', sans-serif;">ڕاستەوخۆ / LIVE</span>
           </div>
-          <h2 class="text-4xl md:text-5xl font-black mb-3">تەلەڤزیۆنی ڕاستەوخۆ</h2>
-          <p class="text-gray-200 text-lg mb-4">زیاتر لە ١٠٠٠ کەناڵی جیهانی • وەرزش • هەواڵ • فیلم • منداڵان</p>
-          <div class="flex gap-3 text-sm">
-            <span class="bg-white/20 px-3 py-1 rounded-full">BBC</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">CNN</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">Al Jazeera</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">Sky News</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">+٩٩٦</span>
+          <h2 class="text-4xl md:text-5xl font-black mb-3" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆنی ڕاستەوخۆ</h2>
+          <p class="text-gray-200 text-lg mb-4" style="font-family: 'Exinflix Regular', sans-serif;">زیاتر لە ١٠٠٠ کەناڵی جیهانی • وەرزش • هەواڵ • فیلم • منداڵان</p>
+          <div class="flex gap-3 text-sm flex-wrap">
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">BBC</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">CNN</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Al Jazeera</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Sky News</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">+٩٩٦</span>
           </div>
-          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2">
+          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2" style="font-family: 'Exinflix Bold', sans-serif;">
             بینینی کەناڵەکان <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
 
-      <!-- بۆکسی لای ڕاست: فیلم و زنجیرە (وەک Netflix, HBO, Hulu, Shahid) -->
+      <!-- بۆکسی لای ڕاست: فیلم و زنجیرە -->
       <div class="glass-card big-box overflow-hidden"
            style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
            onclick="window.location.href='movies-series.html'">
         <div class="content flex flex-col justify-end h-full p-8">
           <div class="inline-flex items-center gap-2 bg-orange-600/80 backdrop-blur px-4 py-2 rounded-full w-fit mb-4">
             <i class="fas fa-play-circle text-white"></i>
-            <span class="text-sm font-semibold">ستریمینگ / STREAMING</span>
+            <span class="text-sm font-semibold" style="font-family: 'Exinflix Bold', sans-serif;">ستریمینگ / STREAMING</span>
           </div>
-          <h2 class="text-4xl md:text-5xl font-black mb-3">فیلم و زنجیرە</h2>
-          <p class="text-gray-200 text-lg mb-4">هەموو فیلم و زنجیرە بەناوبانگەکان • وەک Netflix, HBO, Hulu, Shahid</p>
+          <h2 class="text-4xl md:text-5xl font-black mb-3" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
+          <p class="text-gray-200 text-lg mb-4" style="font-family: 'Exinflix Regular', sans-serif;">هەموو فیلم و زنجیرە بەناوبانگەکان • وەک Netflix, HBO, Hulu, Shahid</p>
           <div class="flex gap-3 text-sm flex-wrap">
-            <span class="bg-white/20 px-3 py-1 rounded-full"><i class="fab fa-netflix text-red-500"></i> Netflix</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full"><i class="fas fa-tv"></i> HBO Max</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">Hulu</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">Shahid</span>
-            <span class="bg-white/20 px-3 py-1 rounded-full">Prime Video</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Netflix</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">HBO Max</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Hulu</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Shahid</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full" style="font-family: 'Exinflix Regular', sans-serif;">Prime Video</span>
           </div>
-          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2">
+          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2" style="font-family: 'Exinflix Bold', sans-serif;">
             بینینی فیلم و زنجیرەکان <i class="fas fa-arrow-right"></i>
           </button>
         </div>
@@ -165,30 +200,29 @@
     <div class="grid md:grid-cols-3 gap-5 mt-12">
       <div class="glass-card p-5 text-center">
         <i class="fas fa-globe text-3xl text-pink-400"></i>
-        <h3 class="font-bold mt-2">زیاتر لە ١٦ زمان</h3>
-        <p class="text-sm text-gray-400">پلاتفۆرم بە هەموو زمانە سەرەکییەکانی جیهان</p>
+        <h3 class="font-bold mt-2" style="font-family: 'Exinflix Bold', sans-serif;">زیاتر لە ١٦ زمان</h3>
+        <p class="text-sm text-gray-400" style="font-family: 'Exinflix Regular', sans-serif;">پلاتفۆرم بە هەموو زمانە سەرەکییەکانی جیهان</p>
       </div>
       <div class="glass-card p-5 text-center">
         <i class="fas fa-ticket-alt text-3xl text-pink-400"></i>
-        <h3 class="font-bold mt-2">تیکەتی سینەما</h3>
-        <p class="text-sm text-gray-400">بووکینگی تیکەت بۆ سینەماکانی عێراق و جیهان</p>
+        <h3 class="font-bold mt-2" style="font-family: 'Exinflix Bold', sans-serif;">تیکەتی سینەما</h3>
+        <p class="text-sm text-gray-400" style="font-family: 'Exinflix Regular', sans-serif;">بووکینگی تیکەت بۆ سینەماکانی عێراق و جیهان</p>
       </div>
       <div class="glass-card p-5 text-center">
         <i class="fas fa-users text-3xl text-pink-400"></i>
-        <h3 class="font-bold mt-2">ژووری گشتی</h3>
-        <p class="text-sm text-gray-400">بینینی هاوبەش لەگەڵ هاوڕێکانت</p>
+        <h3 class="font-bold mt-2" style="font-family: 'Exinflix Bold', sans-serif;">ژووری گشتی</h3>
+        <p class="text-sm text-gray-400" style="font-family: 'Exinflix Regular', sans-serif;">بینینی هاوبەش لەگەڵ هاوڕێکانت</p>
       </div>
     </div>
 
     <!-- Footer -->
     <footer class="border-t border-white/10 mt-12 py-8 text-center text-gray-500 text-sm">
-      <p>© 2026 EXINFLIX - هەموو مافەکان پارێزراوە</p>
-      <p class="mt-1 text-xs">دیزاین بە شێوازی Dark Neon + Glassmorphism</p>
+      <p style="font-family: 'Exinflix Regular', sans-serif;">© 2026 EXINFLIX - هەموو مافەکان پارێزراوە</p>
+      <p class="mt-1 text-xs" style="font-family: 'Exinflix Regular', sans-serif;">دیزاین بە شێوازی Dark Neon + Glassmorphism</p>
     </footer>
   </div>
 
   <script>
-    // بۆ پەڕەکانی داهاتوو زمانی هەڵبژێردراو پاشەکەوت بکە
     const langSelect = document.getElementById('languageSelect');
     langSelect.addEventListener('change', function() {
       localStorage.setItem('exinflix_language', this.value);
