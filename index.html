@@ -77,11 +77,11 @@
       background: rgba(20, 20, 35, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 0.75rem;
-      padding: 0.6rem 1rem;
+      padding: 0.5rem 0.75rem;
       color: white;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       cursor: pointer;
-      min-width: 240px;
+      min-width: 210px;
       font-family: 'Exinflix Regular', sans-serif;
     }
     
@@ -106,13 +106,13 @@
 </head>
 <body>
 
-  <div class="max-w-6xl mx-auto px-6 py-8 animate-fade">
+  <div class="max-w-6xl mx-auto px-6 py-6 animate-fade">
 
     <!-- ==================== لۆگۆ + لیستی زمانەکان (لە تەنیشت یەکتر، ناوەڕاست) ==================== -->
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12">
+    <div class="flex justify-center items-center gap-4 mb-12">
       
-      <!-- لۆگۆ -->
-      <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-20 md:h-24 w-auto">
+      <!-- لۆگۆ - ٤٠٪ بچووکتر (لە h-20 بۆ h-12) -->
+      <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
       
       <!-- لیستی زمانەکان (select box) -->
       <select id="languageSelect" class="language-select">
@@ -136,7 +136,7 @@
     </div>
 
     <!-- ==================== دوو بۆکس لە تەنیشت یەکتر ==================== -->
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
       <!-- بۆکسی لای چەپ: فیلم و زنجیرە -->
       <div class="glass-card big-box overflow-hidden" 
@@ -144,7 +144,7 @@
            onclick="window.location.href='movies-series.html'">
         <div class="content flex flex-col justify-center items-center h-full p-8 text-center">
           <i class="fas fa-play-circle text-6xl md:text-7xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-3xl md:text-4xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
+          <h2 class="text-2xl md:text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
         </div>
       </div>
 
@@ -154,7 +154,7 @@
            onclick="window.location.href='live-tv.html'">
         <div class="content flex flex-col justify-center items-center h-full p-8 text-center">
           <i class="fas fa-satellite-dish text-6xl md:text-7xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-3xl md:text-4xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h2>
+          <h2 class="text-2xl md:text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h2>
         </div>
       </div>
     </div>
