@@ -33,12 +33,38 @@
       min-height: 100vh;
     }
     
+    /* شێوازی بانەڕ */
+    .navbar {
+      background: rgba(20, 20, 35, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    /* شێوازی مینوو */
+    .menu-link {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+      padding: 0.5rem 0;
+    }
+    
+    .menu-link:hover {
+      color: #FF006E;
+    }
+    
+    /* شێوازی بۆکسەکان */
     .glass-card {
       background: rgba(20, 20, 35, 0.6);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 1.5rem;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
     
     .glass-card:hover {
@@ -47,16 +73,15 @@
       transform: translateY(-5px);
     }
     
-    .big-box {
-      height: 180px;
-      cursor: pointer;
+    .box {
+      height: 280px;
       background-size: cover;
       background-position: center;
       position: relative;
       overflow: hidden;
     }
     
-    .big-box::before {
+    .box::before {
       content: '';
       position: absolute;
       top: 0;
@@ -67,32 +92,9 @@
       z-index: 1;
     }
     
-    .big-box .content {
+    .box .content {
       position: relative;
       z-index: 2;
-    }
-    
-    /* شێوازی لیست بۆکسی زمان */
-    .language-select {
-      background: rgba(20, 20, 35, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
-      padding: 0.5rem 0.75rem;
-      color: white;
-      font-size: 0.85rem;
-      cursor: pointer;
-      min-width: 210px;
-      font-family: 'Exinflix Regular', sans-serif;
-    }
-    
-    .language-select:hover {
-      border-color: #FF006E;
-      outline: none;
-    }
-    
-    .language-select:focus {
-      border-color: #FF006E;
-      outline: none;
     }
     
     @keyframes fadeIn {
@@ -106,57 +108,47 @@
 </head>
 <body>
 
-  <div class="max-w-4xl mx-auto px-6 py-6 animate-fade">
-
-    <!-- ==================== لۆگۆ + لیستی زمانەکان (لە تەنیشت یەکتر، ناوەڕاست) ==================== -->
-    <div class="flex justify-center items-center gap-4 mb-10">
+  <!-- ==================== بانەڕ (Navbar) ==================== -->
+  <div class="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
       
-      <!-- لۆگۆ -->
+      <!-- لای چەپ: لۆگۆ -->
       <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
       
-      <!-- لیستی زمانەکان (select box) -->
-      <select id="languageSelect" class="language-select">
-        <option value="ckb" selected>🇮🇶 کوردی (سۆرانی) - Sorani</option>
-        <option value="ckb-badini">🇮🇶 کوردی (بادینی) - Badini</option>
-        <option value="kmr">🇮🇶 کوردی (کورمانجی) - Kurmanji</option>
-        <option value="ar">🇸🇦 العربية - Arabic</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="tr">🇹🇷 Türkçe - Turkish</option>
-        <option value="fa">🇮🇷 فارسی - Persian</option>
-        <option value="ru">🇷🇺 Русский - Russian</option>
-        <option value="fr">🇫🇷 Français - French</option>
-        <option value="es">🇪🇸 Español - Spanish</option>
-        <option value="pt">🇵🇹 Português - Portuguese</option>
-        <option value="de">🇩🇪 Deutsch - German</option>
-        <option value="sv">🇸🇪 Svenska - Swedish</option>
-        <option value="it">🇮🇹 Italiano - Italian</option>
-        <option value="zh">🇨🇳 中文 - Chinese</option>
-        <option value="ko">🇰🇷 한국어 - Korean</option>
-      </select>
+      <!-- لای ڕاست: مینوو -->
+      <div class="flex gap-8">
+        <a href="index.html" class="menu-link">ماڵەوە</a>
+        <a href="movies-series.html" class="menu-link">فیلم و زنجیرە</a>
+        <a href="live-tv.html" class="menu-link">کەناڵەکان</a>
+      </div>
     </div>
+  </div>
 
-    <!-- ==================== دوو بۆکس لە تەنیشت یەکتر (درێژی کەمکراوەتەوە) ==================== -->
-    <div class="flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-10/12">
-        
-        <!-- بۆکسی لای چەپ: فیلم و زنجیرە -->
-        <div class="glass-card big-box overflow-hidden" 
-             style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
-             onclick="window.location.href='movies-series.html'">
-          <div class="content flex flex-col justify-center items-center h-full p-4 text-center">
-            <i class="fas fa-play-circle text-4xl text-white opacity-90 mb-2"></i>
-            <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
-          </div>
+  <!-- ==================== ناوەڕۆکی سەرەکی ==================== -->
+  <div class="max-w-5xl mx-auto px-6 py-12 animate-fade">
+
+    <!-- دوو بۆکس لە تەنیشت یەکتر -->
+    <div class="grid grid-cols-2 gap-8">
+      
+      <!-- بۆکسی چەپ: کەناڵە جیهانییەکان (TV) -->
+      <div class="glass-card box" 
+           style="background-image: url('https://placehold.co/800x600/1A1A2E/FF006E?text=Live+TV+World+Channels');"
+           onclick="window.location.href='live-tv.html'">
+        <div class="content flex flex-col justify-center items-center h-full p-6 text-center">
+          <i class="fas fa-tv text-6xl text-white opacity-90 mb-4"></i>
+          <h2 class="text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
+          <p class="text-gray-300 text-sm mt-2">زیاتر لە ١٠٠٠ کەناڵ</p>
         </div>
+      </div>
 
-        <!-- بۆکسی لای ڕاست: کەناڵە جیهانییەکان -->
-        <div class="glass-card big-box overflow-hidden" 
-             style="background-image: url('https://placehold.co/800x600/1A1A2E/FF006E?text=Live+TV+World+Channels');"
-             onclick="window.location.href='live-tv.html'">
-          <div class="content flex flex-col justify-center items-center h-full p-4 text-center">
-            <i class="fas fa-satellite-dish text-4xl text-white opacity-90 mb-2"></i>
-            <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h2>
-          </div>
+      <!-- بۆکسی ڕاست: فیلم و زنجیرە -->
+      <div class="glass-card box" 
+           style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
+           onclick="window.location.href='movies-series.html'">
+        <div class="content flex flex-col justify-center items-center h-full p-6 text-center">
+          <i class="fas fa-play-circle text-6xl text-white opacity-90 mb-4"></i>
+          <h2 class="text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
+          <p class="text-gray-300 text-sm mt-2">هەزاران فیلم و زنجیرە</p>
         </div>
       </div>
     </div>
@@ -164,11 +156,7 @@
   </div>
 
   <script>
-    const langSelect = document.getElementById('languageSelect');
-    langSelect.addEventListener('change', function() {
-      localStorage.setItem('exinflix_language', this.value);
-      console.log('زمانی هەڵبژێردراو:', this.options[this.selectedIndex].text);
-    });
+    // هیچ کۆدێکی زیادە
   </script>
 </body>
 </html>
