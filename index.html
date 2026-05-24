@@ -29,13 +29,11 @@
     
     html, body {
       height: 100%;
-      overflow: hidden; /* لابردنی هەموو سکرۆڵ لە پەڕەکە */
+      overflow: hidden;
     }
     
     body {
       font-family: 'Exinflix Regular', 'Poppins', sans-serif;
-      min-height: 100vh;
-      /* پاشبنەمای وێنە */
       background-image: url('assets/images/background/9736.png');
       background-size: cover;
       background-position: center;
@@ -44,7 +42,7 @@
       overflow: hidden;
     }
     
-    /* شێوازی بانەڕ - ڕوونتر بۆ دیاربوونی لەسەر وێنە */
+    /* شێوازی بانەڕ */
     .navbar {
       background: rgba(20, 20, 35, 0.7);
       backdrop-filter: blur(12px);
@@ -55,14 +53,12 @@
       z-index: 50;
     }
     
-    /* لۆگۆ */
     .navbar-logo {
       height: 32px;
       width: auto;
       display: block;
     }
     
-    /* شێوازی مینوو - ناوەڕاست */
     .nav-menu {
       position: absolute;
       left: 50%;
@@ -83,7 +79,7 @@
       color: #FF006E;
     }
     
-    /* ==================== ئایکۆنی زمان - شێوازی نوێ ==================== */
+    /* ئایکۆنی زمان */
     .language-icon {
       background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(255, 122, 0, 0.2));
       border: 1px solid rgba(255, 255, 255, 0.3);
@@ -106,11 +102,6 @@
       transform: scale(1.02);
     }
     
-    .language-icon i {
-      font-size: 1rem;
-    }
-    
-    /* لیستی زمانەکان (Dropdown) - سکرۆڵی تایبەت */
     .language-dropdown {
       position: absolute;
       top: 50px;
@@ -122,12 +113,11 @@
       padding: 0.5rem;
       min-width: 200px;
       max-height: 300px;
-      overflow-y: auto; /* سکرۆڵ بۆ لیستی زمانەکان */
+      overflow-y: auto;
       z-index: 100;
       display: none;
     }
     
-    /* شێوازی سکرۆڵ بۆ لیستی زمانەکان */
     .language-dropdown::-webkit-scrollbar {
       width: 5px;
     }
@@ -160,7 +150,6 @@
       color: white;
     }
     
-    /* ڕێکخستنی بانەڕ */
     .navbar-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -179,7 +168,7 @@
       position: relative;
     }
     
-    /* ==================== بۆکسە چوارگۆشەکان ==================== */
+    /* ==================== سێ بۆکس ==================== */
     .boxes-wrapper {
       display: flex;
       justify-content: center;
@@ -194,33 +183,34 @@
       align-items: center;
       gap: 2rem;
       flex-wrap: wrap;
+      padding: 1rem;
     }
     
-    .square-box {
-      width: 200px;
-      height: 200px;
+    .box-card {
+      width: 220px;
+      height: 260px;
       position: relative;
-      overflow: hidden;
       cursor: pointer;
       border-radius: 1.5rem;
       transition: all 0.3s ease;
       background: rgba(20, 20, 35, 0.5);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
     }
     
-    .square-box::before {
+    .box-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
       z-index: 1;
     }
     
-    .square-box .content {
+    .box-card .content {
       position: relative;
       z-index: 2;
       display: flex;
@@ -228,15 +218,68 @@
       justify-content: center;
       align-items: center;
       height: 100%;
-      padding: 1rem;
+      padding: 1.5rem;
       text-align: center;
     }
     
-    .square-box:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(255, 0, 110, 0.6);
+    .box-card .icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .box-card .icon i {
+      font-size: 2.5rem;
+      color: white;
+    }
+    
+    .box-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .box-card p {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.75rem;
+    }
+    
+    .box-card .badge {
+      background: rgba(255, 0, 110, 0.6);
+      padding: 0.25rem 0.75rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+    
+    .box-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: #FF006E;
       box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
-      background: rgba(255, 0, 110, 0.2);
+      background: rgba(255, 0, 110, 0.15);
+    }
+    
+    .box-card:hover .icon {
+      background: rgba(255, 0, 110, 0.4);
+      transform: scale(1.1);
+    }
+    
+    /* ڕەنگە جیاوازەکان بۆ هەر بۆکسێک */
+    .box-tv:hover {
+      border-color: #FF006E;
+    }
+    .box-movies:hover {
+      border-color: #FF7A00;
+    }
+    .box-series:hover {
+      border-color: #7B2CFF;
     }
     
     @keyframes fadeIn {
@@ -254,17 +297,15 @@
   <div class="navbar">
     <div class="navbar-container">
       
-      <!-- لای چەپ: لۆگۆ -->
       <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="navbar-logo">
       
-      <!-- ناوەڕاست: مینوو -->
       <div class="nav-menu">
         <a href="index.html" class="menu-link">ماڵەوە</a>
-        <a href="movies-series.html" class="menu-link">فیلم و زنجیرە</a>
-        <a href="live-tv.html" class="menu-link">کەناڵەکان</a>
+        <a href="movies.html" class="menu-link">فیلم</a>
+        <a href="series.html" class="menu-link">زنجیرە</a>
+        <a href="live-tv.html" class="menu-link">تەلەڤزیۆن</a>
       </div>
       
-      <!-- لای ڕاست: ئایکۆنی زمان - شێوازی نوێ -->
       <div class="navbar-right">
         <div class="language-container">
           <div class="language-icon" id="languageIcon">
@@ -295,25 +336,43 @@
     </div>
   </div>
 
-  <!-- ==================== بۆکسە چوارگۆشەکان لە ناوەڕاستدا ==================== -->
+  <!-- ==================== سێ بۆکس ==================== -->
   <div class="boxes-wrapper">
     <div class="boxes-container">
       
-      <!-- بۆکسی چەپ: کەناڵە جیهانییەکان (TV) -->
-      <div class="square-box" onclick="window.location.href='live-tv.html'">
+      <!-- بۆکسی 1: تەلەڤزیۆن -->
+      <div class="box-card box-tv" onclick="window.location.href='live-tv.html'">
         <div class="content">
-          <i class="fas fa-tv text-4xl text-white opacity-90 mb-3"></i>
-          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
-          <p class="text-gray-300 text-xs mt-1">زیاتر لە ١٠٠٠ کەناڵ</p>
+          <div class="icon">
+            <i class="fas fa-tv"></i>
+          </div>
+          <h2 style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
+          <p>زیاتر لە ١٠٠٠ کەناڵی جیهانی<br>وەرزش • هەواڵ • فیلم • منداڵان</p>
+          <div class="badge">ڕاستەوخۆ</div>
         </div>
       </div>
 
-      <!-- بۆکسی ڕاست: فیلم و زنجیرە -->
-      <div class="square-box" onclick="window.location.href='movies-series.html'">
+      <!-- بۆکسی 2: فیلم -->
+      <div class="box-card box-movies" onclick="window.location.href='movies.html'">
         <div class="content">
-          <i class="fas fa-play-circle text-4xl text-white opacity-90 mb-3"></i>
-          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
-          <p class="text-gray-300 text-xs mt-1">هەزاران فیلم</p>
+          <div class="icon">
+            <i class="fas fa-film"></i>
+          </div>
+          <h2 style="font-family: 'Exinflix Bold', sans-serif;">فیلم</h2>
+          <p>هەزاران فیلمی بەناوبانگ<br>ئەکشن • دراما • کۆمێدی • ڕۆمانسی</p>
+          <div class="badge">نوێترین فیلمەکان</div>
+        </div>
+      </div>
+
+      <!-- بۆکسی 3: زنجیرە -->
+      <div class="box-card box-series" onclick="window.location.href='series.html'">
+        <div class="content">
+          <div class="icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+          <h2 style="font-family: 'Exinflix Bold', sans-serif;">زنجیرە</h2>
+          <p>بەناوبانگترین زنجیرەکان<br>وەرزی نوێ • هەفتانە</p>
+          <div class="badge">بەردەوام بینین</div>
         </div>
       </div>
       
@@ -321,7 +380,6 @@
   </div>
 
   <script>
-    // کارلێکی لیستی زمانەکان (Dropdown)
     const languageIcon = document.getElementById('languageIcon');
     const languageDropdown = document.getElementById('languageDropdown');
     const languageOptions = document.querySelectorAll('.language-option');
@@ -331,7 +389,6 @@
       languageDropdown.classList.toggle('show');
     });
     
-    // داخستنی لیست کاتێک لە دەرەوەی کلیک دەکەیت
     document.addEventListener('click', () => {
       languageDropdown.classList.remove('show');
     });
@@ -340,7 +397,6 @@
       e.stopPropagation();
     });
     
-    // هەڵبژاردنی زمان
     languageOptions.forEach(option => {
       option.addEventListener('click', function() {
         const langCode = this.getAttribute('data-lang');
