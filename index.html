@@ -51,7 +51,15 @@
       display: block;
     }
     
-    /* شێوازی مینوو */
+    /* شێوازی مینوو - ناوەڕاست */
+    .nav-menu {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1.5rem;
+    }
+    
     .menu-link {
       color: #e5e5e5;
       text-decoration: none;
@@ -64,7 +72,7 @@
       color: #FF006E;
     }
     
-    /* ئایکۆنی زمان */
+    /* ئایکۆنی زمان - لای ڕاست */
     .language-icon {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -164,11 +172,19 @@
       animation: fadeIn 0.6s ease forwards;
     }
     
-    /* بۆ ڕێکخستنی ڕێک بەرامبەر */
+    /* ڕێکخستنی بانەڕ */
+    .navbar-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
     .navbar-right {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
     }
     
     .language-container {
@@ -180,18 +196,20 @@
 
   <!-- ==================== بانەڕ (Navbar) ==================== -->
   <div class="navbar">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="navbar-container">
       
       <!-- لای چەپ: لۆگۆ -->
       <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="navbar-logo">
       
-      <!-- لای ڕاست: مینوو + ئایکۆنی زمان -->
-      <div class="navbar-right">
+      <!-- ناوەڕاست: مینوو -->
+      <div class="nav-menu">
         <a href="index.html" class="menu-link">ماڵەوە</a>
         <a href="movies-series.html" class="menu-link">فیلم و زنجیرە</a>
         <a href="live-tv.html" class="menu-link">کەناڵەکان</a>
-        
-        <!-- ئایکۆنی زمان (Dropdown) -->
+      </div>
+      
+      <!-- لای ڕاست: ئایکۆنی زمان -->
+      <div class="navbar-right">
         <div class="language-container">
           <div class="language-icon" id="languageIcon">
             <i class="fas fa-globe"></i> <span>زمان</span> <i class="fas fa-chevron-down"></i>
