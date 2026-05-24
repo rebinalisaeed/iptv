@@ -124,54 +124,6 @@
       color: white;
     }
     
-    /* شێوازی بۆکسەکان */
-    .glass-card {
-      background: rgba(20, 20, 35, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1.5rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .glass-card:hover {
-      border-color: rgba(255, 0, 110, 0.5);
-      box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
-      transform: translateY(-5px);
-    }
-    
-    .box {
-      height: 280px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
-      z-index: 1;
-    }
-    
-    .box .content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade {
-      animation: fadeIn 0.6s ease forwards;
-    }
-    
     /* ڕێکخستنی بانەڕ */
     .navbar-container {
       max-width: 1280px;
@@ -189,6 +141,71 @@
     
     .language-container {
       position: relative;
+    }
+    
+    /* ==================== شێوازی بۆکسە چوارگۆشەکان ==================== */
+    .boxes-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+    }
+    
+    .boxes-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .square-box {
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .square-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    
+    .square-box .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    .square-box:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(255, 0, 110, 0.5);
+      box-shadow: 0 0 30px rgba(255, 0, 110, 0.3);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade {
+      animation: fadeIn 0.6s ease forwards;
     }
   </style>
 </head>
@@ -237,35 +254,33 @@
     </div>
   </div>
 
-  <!-- ==================== ناوەڕۆکی سەرەکی ==================== -->
-  <div class="max-w-5xl mx-auto px-6 py-12 animate-fade">
-
-    <!-- دوو بۆکس لە تەنیشت یەکتر -->
-    <div class="grid grid-cols-2 gap-8">
+  <!-- ==================== بۆکسە چوارگۆشەکان لە ناوەڕاستدا ==================== -->
+  <div class="boxes-wrapper">
+    <div class="boxes-container">
       
       <!-- بۆکسی چەپ: کەناڵە جیهانییەکان (TV) -->
-      <div class="glass-card box" 
-           style="background-image: url('https://placehold.co/800x600/1A1A2E/FF006E?text=Live+TV+World+Channels');"
+      <div class="square-box" 
+           style="background-image: url('https://placehold.co/400x400/1A1A2E/FF006E?text=TV');"
            onclick="window.location.href='live-tv.html'">
-        <div class="content flex flex-col justify-center items-center h-full p-6 text-center">
-          <i class="fas fa-tv text-6xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
-          <p class="text-gray-300 text-sm mt-2">زیاتر لە ١٠٠٠ کەناڵ</p>
+        <div class="content">
+          <i class="fas fa-tv text-4xl text-white opacity-90 mb-3"></i>
+          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">تەلەڤزیۆن</h2>
+          <p class="text-gray-300 text-xs mt-1">زیاتر لە ١٠٠٠ کەناڵ</p>
         </div>
       </div>
 
       <!-- بۆکسی ڕاست: فیلم و زنجیرە -->
-      <div class="glass-card box" 
-           style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
+      <div class="square-box" 
+           style="background-image: url('https://placehold.co/400x400/1A1E2F/FF7A00?text=Movies');"
            onclick="window.location.href='movies-series.html'">
-        <div class="content flex flex-col justify-center items-center h-full p-6 text-center">
-          <i class="fas fa-play-circle text-6xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
-          <p class="text-gray-300 text-sm mt-2">هەزاران فیلم و زنجیرە</p>
+        <div class="content">
+          <i class="fas fa-play-circle text-4xl text-white opacity-90 mb-3"></i>
+          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
+          <p class="text-gray-300 text-xs mt-1">هەزاران فیلم</p>
         </div>
       </div>
+      
     </div>
-
   </div>
 
   <script>
