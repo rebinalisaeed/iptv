@@ -37,18 +37,18 @@
       background: rgba(20, 20, 35, 0.6);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 2rem;
+      border-radius: 1.5rem;
       transition: all 0.3s ease;
     }
     
     .glass-card:hover {
       border-color: rgba(255, 0, 110, 0.5);
       box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
-      transform: translateY(-8px);
+      transform: translateY(-5px);
     }
     
     .big-box {
-      height: 450px;
+      height: 180px;
       cursor: pointer;
       background-size: cover;
       background-position: center;
@@ -109,9 +109,9 @@
   <div class="max-w-6xl mx-auto px-6 py-6 animate-fade">
 
     <!-- ==================== لۆگۆ + لیستی زمانەکان (لە تەنیشت یەکتر، ناوەڕاست) ==================== -->
-    <div class="flex justify-center items-center gap-4 mb-12">
+    <div class="flex justify-center items-center gap-4 mb-10">
       
-      <!-- لۆگۆ - ٤٠٪ بچووکتر (لە h-20 بۆ h-12) -->
+      <!-- لۆگۆ - ٤٠٪ بچووکتر -->
       <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
       
       <!-- لیستی زمانەکان (select box) -->
@@ -135,16 +135,16 @@
       </select>
     </div>
 
-    <!-- ==================== دوو بۆکس لە تەنیشت یەکتر ==================== -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- ==================== دوو بۆکس لە تەنیشت یەکتر (قەبارەیان ٦٠٪ بچووکترە) ==================== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       
       <!-- بۆکسی لای چەپ: فیلم و زنجیرە -->
       <div class="glass-card big-box overflow-hidden" 
            style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
            onclick="window.location.href='movies-series.html'">
-        <div class="content flex flex-col justify-center items-center h-full p-8 text-center">
-          <i class="fas fa-play-circle text-6xl md:text-7xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-2xl md:text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
+        <div class="content flex flex-col justify-center items-center h-full p-4 text-center">
+          <i class="fas fa-play-circle text-4xl text-white opacity-90 mb-2"></i>
+          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">فیلم و زنجیرە</h2>
         </div>
       </div>
 
@@ -152,9 +152,9 @@
       <div class="glass-card big-box overflow-hidden" 
            style="background-image: url('https://placehold.co/800x600/1A1A2E/FF006E?text=Live+TV+World+Channels');"
            onclick="window.location.href='live-tv.html'">
-        <div class="content flex flex-col justify-center items-center h-full p-8 text-center">
-          <i class="fas fa-satellite-dish text-6xl md:text-7xl text-white opacity-90 mb-4"></i>
-          <h2 class="text-2xl md:text-3xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h2>
+        <div class="content flex flex-col justify-center items-center h-full p-4 text-center">
+          <i class="fas fa-satellite-dish text-4xl text-white opacity-90 mb-2"></i>
+          <h2 class="text-xl font-black" style="font-family: 'Exinflix Bold', sans-serif;">کەناڵە جیهانییەکان</h2>
         </div>
       </div>
     </div>
