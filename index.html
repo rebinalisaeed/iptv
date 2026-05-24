@@ -57,6 +57,28 @@
       color: #FF006E;
     }
     
+    /* شێوازی لیست بۆکسی زمان */
+    .language-select {
+      background: rgba(20, 20, 35, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
+      padding: 0.4rem 0.6rem;
+      color: white;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'Exinflix Regular', sans-serif;
+    }
+    
+    .language-select:hover {
+      border-color: #FF006E;
+      outline: none;
+    }
+    
+    .language-select:focus {
+      border-color: #FF006E;
+      outline: none;
+    }
+    
     /* شێوازی بۆکسەکان */
     .glass-card {
       background: rgba(20, 20, 35, 0.6);
@@ -112,14 +134,34 @@
   <div class="navbar">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       
-      <!-- لای چەپ: لۆگۆ -->
-      <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
+      <!-- لای چەپ: لۆگۆ - 80% بچووکتر (h-6) -->
+      <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-6 w-auto">
       
-      <!-- لای ڕاست: مینوو -->
-      <div class="flex gap-8">
+      <!-- لای ڕاست: مینوو + لیستی زمانەکان -->
+      <div class="flex items-center gap-6">
         <a href="index.html" class="menu-link">ماڵەوە</a>
         <a href="movies-series.html" class="menu-link">فیلم و زنجیرە</a>
         <a href="live-tv.html" class="menu-link">کەناڵەکان</a>
+        
+        <!-- لیستی زمانەکان -->
+        <select id="languageSelect" class="language-select">
+          <option value="ckb" selected>🇮🇶 کوردی (سۆرانی)</option>
+          <option value="ckb-badini">🇮🇶 کوردی (بادینی)</option>
+          <option value="kmr">🇮🇶 کوردی (کورمانجی)</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+          <option value="fa">🇮🇷 فارسی</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="pt">🇵🇹 Português</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="sv">🇸🇪 Svenska</option>
+          <option value="it">🇮🇹 Italiano</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="ko">🇰🇷 한국어</option>
+        </select>
       </div>
     </div>
   </div>
@@ -156,7 +198,11 @@
   </div>
 
   <script>
-    // هیچ کۆدێکی زیادە
+    const langSelect = document.getElementById('languageSelect');
+    langSelect.addEventListener('change', function() {
+      localStorage.setItem('exinflix_language', this.value);
+      console.log('زمانی هەڵبژێردراو:', this.options[this.selectedIndex].text);
+    });
   </script>
 </body>
 </html>
