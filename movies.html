@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXINFLIX - فیلمەکان</title>
+  <style>
+    @font-face {
+      font-family: 'Exinflix Bold';
+      src: url('fonts/Exinflix-Bd.ttf') format('truetype');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Exinflix Regular';
+      src: url('fonts/Exinflix-Reg.ttf') format('truetype');
+      font-weight: normal;
+      font-display: swap;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Exinflix Regular', sans-serif;
+      background: #0B0B12;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: rgba(20, 20, 35, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .navbar-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-logo { height: 32px; width: auto; }
+    .nav-menu { display: flex; gap: 1.5rem; }
+    .menu-link { color: #e5e5e5; text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .menu-link:hover { color: #FF006E; }
+    .glass-card {
+      background: rgba(20, 20, 35, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .glass-card:hover { transform: translateY(-5px); border-color: #FF006E; }
+    .movie-card { overflow: hidden; }
+    .movie-card img { width: 100%; height: 200px; object-fit: cover; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 2rem; }
+    h1 { font-size: 2rem; margin-bottom: 1.5rem; color: white; font-family: 'Exinflix Bold', sans-serif; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+    .back-link { color: #FF006E; text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-container">
+      <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
+      <div class="nav-menu">
+        <a href="index.html" class="menu-link">ماڵەوە</a>
+        <a href="movies.html" class="menu-link">فیلم</a>
+        <a href="series.html" class="menu-link">زنجیرە</a>
+        <a href="live-tv.html" class="menu-link">تەلەڤزیۆن</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <a href="index.html" class="back-link">← گەڕانەوە</a>
+    <h1>فیلمەکان</h1>
+    <div class="grid">
+      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
+        <img src="https://placehold.co/400x500/FF006E/white?text=ACTION+MOVIE">
+        <div class="p-3"><h3 style="color:white;">ئاگر لە دڵدا</h3><p style="color:gray; font-size:0.75rem;">ئەکشن · ٢٠٢٥</p></div>
+      </div>
+      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
+        <img src="https://placehold.co/400x500/FF7A00/white?text=DRAMA+MOVIE">
+        <div class="p-3"><h3 style="color:white;">ڕێگای مانگ</h3><p style="color:gray; font-size:0.75rem;">دراما · ٢٠٢٤</p></div>
+      </div>
+      <div class="glass-card movie-card" onclick="alert('پەڕەی فیلم - لە داهاتوودا زیاد دەکرێت')">
+        <img src="https://placehold.co/400x500/7B2CFF/white?text=COMEDY">
+        <div class="p-3"><h3 style="color:white;">پێکەنین لە هەولێر</h3><p style="color:gray; font-size:0.75rem;">کۆمێدی · ٢٠٢٥</p></div>
+      </div>
+    </div>
+  </div>
+  <style>.p-3 { padding: 0.75rem; }</style>
+</body>
+</html>
