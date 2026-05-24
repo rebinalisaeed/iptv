@@ -98,12 +98,19 @@ const translationsData = {
     boxSeriesTitle: 'Serie TV', boxSeriesDesc: 'Serie popolari\nNuove stagioni • Settimanali', boxSeriesBadge: 'Continua a guardare',
     boxCinemaTitle: 'Sala cinema', boxCinemaDesc: 'Invita i tuoi amici\nGuarda e discuti i film insieme', boxCinemaBadge: 'Crea sala'
   },
-  zh: {
+  'zh-CN': {
     navHome: '首页', navMovies: '电影', navSeries: '剧集', navTv: '电视', navLanguage: '语言',
     boxTvTitle: '电视', boxTvDesc: '1000+ 全球频道\n体育 • 新闻 • 电影 • 儿童', boxTvBadge: '直播',
     boxMoviesTitle: '电影', boxMoviesDesc: '数千部电影\n动作 • 剧情 • 喜剧 • 爱情', boxMoviesBadge: '最新电影',
     boxSeriesTitle: '剧集', boxSeriesDesc: '热门剧集\n新季 • 每周更新', boxSeriesBadge: '继续观看',
     boxCinemaTitle: '影院房间', boxCinemaDesc: '邀请你的朋友\n一起观看和讨论电影', boxCinemaBadge: '创建房间'
+  },
+  'zh-TW': {
+    navHome: '首頁', navMovies: '電影', navSeries: '劇集', navTv: '電視', navLanguage: '語言',
+    boxTvTitle: '電視', boxTvDesc: '1000+ 全球頻道\n體育 • 新聞 • 電影 • 兒童', boxTvBadge: '直播',
+    boxMoviesTitle: '電影', boxMoviesDesc: '數千部電影\n動作 • 劇情 • 喜劇 • 愛情', boxMoviesBadge: '最新電影',
+    boxSeriesTitle: '劇集', boxSeriesDesc: '熱門劇集\n新季 • 每週更新', boxSeriesBadge: '繼續觀看',
+    boxCinemaTitle: '影院房間', boxCinemaDesc: '邀請你的朋友\n一起觀看和討論電影', boxCinemaBadge: '創建房間'
   },
   ko: {
     navHome: '홈', navMovies: '영화', navSeries: '시리즈', navTv: 'TV', navLanguage: '언어',
@@ -111,6 +118,27 @@ const translationsData = {
     boxMoviesTitle: '영화', boxMoviesDesc: '수천 편의 영화\n액션 • 드라마 • 코미디 • 로맨스', boxMoviesBadge: '최신 영화',
     boxSeriesTitle: '시리즈', boxSeriesDesc: '인기 시리즈\n새 시즌 • 매주', boxSeriesBadge: '계속 시청',
     boxCinemaTitle: '시네마 룸', boxCinemaDesc: '친구 초대하기\n함께 영화를 보고 토론하세요', boxCinemaBadge: '방 만들기'
+  },
+  hi: {
+    navHome: 'होम', navMovies: 'फिल्में', navSeries: 'सीरीज', navTv: 'टीवी', navLanguage: 'भाषा',
+    boxTvTitle: 'टेलीविजन', boxTvDesc: '1000+ विश्व चैनल\nखेल • समाचार • फिल्में • बच्चे', boxTvBadge: 'लाइव',
+    boxMoviesTitle: 'फिल्में', boxMoviesDesc: 'हजारों फिल्में\nएक्शन • ड्रामा • कॉमेडी • रोमांस', boxMoviesBadge: 'नई फिल्में',
+    boxSeriesTitle: 'सीरीज', boxSeriesDesc: 'ट्रेंडिंग सीरीज\nनए सीज़न • साप्ताहिक', boxSeriesBadge: 'देखना जारी रखें',
+    boxCinemaTitle: 'सिनेमा कक्ष', boxCinemaDesc: 'अपने दोस्तों को आमंत्रित करें\nसाथ में फिल्म देखें और चर्चा करें', boxCinemaBadge: 'कक्ष बनाएं'
+  },
+  ja: {
+    navHome: 'ホーム', navMovies: '映画', navSeries: 'シリーズ', navTv: 'テレビ', navLanguage: '言語',
+    boxTvTitle: 'テレビ', boxTvDesc: '1000+ 世界のチャンネル\nスポーツ • ニュース • 映画 • 子供', boxTvBadge: 'ライブ',
+    boxMoviesTitle: '映画', boxMoviesDesc: '何千もの映画\nアクション • ドラマ • コメディ • ロマンス', boxMoviesBadge: '新着映画',
+    boxSeriesTitle: 'シリーズ', boxSeriesDesc: '人気シリーズ\n新シーズン • 毎週', boxSeriesBadge: '続きを見る',
+    boxCinemaTitle: 'シネマルーム', boxCinemaDesc: '友達を招待する\n一緒に映画を見て話し合う', boxCinemaBadge: 'ルームを作成'
+  },
+  pl: {
+    navHome: 'Strona główna', navMovies: 'Filmy', navSeries: 'Seriale', navTv: 'TV', navLanguage: 'Język',
+    boxTvTitle: 'Telewizja', boxTvDesc: '1000+ kanałów światowych\nSport • Wiadomości • Filmy • Dzieci', boxTvBadge: 'NA ŻYWO',
+    boxMoviesTitle: 'Filmy', boxMoviesDesc: 'Tysiące filmów\nAkcja • Dramat • Komedia • Romans', boxMoviesBadge: 'Nowości',
+    boxSeriesTitle: 'Seriale', boxSeriesDesc: 'Popularne seriale\nNowe sezony • Co tydzień', boxSeriesBadge: 'Kontynuuj oglądanie',
+    boxCinemaTitle: 'Pokój kinowy', boxCinemaDesc: 'Zaproś znajomych\nOglądajcie i dyskutujcie o filmach razem', boxCinemaBadge: 'Utwórz pokój'
   }
 };
 
@@ -121,11 +149,16 @@ const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa'];
 function getCurrentLanguage() {
   let savedLang = localStorage.getItem('exinflix_language');
   if (savedLang && translationsData[savedLang]) return savedLang;
+  if (navigator.language === 'zh-CN') return 'zh-CN';
+  if (navigator.language === 'zh-TW' || navigator.language === 'zh-HK') return 'zh-TW';
   let browserLang = navigator.language.split('-')[0];
   if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
   if (browserLang === 'ar') return 'ar';
   if (browserLang === 'en') return 'en';
   if (browserLang === 'fa') return 'fa';
+  if (browserLang === 'hi') return 'hi';
+  if (browserLang === 'ja') return 'ja';
+  if (browserLang === 'pl') return 'pl';
   return 'ckb';
 }
 
@@ -171,7 +204,6 @@ function updateLanguage() {
   if (boxCinemaDesc) boxCinemaDesc.innerText = texts.boxCinemaDesc;
   if (boxCinemaBadge) boxCinemaBadge.innerText = texts.boxCinemaBadge;
   
-  // RTL یان LTR
   if (rtlLanguages.includes(lang)) {
     document.body.classList.remove('ltr');
     document.body.classList.add('rtl');
@@ -181,7 +213,6 @@ function updateLanguage() {
   }
 }
 
-// گۆڕینی زمان
 function setLanguage(langCode) {
   if (translationsData[langCode]) {
     localStorage.setItem('exinflix_language', langCode);
@@ -191,16 +222,13 @@ function setLanguage(langCode) {
   }
 }
 
-// نەیڤیگەیشن
 function navigateTo(page) {
   window.location.href = page;
 }
 
-// کاتێک پەڕەکە بار بوو
 document.addEventListener('DOMContentLoaded', function() {
   updateLanguage();
   
-  // ئایکۆنی زمان
   const langIcon = document.getElementById('languageIcon');
   const langDropdown = document.getElementById('languageDropdown');
   
@@ -227,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // بۆکسەکان
   const boxTv = document.getElementById('boxTv');
   const boxMovies = document.getElementById('boxMovies');
   const boxSeries = document.getElementById('boxSeries');
@@ -236,5 +263,5 @@ document.addEventListener('DOMContentLoaded', function() {
   if (boxTv) boxTv.onclick = () => navigateTo('live-tv.html');
   if (boxMovies) boxMovies.onclick = () => navigateTo('movies.html');
   if (boxSeries) boxSeries.onclick = () => navigateTo('series.html');
-  if (boxCinemaRoom) boxCinemaRoom.onclick = () => alert(t('boxCinemaAlert') || 'پەڕەی ژووری سینەما - لە داهاتوودا زیاد دەکرێت');
+  if (boxCinemaRoom) boxCinemaRoom.onclick = () => alert('پەڕەی ژووری سینەما - لە داهاتوودا زیاد دەکرێت');
 });
