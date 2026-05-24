@@ -3,118 +3,197 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXINFLIX - پلاتفۆرمی فیلم و تەلەڤزیۆن</title>
+  <title>EXINFLIX - فیلم و زنجیرە و تەلەڤزیۆنی ڕاستەوخۆ</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
     * { font-family: 'Poppins', sans-serif; }
-    body { background: #0B0B12; }
-    .glass-card { background: rgba(20, 20, 35, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s; }
-    .glass-card:hover { border-color: rgba(255, 0, 110, 0.4); transform: translateY(-3px); }
-    .search-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 3rem; }
-    .search-input:focus { border-color: #FF006E; outline: none; }
-    .genre-chip { background: rgba(255, 255, 255, 0.08); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.9rem; transition: all 0.2s; cursor: pointer; }
-    .genre-chip:hover, .genre-chip.active { background: linear-gradient(135deg, #FF006E, #FF7A00); }
-    .gradient-btn { background: linear-gradient(135deg, #FF006E, #FF7A00); transition: transform 0.2s; }
-    .gradient-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255, 0, 110, 0.5); }
+    body { background: #0B0B12; min-height: 100vh; }
+    .glass-card {
+      background: rgba(20, 20, 35, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 0, 110, 0.5);
+      box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
+      transform: translateY(-8px);
+    }
+    .big-box {
+      height: 500px;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .big-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    .big-box .content {
+      position: relative;
+      z-index: 2;
+    }
+    .language-select {
+      background: rgba(20, 20, 35, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 3rem;
+      padding: 0.75rem 1.5rem;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 200px;
+    }
+    .language-select:hover {
+      border-color: #FF006E;
+      box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
+    }
+    .language-select option {
+      background: #1E1E2E;
+      color: white;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade {
+      animation: fadeIn 0.6s ease forwards;
+    }
   </style>
 </head>
 <body class="text-white">
 
-  <!-- ==================== NAVBAR (تەنها لۆگۆ + ئایکۆنەکان) ==================== -->
-  <nav class="glass-card mx-4 md:mx-8 my-4 px-6 py-3 flex justify-between items-center sticky top-4 z-50">
-    <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-12 w-auto">
-    <div class="flex gap-4">
-      <i class="fas fa-search text-xl text-gray-300 hover:text-pink-400 cursor-pointer"></i>
-      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 to-orange-500 flex items-center justify-center cursor-pointer">
-        <i class="fas fa-user text-white text-sm"></i>
+  <div class="max-w-7xl mx-auto px-6 py-8 animate-fade">
+
+    <!-- ==================== لۆگۆ + هەڵبژاردنی زمان ==================== -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+      <!-- لۆگۆ بە گەورەیی -->
+      <div class="text-center md:text-left">
+        <img src="assets/logo/logo.png" alt="EXINFLIX Logo" class="h-28 md:h-36 w-auto mx-auto md:mx-0">
+        <p class="text-gray-400 mt-2 text-sm tracking-wider">EXPERIENCE THE FUTURE</p>
       </div>
-    </div>
-  </nav>
 
-  <div class="max-w-7xl mx-auto px-6 py-6">
-    <!-- SEARCH BAR -->
-    <div class="relative mb-8">
-      <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-      <input type="text" placeholder="گەڕان بۆ فیلم، زنجیرە، یان ئەکتەر... / Search for movies, series..." class="search-input w-full py-4 pl-14 pr-5 text-white text-lg">
-    </div>
-
-    <!-- GENRE -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-tags text-pink-400"></i> چەشنەکان / GENRE</h2>
-      <div class="flex flex-wrap gap-3">
-        <span class="genre-chip active">هەموو</span>
-        <span class="genre-chip">ئەکشن</span>
-        <span class="genre-chip">دراما</span>
-        <span class="genre-chip">کۆمێدی</span>
-        <span class="genre-chip">ڕۆمانسی</span>
-        <span class="genre-chip">ترسناک</span>
-        <span class="genre-chip">فانتازی</span>
-      </div>
-    </div>
-
-    <!-- SUGGESTION -->
-    <div class="mb-12">
-      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-star text-yellow-500"></i> پێشنیار بۆ تۆ / SUGGESTION</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF006E/white?text=FILM+1" class="w-full h-48 object-cover">
-          <div class="p-3"><h3 class="font-bold">ئاگر لە دڵدا</h3><p class="text-xs text-gray-400">ئەکشن · ٢٠٢٥</p></div>
-        </div>
-        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF7A00/white?text=FILM+2" class="w-full h-48 object-cover">
-          <div class="p-3"><h3 class="font-bold">ڕێگای مانگ</h3><p class="text-xs text-gray-400">دراما · ٢٠٢٤</p></div>
-        </div>
-        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/7B2CFF/white?text=SERIES" class="w-full h-48 object-cover">
-          <div class="p-3"><h3 class="font-bold">زنجیرەی تاوان</h3><p class="text-xs text-gray-400">زنجیرە · ٨.٩</p></div>
-        </div>
-        <div class="glass-card rounded-xl overflow-hidden cursor-pointer">
-          <img src="https://placehold.co/400x500/FF006E/white?text=FILM+4" class="w-full h-48 object-cover">
-          <div class="p-3"><h3 class="font-bold">پەیکەری خوێن</h3><p class="text-xs text-gray-400">فانتازی</p></div>
-        </div>
+      <!-- لیستی هەڵبژاردنی زمان -->
+      <div class="w-full md:w-auto">
+        <select id="languageSelect" class="language-select w-full md:w-72">
+          <option value="ckb" selected>🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (سۆرانی) - Sorani</option>
+          <option value="ckb-badini">🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (بادینی) - Badini</option>
+          <option value="kmr">🏴󠁧󠁢󠁥󠁮󠁧󠁿 کوردی (کورمانجی) - Kurmanji</option>
+          <option value="ar">🇸🇦 العربية - Arabic</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="tr">🇹🇷 Türkçe - Turkish</option>
+          <option value="fa">🇮🇷 فارسی - Persian</option>
+          <option value="ru">🇷🇺 Русский - Russian</option>
+          <option value="fr">🇫🇷 Français - French</option>
+          <option value="es">🇪🇸 Español - Spanish</option>
+          <option value="pt">🇵🇹 Português - Portuguese</option>
+          <option value="de">🇩🇪 Deutsch - German</option>
+          <option value="sv">🇸🇪 Svenska - Swedish</option>
+          <option value="it">🇮🇹 Italiano - Italian</option>
+          <option value="zh">🇨🇳 中文 - Chinese</option>
+          <option value="ko">🇰🇷 한국어 - Korean</option>
+        </select>
+        <p class="text-xs text-gray-500 mt-2 text-center md:text-right">لە داهاتوودا ئەپ و وێبسایت بەم زمانانە دەبێت</p>
       </div>
     </div>
 
-    <!-- PUBLIC ROOMS -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-users text-pink-400"></i> ژووری گشتی / PUBLIC ROOMS</h2>
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="glass-card p-5 text-center">
-          <i class="fas fa-door-open text-4xl text-pink-400"></i>
-          <h3 class="font-bold mt-2">دروستکردنی ژوور</h3>
-          <p class="text-sm text-gray-400">CREATE ROOM</p>
-          <button class="mt-3 gradient-btn px-6 py-2 rounded-full text-sm font-bold">دروست بکە</button>
+    <!-- ==================== دوو بۆکسی گەورە ==================== -->
+    <div class="grid md:grid-cols-2 gap-8 mt-8">
+      
+      <!-- بۆکسی لای چەپ: Live TV (کەناڵە جیهانییەکان) -->
+      <div class="glass-card big-box overflow-hidden" 
+           style="background-image: url('https://placehold.co/800x600/1A1A2E/FF006E?text=Live+TV+World+Channels');"
+           onclick="window.location.href='live-tv.html'">
+        <div class="content flex flex-col justify-end h-full p-8">
+          <div class="inline-flex items-center gap-2 bg-pink-600/80 backdrop-blur px-4 py-2 rounded-full w-fit mb-4">
+            <i class="fas fa-satellite-dish text-white"></i>
+            <span class="text-sm font-semibold">ڕاستەوخۆ / LIVE</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black mb-3">تەلەڤزیۆنی ڕاستەوخۆ</h2>
+          <p class="text-gray-200 text-lg mb-4">زیاتر لە ١٠٠٠ کەناڵی جیهانی • وەرزش • هەواڵ • فیلم • منداڵان</p>
+          <div class="flex gap-3 text-sm">
+            <span class="bg-white/20 px-3 py-1 rounded-full">BBC</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">CNN</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">Al Jazeera</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">Sky News</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">+٩٩٦</span>
+          </div>
+          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2">
+            بینینی کەناڵەکان <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
-        <div class="glass-card p-5 text-center">
-          <i class="fas fa-sign-in-alt text-4xl text-pink-400"></i>
-          <h3 class="font-bold mt-2">پەیوەندیکردن بە ژوور</h3>
-          <p class="text-sm text-gray-400">JOIN ROOM</p>
-          <div class="flex gap-2 mt-3"><input type="text" placeholder="کۆدی ژوور" class="bg-black/50 border border-white/20 rounded-full px-3 py-1 text-sm flex-1"><button class="bg-pink-600 px-3 py-1 rounded-full text-sm">چوون</button></div>
-        </div>
-        <div class="glass-card p-5">
-          <h3 class="font-bold mb-2">ژوورە چالاکەکان</h3>
-          <div class="space-y-2 text-sm"><div class="flex justify-between"><span>🎬 فیلمی ئەکشن</span><span class="text-green-400">١٢ کەس</span></div><div class="flex justify-between"><span>📺 زنجیرەی تاوان</span><span class="text-green-400">٨ کەس</span></div><div class="flex justify-between"><span>🍿 کۆمێدی</span><span class="text-green-400">٥ کەس</span></div></div>
+      </div>
+
+      <!-- بۆکسی لای ڕاست: فیلم و زنجیرە (وەک Netflix, HBO, Hulu, Shahid) -->
+      <div class="glass-card big-box overflow-hidden"
+           style="background-image: url('https://placehold.co/800x600/1A1E2F/FF7A00?text=Movies+%26+Series');"
+           onclick="window.location.href='movies-series.html'">
+        <div class="content flex flex-col justify-end h-full p-8">
+          <div class="inline-flex items-center gap-2 bg-orange-600/80 backdrop-blur px-4 py-2 rounded-full w-fit mb-4">
+            <i class="fas fa-play-circle text-white"></i>
+            <span class="text-sm font-semibold">ستریمینگ / STREAMING</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black mb-3">فیلم و زنجیرە</h2>
+          <p class="text-gray-200 text-lg mb-4">هەموو فیلم و زنجیرە بەناوبانگەکان • وەک Netflix, HBO, Hulu, Shahid</p>
+          <div class="flex gap-3 text-sm flex-wrap">
+            <span class="bg-white/20 px-3 py-1 rounded-full"><i class="fab fa-netflix text-red-500"></i> Netflix</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full"><i class="fas fa-tv"></i> HBO Max</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">Hulu</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">Shahid</span>
+            <span class="bg-white/20 px-3 py-1 rounded-full">Prime Video</span>
+          </div>
+          <button class="mt-6 w-fit bg-gradient-to-r from-pink-500 to-orange-500 px-8 py-3 rounded-full font-bold flex items-center gap-2">
+            بینینی فیلم و زنجیرەکان <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- BOOK TICKETS -->
-    <div class="glass-card p-5 flex justify-between items-center flex-wrap gap-4">
-      <div><i class="fas fa-ticket-alt text-3xl text-pink-400"></i><span class="font-bold ml-2">بووکینگی تیکەت / BOOK TICKETS</span></div>
-      <button class="gradient-btn px-6 py-2 rounded-full">بڕۆ بۆ بووکینگ</button>
+    <!-- ==================== بەشی زانیاری کورت ==================== -->
+    <div class="grid md:grid-cols-3 gap-5 mt-12">
+      <div class="glass-card p-5 text-center">
+        <i class="fas fa-globe text-3xl text-pink-400"></i>
+        <h3 class="font-bold mt-2">زیاتر لە ١٦ زمان</h3>
+        <p class="text-sm text-gray-400">پلاتفۆرم بە هەموو زمانە سەرەکییەکانی جیهان</p>
+      </div>
+      <div class="glass-card p-5 text-center">
+        <i class="fas fa-ticket-alt text-3xl text-pink-400"></i>
+        <h3 class="font-bold mt-2">تیکەتی سینەما</h3>
+        <p class="text-sm text-gray-400">بووکینگی تیکەت بۆ سینەماکانی عێراق و جیهان</p>
+      </div>
+      <div class="glass-card p-5 text-center">
+        <i class="fas fa-users text-3xl text-pink-400"></i>
+        <h3 class="font-bold mt-2">ژووری گشتی</h3>
+        <p class="text-sm text-gray-400">بینینی هاوبەش لەگەڵ هاوڕێکانت</p>
+      </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 mt-12 py-8 text-center text-gray-500 text-sm">
+      <p>© 2026 EXINFLIX - هەموو مافەکان پارێزراوە</p>
+      <p class="mt-1 text-xs">دیزاین بە شێوازی Dark Neon + Glassmorphism</p>
+    </footer>
   </div>
 
-  <footer class="border-t border-white/10 mt-12 py-8 text-center text-gray-400 text-sm">
-    <div class="flex flex-wrap justify-center gap-6 mb-4">
-      <a href="#" class="hover:text-pink-400">پشتیوانی</a>
-      <a href="#" class="hover:text-pink-400">دابەزاندنی ئەپ</a>
-      <a href="#" class="hover:text-pink-400">نرخەکان</a>
-      <a href="#" class="hover:text-pink-400">بڵۆگ</a>
-    </div>
-    <p>© 2026 EXINFLIX - هەموو مافەکان پارێزراوە | دیزاین بە شێوازی Dark Neon + Glassmorphism</p>
-  </footer>
+  <script>
+    // بۆ پەڕەکانی داهاتوو زمانی هەڵبژێردراو پاشەکەوت بکە
+    const langSelect = document.getElementById('languageSelect');
+    langSelect.addEventListener('change', function() {
+      localStorage.setItem('exinflix_language', this.value);
+      console.log('زمانی هەڵبژێردراو:', this.options[this.selectedIndex].text);
+    });
+  </script>
 </body>
 </html>
