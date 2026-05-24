@@ -2,7 +2,7 @@
 // هەموو تەرجەمەکانی EXINFLIX بۆ ١٦ زمان
 
 const translations = {
-  // کوردی (سۆرانی) - default
+  // کوردی (سۆرانی) - RTL
   ckb: {
     // Navbar
     'nav.home': 'ماڵەوە',
@@ -50,7 +50,7 @@ const translations = {
     'tv.live': 'ڕاستەوخۆ'
   },
   
-  // کوردی (بادینی)
+  // کوردی (بادینی) - RTL
   'ckb-badini': {
     'nav.home': 'مالەوە',
     'nav.movies': 'فلیم',
@@ -80,7 +80,7 @@ const translations = {
     'tv.live': 'ڕاستەوخۆ'
   },
   
-  // کوردی (کورمانجی)
+  // کوردی (کورمانجی) - LTR (ئەمە وەک خۆی بمێنێتەوە)
   kmr: {
     'nav.home': 'Mal',
     'nav.movies': 'Fîlm',
@@ -110,7 +110,7 @@ const translations = {
     'tv.live': 'Zindî'
   },
   
-  // عەرەبی
+  // عەرەبی - RTL
   ar: {
     'nav.home': 'الرئيسية',
     'nav.movies': 'أفلام',
@@ -140,67 +140,7 @@ const translations = {
     'tv.live': 'مباشر'
   },
   
-  // ئینگلیزی
-  en: {
-    'nav.home': 'Home',
-    'nav.movies': 'Movies',
-    'nav.series': 'Series',
-    'nav.tv': 'TV',
-    'nav.language': 'Language',
-    'box.tv.title': 'TV',
-    'box.tv.desc': '1000+ World Channels\nSports • News • Movies • Kids',
-    'box.tv.badge': 'LIVE',
-    'box.movies.title': 'Movies',
-    'box.movies.desc': 'Thousands of Movies\nAction • Drama • Comedy • Romance',
-    'box.movies.badge': 'New Releases',
-    'box.series.title': 'Series',
-    'box.series.desc': 'Trending Series\nNew Seasons • Weekly',
-    'box.series.badge': 'Continue Watching',
-    'alert.movies': 'Movies page - Coming soon',
-    'alert.series': 'Series page - Coming soon',
-    'alert.tv': 'TV page - Coming soon',
-    'movies.title': 'Movies',
-    'movies.back': 'Back',
-    'series.title': 'Series',
-    'tv.title': 'World Channels',
-    'tv.sports': 'Sports',
-    'tv.news': 'News',
-    'tv.cinema': 'Cinema',
-    'tv.music': 'Music',
-    'tv.live': 'LIVE'
-  },
-  
-  // تورکی
-  tr: {
-    'nav.home': 'Ana Sayfa',
-    'nav.movies': 'Filmler',
-    'nav.series': 'Diziler',
-    'nav.tv': 'TV',
-    'nav.language': 'Dil',
-    'box.tv.title': 'Televizyon',
-    'box.tv.desc': '1000+ Dünya Kanalı\nSpor • Haber • Film • Çocuk',
-    'box.tv.badge': 'CANLI',
-    'box.movies.title': 'Filmler',
-    'box.movies.desc': 'Binlerce Film\nAksiyon • Dram • Komedi • Romantik',
-    'box.movies.badge': 'Yeni Filmler',
-    'box.series.title': 'Diziler',
-    'box.series.desc': 'Popüler Diziler\nYeni Sezonlar • Haftalık',
-    'box.series.badge': 'İzlemeye Devam Et',
-    'alert.movies': 'Film sayfası - Yakında',
-    'alert.series': 'Dizi sayfası - Yakında',
-    'alert.tv': 'TV sayfası - Yakında',
-    'movies.title': 'Filmler',
-    'movies.back': 'Geri',
-    'series.title': 'Diziler',
-    'tv.title': 'Dünya Kanalları',
-    'tv.sports': 'Spor',
-    'tv.news': 'Haber',
-    'tv.cinema': 'Sinema',
-    'tv.music': 'Müzik',
-    'tv.live': 'CANLI'
-  },
-  
-  // فارسی
+  // فارسی - RTL (هامان ڕوکاری عەرەبی)
   fa: {
     'nav.home': 'صفحه اصلی',
     'nav.movies': 'فیلم‌ها',
@@ -230,7 +170,67 @@ const translations = {
     'tv.live': 'زنده'
   },
   
-  // رووسی
+  // ئینگلیزی - LTR
+  en: {
+    'nav.home': 'Home',
+    'nav.movies': 'Movies',
+    'nav.series': 'Series',
+    'nav.tv': 'TV',
+    'nav.language': 'Language',
+    'box.tv.title': 'TV',
+    'box.tv.desc': '1000+ World Channels\nSports • News • Movies • Kids',
+    'box.tv.badge': 'LIVE',
+    'box.movies.title': 'Movies',
+    'box.movies.desc': 'Thousands of Movies\nAction • Drama • Comedy • Romance',
+    'box.movies.badge': 'New Releases',
+    'box.series.title': 'Series',
+    'box.series.desc': 'Trending Series\nNew Seasons • Weekly',
+    'box.series.badge': 'Continue Watching',
+    'alert.movies': 'Movies page - Coming soon',
+    'alert.series': 'Series page - Coming soon',
+    'alert.tv': 'TV page - Coming soon',
+    'movies.title': 'Movies',
+    'movies.back': 'Back',
+    'series.title': 'Series',
+    'tv.title': 'World Channels',
+    'tv.sports': 'Sports',
+    'tv.news': 'News',
+    'tv.cinema': 'Cinema',
+    'tv.music': 'Music',
+    'tv.live': 'LIVE'
+  },
+  
+  // تورکی - LTR
+  tr: {
+    'nav.home': 'Ana Sayfa',
+    'nav.movies': 'Filmler',
+    'nav.series': 'Diziler',
+    'nav.tv': 'TV',
+    'nav.language': 'Dil',
+    'box.tv.title': 'Televizyon',
+    'box.tv.desc': '1000+ Dünya Kanalı\nSpor • Haber • Film • Çocuk',
+    'box.tv.badge': 'CANLI',
+    'box.movies.title': 'Filmler',
+    'box.movies.desc': 'Binlerce Film\nAksiyon • Dram • Komedi • Romantik',
+    'box.movies.badge': 'Yeni Filmler',
+    'box.series.title': 'Diziler',
+    'box.series.desc': 'Popüler Diziler\nYeni Sezonlar • Haftalık',
+    'box.series.badge': 'İzlemeye Devam Et',
+    'alert.movies': 'Film sayfası - Yakında',
+    'alert.series': 'Dizi sayfası - Yakında',
+    'alert.tv': 'TV sayfası - Yakında',
+    'movies.title': 'Filmler',
+    'movies.back': 'Geri',
+    'series.title': 'Diziler',
+    'tv.title': 'Dünya Kanalları',
+    'tv.sports': 'Spor',
+    'tv.news': 'Haber',
+    'tv.cinema': 'Sinema',
+    'tv.music': 'Müzik',
+    'tv.live': 'CANLI'
+  },
+  
+  // رووسی - LTR
   ru: {
     'nav.home': 'Главная',
     'nav.movies': 'Фильмы',
@@ -260,7 +260,7 @@ const translations = {
     'tv.live': 'ПРЯМОЙ ЭФИР'
   },
   
-  // فەرەنسی
+  // فەرەنسی - LTR
   fr: {
     'nav.home': 'Accueil',
     'nav.movies': 'Films',
@@ -290,7 +290,7 @@ const translations = {
     'tv.live': 'DIRECT'
   },
   
-  // ئیسپانی
+  // ئیسپانی - LTR
   es: {
     'nav.home': 'Inicio',
     'nav.movies': 'Películas',
@@ -320,7 +320,7 @@ const translations = {
     'tv.live': 'EN VIVO'
   },
   
-  // پرتوگالی
+  // پرتوگالی - LTR
   pt: {
     'nav.home': 'Início',
     'nav.movies': 'Filmes',
@@ -350,7 +350,7 @@ const translations = {
     'tv.live': 'AO VIVO'
   },
   
-  // ئەڵمانی
+  // ئەڵمانی - LTR
   de: {
     'nav.home': 'Startseite',
     'nav.movies': 'Filme',
@@ -380,7 +380,7 @@ const translations = {
     'tv.live': 'LIVE'
   },
   
-  // سویدی
+  // سویدی - LTR
   sv: {
     'nav.home': 'Hem',
     'nav.movies': 'Filmer',
@@ -410,7 +410,7 @@ const translations = {
     'tv.live': 'LIVE'
   },
   
-  // ئیتاڵی
+  // ئیتاڵی - LTR
   it: {
     'nav.home': 'Home',
     'nav.movies': 'Film',
@@ -440,7 +440,7 @@ const translations = {
     'tv.live': 'DIRETTA'
   },
   
-  // چینی
+  // چینی - LTR
   zh: {
     'nav.home': '首页',
     'nav.movies': '电影',
@@ -470,7 +470,7 @@ const translations = {
     'tv.live': '直播'
   },
   
-  // کۆری
+  // کۆری - LTR
   ko: {
     'nav.home': '홈',
     'nav.movies': '영화',
@@ -507,7 +507,6 @@ function getCurrentLanguage() {
   if (savedLang && translations[savedLang]) {
     return savedLang;
   }
-  // زمانی browser
   let browserLang = navigator.language.split('-')[0];
   if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
   if (browserLang === 'ar') return 'ar';
@@ -523,7 +522,13 @@ function getCurrentLanguage() {
   if (browserLang === 'it') return 'it';
   if (browserLang === 'zh') return 'zh';
   if (browserLang === 'ko') return 'ko';
-  return 'ckb'; // default
+  return 'ckb';
+}
+
+// پشکنینی ئەوەی کە ئایا زمانەکە RTL یان LTR
+function isRTL(langCode) {
+  const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa'];
+  return rtlLanguages.includes(langCode);
 }
 
 // فەرمانی تەرجەمەکردن
@@ -536,6 +541,31 @@ function t(key) {
 function setLanguage(langCode) {
   if (translations[langCode]) {
     localStorage.setItem('exinflix_language', langCode);
-    location.reload(); // نوێکردنەوەی پەڕە بۆ تەرجەمەکردن
+    location.reload();
+  }
+}
+
+// RTL یان LRT دیاری بکە لەسەر پەڕە
+function applyDirection() {
+  const currentLang = getCurrentLanguage();
+  if (isRTL(currentLang)) {
+    document.body.style.direction = 'rtl';
+    document.body.style.textAlign = 'right';
+    // گۆڕینی شوێنی مینوو بۆ RTL
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+      navMenu.style.left = 'auto';
+      navMenu.style.right = '50%';
+      navMenu.style.transform = 'translateX(50%)';
+    }
+  } else {
+    document.body.style.direction = 'ltr';
+    document.body.style.textAlign = 'left';
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+      navMenu.style.left = '50%';
+      navMenu.style.right = 'auto';
+      navMenu.style.transform = 'translateX(-50%)';
+    }
   }
 }
