@@ -48,14 +48,21 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+      flex-wrap: wrap;
     }
     
-    .navbar-logo { height: 32px; width: auto; }
+    /* لۆگۆ */
+    .navbar-logo {
+      height: 35px;
+      width: auto;
+      display: block;
+    }
     
     /* مینووی ئاسۆیی بۆ کۆمپیوتەر */
     .desktop-menu {
-      display: none;
+      display: flex;
       gap: 1.5rem;
+      align-items: center;
     }
     
     .desktop-menu a {
@@ -64,36 +71,42 @@
       font-size: 0.9rem;
       transition: color 0.3s;
       font-family: 'Exinflix Regular', sans-serif;
+      white-space: nowrap;
     }
     
     .desktop-menu a:hover { color: #FF006E; }
     
-    /* ئایکۆنەکان */
-    .mobile-icons {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
+    /* ئایکۆنی گەڕان */
+    .search-icon-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.3s;
     }
     
-    .icon-btn {
+    .search-icon-btn:hover { color: #FF006E; }
+    
+    /* دوگمەی هەمبەرگر بۆ مۆبایل */
+    .menu-icon-btn {
       background: none;
       border: none;
       color: white;
       font-size: 1.3rem;
       cursor: pointer;
-      padding: 0.3rem;
-      transition: color 0.3s;
+      padding: 0.5rem;
+      display: none;
     }
     
-    .icon-btn:hover { color: #FF006E; }
-    
-    /* بۆشایی گەڕان - لە ژێر بانەڕەکەدا */
+    /* بۆشایی گەڕان */
     .search-container {
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
-      background: rgba(20, 20, 35, 0.95);
+      background: rgba(20, 20, 35, 0.98);
       backdrop-filter: blur(12px);
       padding: 0.75rem 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -161,7 +174,7 @@
     }
     
     .sidebar-header img {
-      height: 28px;
+      height: 30px;
       width: auto;
     }
     
@@ -390,27 +403,25 @@
       font-size: 0.8rem;
     }
     
-    .empty-state {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(20, 20, 35, 0.5);
-      border-radius: 1rem;
-      color: rgba(255,255,255,0.6);
+    /* ==================== ڕیسپۆنسیڤ ==================== */
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      .menu-icon-btn {
+        display: block;
+      }
+      .navbar-container {
+        justify-content: space-between;
+      }
     }
     
-    /* ==================== ڕیسپۆنسیڤ ==================== */
-    @media (min-width: 768px) {
-      .mobile-icons {
+    @media (min-width: 769px) {
+      .menu-icon-btn {
         display: none;
       }
       .desktop-menu {
         display: flex;
-      }
-    }
-    
-    @media (max-width: 767px) {
-      .desktop-menu {
-        display: none;
       }
     }
     
@@ -426,26 +437,23 @@
   <!-- بانەڕ -->
   <div class="navbar">
     <div class="navbar-container">
-      <!-- لای چەپ: لۆگۆ + مینووی ئاسۆیی -->
-      <div style="display: flex; align-items: center; gap: 2rem;">
-        <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
-        <div class="desktop-menu" id="desktopMenu">
-          <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
-          <a href="movies.html" id="menuMovies">فیلم</a>
-          <a href="series.html" id="menuSeries">زنجیرە</a>
-          <a href="live-tv.html" id="menuTv">کەناڵەکانی تەلەڤزیۆن</a>
-          <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
-          <a href="profile.html" id="menuProfile">پرۆفایلەکەم</a>
-        </div>
+      <!-- لۆگۆ -->
+      <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
+      
+      <!-- مینووی ئاسۆیی (کۆمپیوتەر) -->
+      <div class="desktop-menu" id="desktopMenu">
+        <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
+        <a href="movies.html" id="menuMovies">فیلم</a>
+        <a href="series.html" id="menuSeries">زنجیرە</a>
+        <a href="live-tv.html" id="menuTv">کەناڵەکانی تەلەڤزیۆن</a>
+        <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
+        <a href="profile.html" id="menuProfile">پرۆفایلەکەم</a>
       </div>
       
-      <!-- لای ڕاست: دوگمەکان -->
-      <div class="mobile-icons">
-        <button class="icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
-        <button class="icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></button>
-      </div>
-      <div style="display: flex; gap: 1rem;">
-        <button class="icon-btn" id="desktopSearchIcon"><i class="fas fa-search"></i></button>
+      <!-- ئایکۆنەکان -->
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+        <button class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
     
@@ -521,7 +529,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== تەرجەمەکان (بە کورتکراوەیی) ====================
+    // ==================== تەرجەمەکان ====================
     const translations = {
       ckb: {
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکانی تەلەڤزیۆن', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایلەکەم',
@@ -533,10 +541,7 @@
         movies: [
           { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
           { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
-          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
-          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' },
-          { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' }
         ]
       },
       en: {
@@ -551,35 +556,46 @@
           { title: 'Moon Road', year: '2024', rating: '8.2', genre: 'Drama' },
           { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
         ]
+      },
+      ar: {
+        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات التلفزيون', menuCinema: 'غرفة السينما', menuProfile: 'ملفي',
+        sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
+        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
+        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
+        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
+        watchBtn: 'مشاهدة الآن',
+        movies: [
+          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
+          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' },
+          { title: 'تمثال الدم', year: '2025', rating: '7.9', genre: 'خيال' }
+        ]
+      },
+      tr: {
+        menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'TV Kanalları', menuCinema: 'Sinema Odası', menuProfile: 'Profilim',
+        sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
+        slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
+        slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
+        slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
+        watchBtn: 'Şimdi İzle',
+        movies: [
+          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' },
+          { title: 'Kan Heykeli', year: '2025', rating: '7.9', genre: 'Fantastik' }
+        ]
+      },
+      fa: {
+        menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌های تلویزیون', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل من',
+        sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
+        slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
+        slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه انسانی',
+        slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
+        watchBtn: 'تماشا کن',
+        movies: [
+          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
+          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' },
+          { title: 'مجسمه خون', year: '2025', rating: '7.9', genre: 'فانتزی' }
+        ]
       }
-      // بۆ کورتکردنەوە، تەرجەمەکانی تر هەر وەک پێشووتر دەمێننەوە
-    };
-
-    // زیادکردنی تەرجەمەکان بۆ زمانەکانی تر
-    translations.ar = {
-      menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات التلفزيون', menuCinema: 'غرفة السينما', menuProfile: 'ملفي',
-      sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
-      slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
-      slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
-      slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
-      watchBtn: 'مشاهدة الآن',
-      movies: [
-        { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
-        { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' }
-      ]
-    };
-    
-    translations.tr = {
-      menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'TV Kanalları', menuCinema: 'Sinema Odası', menuProfile: 'Profilim',
-      sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
-      slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
-      slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
-      slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
-      watchBtn: 'Şimdi İzle',
-      movies: [
-        { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
-        { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' }
-      ]
     };
 
     const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
@@ -592,6 +608,7 @@
       if (browserLang === 'ar') return 'ar';
       if (browserLang === 'en') return 'en';
       if (browserLang === 'tr') return 'tr';
+      if (browserLang === 'fa') return 'fa';
       return 'ckb';
     }
 
@@ -699,7 +716,6 @@
     // بۆشایی گەڕان
     const searchContainer = document.getElementById('searchContainer');
     const searchIconBtn = document.getElementById('searchIconBtn');
-    const desktopSearchIcon = document.getElementById('desktopSearchIcon');
     const searchInput = document.getElementById('searchInput');
 
     function toggleSearch() {
@@ -710,7 +726,6 @@
     }
 
     if (searchIconBtn) searchIconBtn.addEventListener('click', toggleSearch);
-    if (desktopSearchIcon) desktopSearchIcon.addEventListener('click', toggleSearch);
 
     // گەڕان لە نێو فیلمەکاندا
     if (searchInput) {
