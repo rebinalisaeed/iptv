@@ -139,6 +139,97 @@ const translationsData = {
     boxMoviesTitle: 'Filmy', boxMoviesDesc: 'Tysiące filmów\nAkcja • Dramat • Komedia • Romans', boxMoviesBadge: 'Nowości',
     boxSeriesTitle: 'Seriale', boxSeriesDesc: 'Popularne seriale\nNowe sezony • Co tydzień', boxSeriesBadge: 'Kontynuuj oglądanie',
     boxCinemaTitle: 'Pokój kinowy', boxCinemaDesc: 'Zaproś znajomych\nOglądajcie i dyskutujcie o filmach razem', boxCinemaBadge: 'Utwórz pokój'
+  },
+  ur: {
+    navHome: 'ہوم', navMovies: 'فلمیں', navSeries: 'سیریز', navTv: 'ٹی وی', navLanguage: 'زبان',
+    boxTvTitle: 'ٹیلی ویژن', boxTvDesc: '1000+ عالمی چینلز\nکھیل • خبریں • فلمیں • بچے', boxTvBadge: 'لائیو',
+    boxMoviesTitle: 'فلمیں', boxMoviesDesc: 'ہزاروں فلمیں\nایکشن • ڈرامہ • کامیڈی • رومانس', boxMoviesBadge: 'نئی فلمیں',
+    boxSeriesTitle: 'سیریز', boxSeriesDesc: 'مقبول سیریز\nنئے سیزن • ہفتہ وار', boxSeriesBadge: 'دیکھنا جاری رکھیں',
+    boxCinemaTitle: 'سینما روم', boxCinemaDesc: 'اپنے دوستوں کو مدعو کریں\nمل کر فلم دیکھیں اور بحث کریں', boxCinemaBadge: 'روم بنائیں'
+  },
+  bn: {
+    navHome: 'হোম', navMovies: 'সিনেমা', navSeries: 'সিরিজ', navTv: 'টিভি', navLanguage: 'ভাষা',
+    boxTvTitle: 'টেলিভিশন', boxTvDesc: '1000+ বিশ্ব চ্যানেল\nখেলা • খবর • সিনেমা • শিশু', boxTvBadge: 'লাইভ',
+    boxMoviesTitle: 'সিনেমা', boxMoviesDesc: 'হাজার হাজার সিনেমা\nঅ্যাকশন • ড্রামা • কমেডি • রোমান্স', boxMoviesBadge: 'নতুন সিনেমা',
+    boxSeriesTitle: 'সিরিজ', boxSeriesDesc: 'ট্রেন্ডিং সিরিজ\nনতুন সিজন • সাপ্তাহিক', boxSeriesBadge: 'দেখা চালিয়ে যান',
+    boxCinemaTitle: 'সিনেমা রুম', boxCinemaDesc: 'আপনার বন্ধুদের আমন্ত্রণ জানান\nএকসাথে সিনেমা দেখুন এবং আলোচনা করুন', boxCinemaBadge: 'রুম তৈরি করুন'
+  },
+  vi: {
+    navHome: 'Trang chủ', navMovies: 'Phim', navSeries: 'Phim bộ', navTv: 'TV', navLanguage: 'Ngôn ngữ',
+    boxTvTitle: 'Truyền hình', boxTvDesc: '1000+ Kênh thế giới\nThể thao • Tin tức • Phim • Trẻ em', boxTvBadge: 'TRỰC TIẾP',
+    boxMoviesTitle: 'Phim', boxMoviesDesc: 'Hàng ngàn bộ phim\nHành động • Chính kịch • Hài • Lãng mạn', boxMoviesBadge: 'Phim mới',
+    boxSeriesTitle: 'Phim bộ', boxSeriesDesc: 'Phim bộ thịnh hành\nMùa mới • Hàng tuần', boxSeriesBadge: 'Tiếp tục xem',
+    boxCinemaTitle: 'Phòng chiếu', boxCinemaDesc: 'Mời bạn bè của bạn\nCùng xem và thảo luận phim', boxCinemaBadge: 'Tạo phòng'
+  },
+  th: {
+    navHome: 'หน้าหลัก', navMovies: 'ภาพยนตร์', navSeries: 'ซีรีส์', navTv: 'ทีวี', navLanguage: 'ภาษา',
+    boxTvTitle: 'โทรทัศน์', boxTvDesc: '1000+ ช่องทั่วโลก\nกีฬา • ข่าว • ภาพยนตร์ • เด็ก', boxTvBadge: 'ถ่ายทอดสด',
+    boxMoviesTitle: 'ภาพยนตร์', boxMoviesDesc: 'ภาพยนตร์หลายพันเรื่อง\nแอคชั่น • ดราม่า • ตลก • โรแมนติก', boxMoviesBadge: 'ภาพยนตร์ใหม่',
+    boxSeriesTitle: 'ซีรีส์', boxSeriesDesc: 'ซีรีส์ยอดนิยม\nซีซั่นใหม่ • รายสัปดาห์', boxSeriesBadge: 'ดูต่อ',
+    boxCinemaTitle: 'ห้องภาพยนตร์', boxCinemaDesc: 'เชิญเพื่อนของคุณ\nดูและพูดคุยภาพยนตร์ด้วยกัน', boxCinemaBadge: 'สร้างห้อง'
+  },
+  uk: {
+    navHome: 'Головна', navMovies: 'Фільми', navSeries: 'Серіали', navTv: 'ТБ', navLanguage: 'Мова',
+    boxTvTitle: 'Телебачення', boxTvDesc: '1000+ світових каналів\nСпорт • Новини • Фільми • Діти', boxTvBadge: 'ПРЯМИЙ ЕФІР',
+    boxMoviesTitle: 'Фільми', boxMoviesDesc: 'Тисячі фільмів\nБойовик • Драма • Комедія • Романтика', boxMoviesBadge: 'Новинки',
+    boxSeriesTitle: 'Серіали', boxSeriesDesc: 'Популярні серіали\nНові сезони • Щотижня', boxSeriesBadge: 'Продовжити перегляд',
+    boxCinemaTitle: 'Кінозал', boxCinemaDesc: 'Запроси друзів\nДивіться та обговорюйте фільми разом', boxCinemaBadge: 'Створити кімнату'
+  },
+  nl: {
+    navHome: 'Home', navMovies: 'Films', navSeries: 'Series', navTv: 'TV', navLanguage: 'Taal',
+    boxTvTitle: 'Televisie', boxTvDesc: '1000+ Wereldkanalen\nSport • Nieuws • Films • Kinderen', boxTvBadge: 'LIVE',
+    boxMoviesTitle: 'Films', boxMoviesDesc: 'Duizenden films\nActie • Drama • Komedie • Romantiek', boxMoviesBadge: 'Nieuwe films',
+    boxSeriesTitle: 'Series', boxSeriesDesc: 'Populaire series\nNieuwe seizoenen • Wekelijks', boxSeriesBadge: 'Blijf kijken',
+    boxCinemaTitle: 'Bioscoopzaal', boxCinemaDesc: 'Nodig je vrienden uit\nBekijk en bespreek films samen', boxCinemaBadge: 'Maak kamer'
+  },
+  el: {
+    navHome: 'Αρχική', navMovies: 'Ταινίες', navSeries: 'Σειρές', navTv: 'TV', navLanguage: 'Γλώσσα',
+    boxTvTitle: 'Τηλεόραση', boxTvDesc: '1000+ Παγκόσμια κανάλια\nΑθλητισμός • Ειδήσεις • Ταινίες • Παιδιά', boxTvBadge: 'ΖΩΝΤΑΝΑ',
+    boxMoviesTitle: 'Ταινίες', boxMoviesDesc: 'Χιλιάδες ταινίες\nΔράση • Δράμα • Κωμωδία • Ρομαντισμός', boxMoviesBadge: 'Νέες ταινίες',
+    boxSeriesTitle: 'Σειρές', boxSeriesDesc: 'Δημοφιλείς σειρές\nΝέες σεζόν • Εβδομαδιαία', boxSeriesBadge: 'Συνέχεια παρακολούθησης',
+    boxCinemaTitle: 'Αίθουσα κινηματογράφου', boxCinemaDesc: 'Καλέστε τους φίλους σας\nΔείτε και συζητήστε ταινίες μαζί', boxCinemaBadge: 'Δημιουργία δωματίου'
+  },
+  ro: {
+    navHome: 'Acasă', navMovies: 'Filme', navSeries: 'Seriale', navTv: 'TV', navLanguage: 'Limba',
+    boxTvTitle: 'Televiziune', boxTvDesc: '1000+ Canale mondiale\nSport • Știri • Filme • Copii', boxTvBadge: 'ÎN DIRECT',
+    boxMoviesTitle: 'Filme', boxMoviesDesc: 'Mii de filme\nAcțiune • Dramă • Comedie • Romantism', boxMoviesBadge: 'Filme noi',
+    boxSeriesTitle: 'Seriale', boxSeriesDesc: 'Seriale populare\nSezoane noi • Săptămânal', boxSeriesBadge: 'Continuă vizionarea',
+    boxCinemaTitle: 'Sală de cinema', boxCinemaDesc: 'Invită-ți prietenii\nVizionează și discută filme împreună', boxCinemaBadge: 'Creează cameră'
+  },
+  id: {
+    navHome: 'Beranda', navMovies: 'Film', navSeries: 'Serial', navTv: 'TV', navLanguage: 'Bahasa',
+    boxTvTitle: 'Televisi', boxTvDesc: '1000+ Saluran Dunia\nOlahraga • Berita • Film • Anak-anak', boxTvBadge: 'LIVE',
+    boxMoviesTitle: 'Film', boxMoviesDesc: 'Ribuan film\nAksi • Drama • Komedi • Romantis', boxMoviesBadge: 'Film Baru',
+    boxSeriesTitle: 'Serial', boxSeriesDesc: 'Serial Populer\nMusim baru • Mingguan', boxSeriesBadge: 'Lanjutkan Menonton',
+    boxCinemaTitle: 'Ruang Bioskop', boxCinemaDesc: 'Undang teman-teman Anda\nTonton dan diskusikan film bersama', boxCinemaBadge: 'Buat Ruang'
+  },
+  da: {
+    navHome: 'Hjem', navMovies: 'Film', navSeries: 'Serier', navTv: 'TV', navLanguage: 'Sprog',
+    boxTvTitle: 'Fjernsyn', boxTvDesc: '1000+ Verdenskanaler\nSport • Nyheder • Film • Børn', boxTvBadge: 'LIVE',
+    boxMoviesTitle: 'Film', boxMoviesDesc: 'Tusindvis af film\nAction • Drama • Komedie • Romantik', boxMoviesBadge: 'Nye film',
+    boxSeriesTitle: 'Serier', boxSeriesDesc: 'Populære serier\nNye sæsoner • Ugentligt', boxSeriesBadge: 'Fortsæt med at se',
+    boxCinemaTitle: 'Biografrum', boxCinemaDesc: 'Inviter dine venner\nSe og diskuter film sammen', boxCinemaBadge: 'Opret rum'
+  },
+  no: {
+    navHome: 'Hjem', navMovies: 'Filmer', navSeries: 'Serier', navTv: 'TV', navLanguage: 'Språk',
+    boxTvTitle: 'Fjernsyn', boxTvDesc: '1000+ Verdenskanaler\nSport • Nyheter • Filmer • Barn', boxTvBadge: 'LIVE',
+    boxMoviesTitle: 'Filmer', boxMoviesDesc: 'Tusenvis av filmer\nAksjon • Drama • Komedie • Romantikk', boxMoviesBadge: 'Nye filmer',
+    boxSeriesTitle: 'Serier', boxSeriesDesc: 'Populære serier\nNye sesonger • Ukentlig', boxSeriesBadge: 'Fortsett å se',
+    boxCinemaTitle: 'Kinorom', boxCinemaDesc: 'Inviter vennene dine\nSe og diskuter filmer sammen', boxCinemaBadge: 'Opprett rom'
+  },
+  fi: {
+    navHome: 'Koti', navMovies: 'Elokuvat', navSeries: 'Sarjat', navTv: 'TV', navLanguage: 'Kieli',
+    boxTvTitle: 'Televisio', boxTvDesc: '1000+ Maailman kanavat\nUrheilu • Uutiset • Elokuvat • Lapset', boxTvBadge: 'LIVE',
+    boxMoviesTitle: 'Elokuvat', boxMoviesDesc: 'Tuhansia elokuvia\nToiminta • Draama • Komedia • Romantiikka', boxMoviesBadge: 'Uudet elokuvat',
+    boxSeriesTitle: 'Sarjat', boxSeriesDesc: 'Suositut sarjat\nUudet kaudet • Viikoittain', boxSeriesBadge: 'Jatka katsomista',
+    boxCinemaTitle: 'Elokuvahuone', boxCinemaDesc: 'Kutsu ystäväsi\nKatso ja keskustele elokuvista yhdessä', boxCinemaBadge: 'Luo huone'
+  },
+  syr: {
+    navHome: 'ܒܝܬܐ', navMovies: 'ܐܣܛܪܢܐ', navSeries: 'ܣܕܪܐ', navTv: 'ܬܦܝܬܐ', navLanguage: 'ܠܫܢܐ',
+    boxTvTitle: 'ܬܦܝܬܐ', boxTvDesc: '1000+ ܩܢܝܬܐ ܕܟܠܗ ܥܠܡܐ\nܣܦܘܪܬܐ • ܫܡܥܬܐ • ܐܣܛܪܢܐ • ܝܠܕܐ', boxTvBadge: 'ܚܝܐ',
+    boxMoviesTitle: 'ܐܣܛܪܢܐ', boxMoviesDesc: 'ܐܠܦܢܐ ܕܐܣܛܪܢܐ\nܚܝܠܐ • ܕܪܐܡܐ • ܓܘܚܟܐ • ܪܚܡܐ', boxMoviesBadge: 'ܐܣܛܪܢܐ ܚܕܬܐ',
+    boxSeriesTitle: 'ܣܕܪܐ', boxSeriesDesc: 'ܣܕܪܐ ܝܕܝܥܐ\nܐܪܒܥܝܬܐ ܚܕܬܬܐ • ܒܟܠ ܫܒܘܥܐ', boxSeriesBadge: 'ܐܫܠܡ ܠܚܙܝܬܐ',
+    boxCinemaTitle: 'ܒܝܬ ܐܣܛܪܢܐ', boxCinemaDesc: 'ܩܪܐ ܠܪܚܡܟ\nܚܙܝ ܘܐܫܬܘܬܦ ܥܠ ܐܣܛܪܢܐ ܟܚܕܐ', boxCinemaBadge: 'ܥܒܕ ܫܘܫܠܐ'
   }
 };
 
@@ -159,6 +250,18 @@ function getCurrentLanguage() {
   if (browserLang === 'hi') return 'hi';
   if (browserLang === 'ja') return 'ja';
   if (browserLang === 'pl') return 'pl';
+  if (browserLang === 'ur') return 'ur';
+  if (browserLang === 'bn') return 'bn';
+  if (browserLang === 'vi') return 'vi';
+  if (browserLang === 'th') return 'th';
+  if (browserLang === 'uk') return 'uk';
+  if (browserLang === 'nl') return 'nl';
+  if (browserLang === 'el') return 'el';
+  if (browserLang === 'ro') return 'ro';
+  if (browserLang === 'id') return 'id';
+  if (browserLang === 'da') return 'da';
+  if (browserLang === 'no') return 'no';
+  if (browserLang === 'fi') return 'fi';
   return 'ckb';
 }
 
@@ -168,41 +271,29 @@ function updateLanguage() {
   const texts = translationsData[lang];
   if (!texts) return;
   
-  const navHome = document.getElementById('navHome');
-  const navMovies = document.getElementById('navMovies');
-  const navSeries = document.getElementById('navSeries');
-  const navTv = document.getElementById('navTv');
-  const langLabel = document.getElementById('langLabel');
-  const boxTvTitle = document.getElementById('boxTvTitle');
-  const boxTvDesc = document.getElementById('boxTvDesc');
-  const boxTvBadge = document.getElementById('boxTvBadge');
-  const boxMoviesTitle = document.getElementById('boxMoviesTitle');
-  const boxMoviesDesc = document.getElementById('boxMoviesDesc');
-  const boxMoviesBadge = document.getElementById('boxMoviesBadge');
-  const boxSeriesTitle = document.getElementById('boxSeriesTitle');
-  const boxSeriesDesc = document.getElementById('boxSeriesDesc');
-  const boxSeriesBadge = document.getElementById('boxSeriesBadge');
-  const boxCinemaTitle = document.getElementById('boxCinemaTitle');
-  const boxCinemaDesc = document.getElementById('boxCinemaDesc');
-  const boxCinemaBadge = document.getElementById('boxCinemaBadge');
+  const elements = {
+    navHome: document.getElementById('navHome'),
+    navMovies: document.getElementById('navMovies'),
+    navSeries: document.getElementById('navSeries'),
+    navTv: document.getElementById('navTv'),
+    langLabel: document.getElementById('langLabel'),
+    boxTvTitle: document.getElementById('boxTvTitle'),
+    boxTvDesc: document.getElementById('boxTvDesc'),
+    boxTvBadge: document.getElementById('boxTvBadge'),
+    boxMoviesTitle: document.getElementById('boxMoviesTitle'),
+    boxMoviesDesc: document.getElementById('boxMoviesDesc'),
+    boxMoviesBadge: document.getElementById('boxMoviesBadge'),
+    boxSeriesTitle: document.getElementById('boxSeriesTitle'),
+    boxSeriesDesc: document.getElementById('boxSeriesDesc'),
+    boxSeriesBadge: document.getElementById('boxSeriesBadge'),
+    boxCinemaTitle: document.getElementById('boxCinemaTitle'),
+    boxCinemaDesc: document.getElementById('boxCinemaDesc'),
+    boxCinemaBadge: document.getElementById('boxCinemaBadge')
+  };
   
-  if (navHome) navHome.innerText = texts.navHome;
-  if (navMovies) navMovies.innerText = texts.navMovies;
-  if (navSeries) navSeries.innerText = texts.navSeries;
-  if (navTv) navTv.innerText = texts.navTv;
-  if (langLabel) langLabel.innerText = texts.navLanguage;
-  if (boxTvTitle) boxTvTitle.innerText = texts.boxTvTitle;
-  if (boxTvDesc) boxTvDesc.innerText = texts.boxTvDesc;
-  if (boxTvBadge) boxTvBadge.innerText = texts.boxTvBadge;
-  if (boxMoviesTitle) boxMoviesTitle.innerText = texts.boxMoviesTitle;
-  if (boxMoviesDesc) boxMoviesDesc.innerText = texts.boxMoviesDesc;
-  if (boxMoviesBadge) boxMoviesBadge.innerText = texts.boxMoviesBadge;
-  if (boxSeriesTitle) boxSeriesTitle.innerText = texts.boxSeriesTitle;
-  if (boxSeriesDesc) boxSeriesDesc.innerText = texts.boxSeriesDesc;
-  if (boxSeriesBadge) boxSeriesBadge.innerText = texts.boxSeriesBadge;
-  if (boxCinemaTitle) boxCinemaTitle.innerText = texts.boxCinemaTitle;
-  if (boxCinemaDesc) boxCinemaDesc.innerText = texts.boxCinemaDesc;
-  if (boxCinemaBadge) boxCinemaBadge.innerText = texts.boxCinemaBadge;
+  for (const [key, element] of Object.entries(elements)) {
+    if (element && texts[key]) element.innerText = texts[key];
+  }
   
   if (rtlLanguages.includes(lang)) {
     document.body.classList.remove('ltr');
