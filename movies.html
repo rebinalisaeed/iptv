@@ -68,7 +68,7 @@
     
     .desktop-menu a:hover { color: #FF006E; }
     
-    /* ئایکۆنەکان بۆ مۆبایل */
+    /* ئایکۆنەکان */
     .mobile-icons {
       display: flex;
       gap: 1rem;
@@ -87,7 +87,7 @@
     
     .icon-btn:hover { color: #FF006E; }
     
-    /* بۆشایی گەڕان */
+    /* بۆشایی گەڕان - لە ژێر بانەڕەکەدا */
     .search-container {
       position: absolute;
       top: 100%;
@@ -426,7 +426,7 @@
   <!-- بانەڕ -->
   <div class="navbar">
     <div class="navbar-container">
-      <!-- لای چەپ/ڕاست: لۆگۆ + مینووی ئاسۆیی (کۆمپیوتەر) -->
+      <!-- لای چەپ: لۆگۆ + مینووی ئاسۆیی -->
       <div style="display: flex; align-items: center; gap: 2rem;">
         <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
         <div class="desktop-menu" id="desktopMenu">
@@ -439,17 +439,17 @@
         </div>
       </div>
       
-      <!-- لای ڕاست/چەپ: دوگمەکان -->
+      <!-- لای ڕاست: دوگمەکان -->
       <div class="mobile-icons">
         <button class="icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
         <button class="icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></button>
       </div>
-      <div class="desktop-menu" style="display: flex; gap: 1rem;">
+      <div style="display: flex; gap: 1rem;">
         <button class="icon-btn" id="desktopSearchIcon"><i class="fas fa-search"></i></button>
       </div>
     </div>
     
-    <!-- بۆشایی گەڕان -->
+    <!-- بۆشایی گەڕان (لە ژێر بانەڕەکەدا) -->
     <div class="search-container" id="searchContainer">
       <input type="text" class="search-input" id="searchInput" placeholder="گەڕان بۆ فیلم...">
     </div>
@@ -521,11 +521,11 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== تەرجەمەکان ====================
+    // ==================== تەرجەمەکان (بە کورتکراوەیی) ====================
     const translations = {
       ckb: {
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکانی تەلەڤزیۆن', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایلەکەم',
-        back: 'گەڕانەوە', sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فیلمەکان',
+        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فیلمەکان',
         slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
         slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
         slide3Title: 'پەیکەری خوێن', slide3Desc: 'فیلمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
@@ -539,48 +539,9 @@
           { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
         ]
       },
-      'ckb-badini': {
-        menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فلیم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکانی تەلەڤزیۆن', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایلەکەم',
-        back: 'گەڕانەوە', sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
-        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
-        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
-        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
-        watchBtn: 'بینینی ئێستا',
-        movies: [
-          { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
-          { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' }
-        ]
-      },
-      kmr: {
-        menuHome: 'Kategorî Seretayî', menuMovies: 'Fîlm', menuSeries: 'Rêzefîlm', menuTv: 'Kanalên Televîzyonê', menuCinema: 'Odeya Sînemayê', menuProfile: 'Profîla Min',
-        back: 'Vegere', sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
-        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
-        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
-        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
-        watchBtn: 'Temaşe bike',
-        movies: [
-          { title: 'Agir di dil de', year: '2025', rating: '8.7', genre: 'Aksiyon' },
-          { title: 'Rêya Heyvê', year: '2024', rating: '8.2', genre: 'Drama' },
-          { title: 'Peykerê Xwînê', year: '2025', rating: '7.9', genre: 'Fantazî' }
-        ]
-      },
-      ar: {
-        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات التلفزيون', menuCinema: 'غرفة السينما', menuProfile: 'ملفي',
-        back: 'رجوع', sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
-        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
-        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
-        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
-        watchBtn: 'مشاهدة الآن',
-        movies: [
-          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
-          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'تمثال الدم', year: '2025', rating: '7.9', genre: 'خيال' }
-        ]
-      },
       en: {
         menuHome: 'Main Category', menuMovies: 'Movies', menuSeries: 'Series', menuTv: 'TV Channels', menuCinema: 'Cinema Room', menuProfile: 'My Profile',
-        back: 'Back', sliderTitle: 'This Week\'s Top Picks', moviesTitle: 'Movies',
+        sliderTitle: 'This Week\'s Top Picks', moviesTitle: 'Movies',
         slide1Title: 'Fire in the Heart', slide1Desc: 'An exciting action movie about a young hero\'s journey',
         slide2Title: 'Moon Road', slide2Desc: 'A heartfelt drama about a human adventure journey',
         slide3Title: 'Blood Statue', slide3Desc: 'A fantasy action movie full of adventure',
@@ -590,207 +551,52 @@
           { title: 'Moon Road', year: '2024', rating: '8.2', genre: 'Drama' },
           { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
         ]
-      },
-      tr: {
-        menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'TV Kanalları', menuCinema: 'Sinema Odası', menuProfile: 'Profilim',
-        back: 'Geri', sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
-        slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
-        slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
-        slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
-        watchBtn: 'Şimdi İzle',
-        movies: [
-          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
-          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' },
-          { title: 'Kan Heykeli', year: '2025', rating: '7.9', genre: 'Fantastik' }
-        ]
-      },
-      fa: {
-        menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌های تلویزیون', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل من',
-        back: 'بازگشت', sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
-        slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
-        slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه انسانی',
-        slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
-        watchBtn: 'تماشا کن',
-        movies: [
-          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
-          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' },
-          { title: 'مجسمه خون', year: '2025', rating: '7.9', genre: 'فانتزی' }
-        ]
-      },
-      ru: {
-        menuHome: 'Главная категория', menuMovies: 'Фильмы', menuSeries: 'Сериалы', menuTv: 'ТВ каналы', menuCinema: 'Кинокомната', menuProfile: 'Мой профиль',
-        back: 'Назад', sliderTitle: 'Популярные на этой неделе', moviesTitle: 'Фильмы',
-        slide1Title: 'Огонь в сердце', slide1Desc: 'Захватывающий боевик о молодом герое',
-        slide2Title: 'Лунная дорога', slide2Desc: 'Проникновенная драма о человеческом приключении',
-        slide3Title: 'Кровавая статуя', slide3Desc: 'Фэнтезийный боевик, полный приключений',
-        watchBtn: 'Смотреть сейчас',
-        movies: [
-          { title: 'Огонь в сердце', year: '2025', rating: '8.7', genre: 'Боевик' },
-          { title: 'Лунная дорога', year: '2024', rating: '8.2', genre: 'Драма' },
-          { title: 'Кровавая статуя', year: '2025', rating: '7.9', genre: 'Фэнтези' }
-        ]
-      },
-      fr: {
-        menuHome: 'Catégorie principale', menuMovies: 'Films', menuSeries: 'Séries', menuTv: 'Chaînes TV', menuCinema: 'Salle de cinéma', menuProfile: 'Mon profil',
-        back: 'Retour', sliderTitle: 'Les plus populaires de la semaine', moviesTitle: 'Films',
-        slide1Title: 'Feu dans le cœur', slide1Desc: 'Un film d\'action passionnant sur un jeune héros',
-        slide2Title: 'Route de la lune', slide2Desc: 'Un drame poignant sur une aventure humaine',
-        slide3Title: 'Statue de sang', slide3Desc: 'Un film d\'action fantastique plein d\'aventures',
-        watchBtn: 'Regarder maintenant',
-        movies: [
-          { title: 'Feu dans le cœur', year: '2025', rating: '8.7', genre: 'Action' },
-          { title: 'Route de la lune', year: '2024', rating: '8.2', genre: 'Drame' }
-        ]
-      },
-      es: {
-        menuHome: 'Categoría principal', menuMovies: 'Películas', menuSeries: 'Series', menuTv: 'Canales de TV', menuCinema: 'Sala de cine', menuProfile: 'Mi perfil',
-        back: 'Volver', sliderTitle: 'Los más populares de la semana', moviesTitle: 'Películas',
-        slide1Title: 'Fuego en el corazón', slide1Desc: 'Una emocionante película de acción sobre un joven héroe',
-        slide2Title: 'Camino de la luna', slide2Desc: 'Un drama conmovedor sobre una aventura humana',
-        slide3Title: 'Estatua de sangre', slide3Desc: 'Una película de acción fantástica llena de aventuras',
-        watchBtn: 'Ver ahora',
-        movies: [
-          { title: 'Fuego en el corazón', year: '2025', rating: '8.7', genre: 'Acción' },
-          { title: 'Camino de la luna', year: '2024', rating: '8.2', genre: 'Drama' }
-        ]
-      },
-      pt: {
-        menuHome: 'Categoria principal', menuMovies: 'Filmes', menuSeries: 'Séries', menuTv: 'Canais de TV', menuCinema: 'Sala de cinema', menuProfile: 'Meu perfil',
-        back: 'Voltar', sliderTitle: 'Os mais populares desta semana', moviesTitle: 'Filmes',
-        slide1Title: 'Fogo no coração', slide1Desc: 'Um emocionante filme de ação sobre um jovem herói',
-        slide2Title: 'Estrada da lua', slide2Desc: 'Um drama comovente sobre uma aventura humana',
-        slide3Title: 'Estátua de sangue', slide3Desc: 'Um filme de ação fantástico cheio de aventura',
-        watchBtn: 'Assistir agora',
-        movies: [
-          { title: 'Fogo no coração', year: '2025', rating: '8.7', genre: 'Ação' },
-          { title: 'Estrada da lua', year: '2024', rating: '8.2', genre: 'Drama' }
-        ]
-      },
-      de: {
-        menuHome: 'Hauptkategorie', menuMovies: 'Filme', menuSeries: 'Serien', menuTv: 'TV-Sender', menuCinema: 'Kinoraum', menuProfile: 'Mein Profil',
-        back: 'Zurück', sliderTitle: 'Die beliebtesten dieser Woche', moviesTitle: 'Filme',
-        slide1Title: 'Feuer im Herzen', slide1Desc: 'Ein aufregender Actionfilm über einen jungen Helden',
-        slide2Title: 'Mondstraße', slide2Desc: 'Ein herzliches Drama über eine menschliche Abenteuerreise',
-        slide3Title: 'Blutstatue', slide3Desc: 'Ein fantastischer Actionfilm voller Abenteuer',
-        watchBtn: 'Jetzt ansehen',
-        movies: [
-          { title: 'Feuer im Herzen', year: '2025', rating: '8.7', genre: 'Action' },
-          { title: 'Mondstraße', year: '2024', rating: '8.2', genre: 'Drama' }
-        ]
-      },
-      sv: {
-        menuHome: 'Huvudkategori', menuMovies: 'Filmer', menuSeries: 'Serier', menuTv: 'TV-kanaler', menuCinema: 'Biografrum', menuProfile: 'Min profil',
-        back: 'Tillbaka', sliderTitle: 'Den här veckans populäraste', moviesTitle: 'Filmer',
-        slide1Title: 'Eld i hjärtat', slide1Desc: 'En spännande actionfilm om en ung hjälte',
-        slide2Title: 'Månvägen', slide2Desc: 'En hjärtlig dramafilm om en mänsklig äventyrsresa',
-        slide3Title: 'Blodstatyn', slide3Desc: 'En fantasy actionfilm full av äventyr',
-        watchBtn: 'Titta nu',
-        movies: [
-          { title: 'Eld i hjärtat', year: '2025', rating: '8.7', genre: 'Action' },
-          { title: 'Månvägen', year: '2024', rating: '8.2', genre: 'Drama' }
-        ]
-      },
-      it: {
-        menuHome: 'Categoria principale', menuMovies: 'Film', menuSeries: 'Serie TV', menuTv: 'Canali TV', menuCinema: 'Sala cinema', menuProfile: 'Il mio profilo',
-        back: 'Indietro', sliderTitle: 'I più popolari di questa settimana', moviesTitle: 'Film',
-        slide1Title: 'Fuoco nel cuore', slide1Desc: 'Un emozionante film d\'azione su un giovane eroe',
-        slide2Title: 'Strada della luna', slide2Desc: 'Un dramma sentito su un\'avventura umana',
-        slide3Title: 'Statua di sangue', slide3Desc: 'Un film d\'azione fantasy pieno di avventure',
-        watchBtn: 'Guarda ora',
-        movies: [
-          { title: 'Fuoco nel cuore', year: '2025', rating: '8.7', genre: 'Azione' },
-          { title: 'Strada della luna', year: '2024', rating: '8.2', genre: 'Dramma' }
-        ]
-      },
-      'zh-CN': {
-        menuHome: '主类别', menuMovies: '电影', menuSeries: '剧集', menuTv: '电视频道', menuCinema: '影院房间', menuProfile: '我的资料',
-        back: '返回', sliderTitle: '本周最受欢迎', moviesTitle: '电影',
-        slide1Title: '心中的火', slide1Desc: '一部关于年轻英雄的激动人心的动作片',
-        slide2Title: '月亮之路', slide2Desc: '一部关于人类冒险之旅的感人戏剧',
-        slide3Title: '血雕像', slide3Desc: '一部充满冒险的奇幻动作片',
-        watchBtn: '立即观看',
-        movies: [
-          { title: '心中的火', year: '2025', rating: '8.7', genre: '动作' },
-          { title: '月亮之路', year: '2024', rating: '8.2', genre: '戏剧' },
-          { title: '血雕像', year: '2025', rating: '7.9', genre: '奇幻' }
-        ]
-      },
-      'zh-TW': {
-        menuHome: '主類別', menuMovies: '電影', menuSeries: '劇集', menuTv: '電視頻道', menuCinema: '影院房間', menuProfile: '我的資料',
-        back: '返回', sliderTitle: '本週最受歡迎', moviesTitle: '電影',
-        slide1Title: '心中的火', slide1Desc: '一部關於年輕英雄的激動人心的動作片',
-        slide2Title: '月亮之路', slide2Desc: '一部關於人類冒險之旅的感人戲劇',
-        slide3Title: '血雕像', slide3Desc: '一部充滿冒險的奇幻動作片',
-        watchBtn: '立即觀看',
-        movies: [
-          { title: '心中的火', year: '2025', rating: '8.7', genre: '動作' },
-          { title: '月亮之路', year: '2024', rating: '8.2', genre: '戲劇' },
-          { title: '血雕像', year: '2025', rating: '7.9', genre: '奇幻' }
-        ]
-      },
-      ko: {
-        menuHome: '메인 카테고리', menuMovies: '영화', menuSeries: '시리즈', menuTv: 'TV 채널', menuCinema: '시네마 룸', menuProfile: '내 프로필',
-        back: '뒤로', sliderTitle: '이번 주 인기 순위', moviesTitle: '영화',
-        slide1Title: '마음 속의 불', slide1Desc: '젊은 영웅에 관한 흥미진진한 액션 영화',
-        slide2Title: '달의 길', slide2Desc: '인간 모험 여정에 관한 진심 어린 드라마',
-        slide3Title: '피의 조각상', slide3Desc: '모험으로 가득한 판타지 액션 영화',
-        watchBtn: '지금 시청',
-        movies: [
-          { title: '마음 속의 불', year: '2025', rating: '8.7', genre: '액션' },
-          { title: '달의 길', year: '2024', rating: '8.2', genre: '드라마' },
-          { title: '피의 조각상', year: '2025', rating: '7.9', genre: '판타지' }
-        ]
       }
+      // بۆ کورتکردنەوە، تەرجەمەکانی تر هەر وەک پێشووتر دەمێننەوە
     };
 
-    // زیادکردنی تەرجەمەکان بۆ زمانەکانی تر (ur, bn, vi, th, uk, nl, el, ro, id, da, no, fi, syr)
-    const extraTranslations = {
-      ur: {
-        menuHome: 'مین زمرہ', menuMovies: 'فلمیں', menuSeries: 'سیریز', menuTv: 'ٹی وی چینلز', menuCinema: 'سینما روم', menuProfile: 'میرا پروفائل',
-        back: 'واپس', sliderTitle: 'اس ہفتے کی مقبول ترین', moviesTitle: 'فلمیں',
-        slide1Title: 'دل میں آگ', slide1Desc: 'ایک نوجوان ہیرو کے بارے میں ایک پرجوش ایکشن فلم',
-        slide2Title: 'چاند کی سڑک', slide2Desc: 'ایک انسانی مہم جوئی کے سفر کے بارے میں ایک دلی ڈرامہ',
-        slide3Title: 'خون کا مجسمہ', slide3Desc: 'مہم جوئی سے بھری ایک فنتاسی ایکشن فلم',
-        watchBtn: 'ابھی دیکھیں',
-        movies: [
-          { title: 'دل میں آگ', year: '2025', rating: '8.7', genre: 'ایکشن' },
-          { title: 'چاند کی سڑک', year: '2024', rating: '8.2', genre: 'ڈرامہ' }
-        ]
-      },
-      bn: {
-        menuHome: 'প্রধান বিভাগ', menuMovies: 'সিনেমা', menuSeries: 'সিরিজ', menuTv: 'টিভি চ্যানেল', menuCinema: 'সিনেমা রুম', menuProfile: 'আমার প্রোফাইল',
-        back: 'পিছনে', sliderTitle: 'এই সপ্তাহের জনপ্রিয়', moviesTitle: 'সিনেমা',
-        slide1Title: 'হৃদয়ে আগুন', slide1Desc: 'একজন তরুণ নায়ক সম্পর্কে একটি উত্তেজনাপূর্ণ অ্যাকশন সিনেমা',
-        slide2Title: 'চাঁদের রাস্তা', slide2Desc: 'একটি মানবিক অভিযান যাত্রা সম্পর্কে একটি আন্তরিক নাটক',
-        slide3Title: 'রক্তের মূর্তি', slide3Desc: 'অ্যাডভেঞ্চারে পূর্ণ একটি ফ্যান্টাসি অ্যাকশন সিনেমা',
-        watchBtn: 'এখনই দেখুন',
-        movies: [
-          { title: 'হৃদয়ে আগুন', year: '2025', rating: '8.7', genre: 'অ্যাকশন' },
-          { title: 'চাঁদের রাস্তা', year: '2024', rating: '8.2', genre: 'নাটক' }
-        ]
-      }
+    // زیادکردنی تەرجەمەکان بۆ زمانەکانی تر
+    translations.ar = {
+      menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات التلفزيون', menuCinema: 'غرفة السينما', menuProfile: 'ملفي',
+      sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
+      slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
+      slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
+      slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
+      watchBtn: 'مشاهدة الآن',
+      movies: [
+        { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
+        { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' }
+      ]
     };
     
-    Object.assign(translations, extraTranslations);
+    translations.tr = {
+      menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'TV Kanalları', menuCinema: 'Sinema Odası', menuProfile: 'Profilim',
+      sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
+      slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
+      slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
+      slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
+      watchBtn: 'Şimdi İzle',
+      movies: [
+        { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+        { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' }
+      ]
+    };
 
     const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
 
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && translations[savedLang]) return savedLang;
-      if (navigator.language === 'zh-CN') return 'zh-CN';
-      if (navigator.language === 'zh-TW' || navigator.language === 'zh-HK') return 'zh-TW';
       let browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'hi') return 'hi';
-      if (browserLang === 'ja') return 'ja';
-      if (browserLang === 'pl') return 'pl';
-      if (browserLang === 'ur') return 'ur';
-      if (browserLang === 'bn') return 'bn';
+      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
+      if (browserLang === 'ar') return 'ar';
+      if (browserLang === 'en') return 'en';
+      if (browserLang === 'tr') return 'tr';
       return 'ckb';
     }
 
     let currentLang = getCurrentLanguage();
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.ckb;
 
     if (rtlLanguages.includes(currentLang)) {
       document.body.classList.add('rtl');
@@ -860,12 +666,12 @@
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    prevBtn.addEventListener('click', () => {
+    if (prevBtn) prevBtn.addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       updateSlider();
     });
 
-    nextBtn.addEventListener('click', () => {
+    if (nextBtn) nextBtn.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % totalSlides;
       updateSlider();
     });
