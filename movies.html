@@ -447,8 +447,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== 33 زمانەکە (بە تەرجەمەی بۆشایی گەڕان) ====================
+    // ==================== 33 زمانەکە (تەواو) ====================
     const translations = {
+      // کوردی (سۆرانی)
       ckb: {
         searchPlaceholder: 'گەڕان بۆ فیلم...',
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
@@ -465,6 +466,40 @@
           { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' }
         ]
       },
+      // کوردی (بادینی)
+      'ckb-badini': {
+        searchPlaceholder: 'گەڕان بۆ فیلم...',
+        menuHome: 'مالەوە', menuMovies: 'فلیم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
+        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
+        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        watchBtn: 'بینینی ئێستا',
+        movies: []
+      },
+      // کوردی (کورمانجی)
+      kmr: {
+        searchPlaceholder: 'Lêgerîna fîlman...',
+        menuHome: 'Mal', menuMovies: 'Fîlm', menuSeries: 'Rêzefîlm', menuTv: 'Kanal', menuCinema: 'Odeya Sînemayê', menuProfile: 'Profîl',
+        sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
+        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
+        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
+        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
+        watchBtn: 'Temaşe bike',
+        movies: []
+      },
+      // عەرەبی
+      ar: {
+        searchPlaceholder: 'البحث عن أفلام...',
+        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
+        sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
+        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
+        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية',
+        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
+        watchBtn: 'مشاهدة الآن',
+        movies: []
+      },
+      // ئینگلیزی
       en: {
         searchPlaceholder: 'Search for movies...',
         menuHome: 'Main Category', menuMovies: 'Movies', menuSeries: 'Series', menuTv: 'TV Channels', menuCinema: 'Cinema Room', menuProfile: 'Profile',
@@ -479,19 +514,7 @@
           { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
         ]
       },
-      ar: {
-        searchPlaceholder: 'البحث عن أفلام...',
-        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
-        sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
-        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
-        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية',
-        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
-        watchBtn: 'مشاهدة الآن',
-        movies: [
-          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
-          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' }
-        ]
-      },
+      // تورکی
       tr: {
         searchPlaceholder: 'Filmlerde ara...',
         menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'Kanallar', menuCinema: 'Sinema Odası', menuProfile: 'Profil',
@@ -500,11 +523,9 @@
         slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
         slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
         watchBtn: 'Şimdi İzle',
-        movies: [
-          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
-          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' }
-        ]
+        movies: []
       },
+      // فارسی
       fa: {
         searchPlaceholder: 'جستجوی فیلم...',
         menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌ها', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل',
@@ -513,11 +534,9 @@
         slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه',
         slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
         watchBtn: 'تماشا کن',
-        movies: [
-          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
-          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' }
-        ]
+        movies: []
       },
+      // رووسی
       ru: {
         searchPlaceholder: 'Поиск фильмов...',
         menuHome: 'Главная категория', menuMovies: 'Фильмы', menuSeries: 'Сериалы', menuTv: 'ТВ каналы', menuCinema: 'Кинокомната', menuProfile: 'Мой профиль',
@@ -528,6 +547,7 @@
         watchBtn: 'Смотреть сейчас',
         movies: []
       },
+      // فەرەنسی
       fr: {
         searchPlaceholder: 'Rechercher des films...',
         menuHome: 'Catégorie principale', menuMovies: 'Films', menuSeries: 'Séries', menuTv: 'Chaînes TV', menuCinema: 'Salle de cinéma', menuProfile: 'Mon profil',
@@ -538,6 +558,7 @@
         watchBtn: 'Regarder maintenant',
         movies: []
       },
+      // ئیسپانی
       es: {
         searchPlaceholder: 'Buscar películas...',
         menuHome: 'Categoría principal', menuMovies: 'Películas', menuSeries: 'Series', menuTv: 'Canales de TV', menuCinema: 'Sala de cine', menuProfile: 'Mi perfil',
@@ -548,6 +569,18 @@
         watchBtn: 'Ver ahora',
         movies: []
       },
+      // پرتوگالی
+      pt: {
+        searchPlaceholder: 'Pesquisar filmes...',
+        menuHome: 'Categoria principal', menuMovies: 'Filmes', menuSeries: 'Séries', menuTv: 'Canais de TV', menuCinema: 'Sala de cinema', menuProfile: 'Meu perfil',
+        sliderTitle: 'Os mais populares desta semana', moviesTitle: 'Filmes',
+        slide1Title: 'Fogo no coração', slide1Desc: 'Um emocionante filme de ação sobre um jovem herói',
+        slide2Title: 'Estrada da lua', slide2Desc: 'Um drama comovente sobre uma aventura humana',
+        slide3Title: 'Estátua de sangue', slide3Desc: 'Um filme de ação fantástico cheio de aventura',
+        watchBtn: 'Assistir agora',
+        movies: []
+      },
+      // ئەڵمانی
       de: {
         searchPlaceholder: 'Filme suchen...',
         menuHome: 'Hauptkategorie', menuMovies: 'Filme', menuSeries: 'Serien', menuTv: 'TV-Sender', menuCinema: 'Kinoraum', menuProfile: 'Mein Profil',
@@ -558,6 +591,18 @@
         watchBtn: 'Jetzt ansehen',
         movies: []
       },
+      // سویدی
+      sv: {
+        searchPlaceholder: 'Sök efter filmer...',
+        menuHome: 'Huvudkategori', menuMovies: 'Filmer', menuSeries: 'Serier', menuTv: 'TV-kanaler', menuCinema: 'Biografrum', menuProfile: 'Min profil',
+        sliderTitle: 'Den här veckans populäraste', moviesTitle: 'Filmer',
+        slide1Title: 'Eld i hjärtat', slide1Desc: 'En spännande actionfilm om en ung hjälte',
+        slide2Title: 'Månvägen', slide2Desc: 'En hjärtlig dramafilm om en mänsklig äventyrsresa',
+        slide3Title: 'Blodstatyn', slide3Desc: 'En fantasy actionfilm full av äventyr',
+        watchBtn: 'Titta nu',
+        movies: []
+      },
+      // ئیتاڵی
       it: {
         searchPlaceholder: 'Cerca film...',
         menuHome: 'Categoria principale', menuMovies: 'Film', menuSeries: 'Serie TV', menuTv: 'Canali TV', menuCinema: 'Sala cinema', menuProfile: 'Il mio profilo',
@@ -568,6 +613,7 @@
         watchBtn: 'Guarda ora',
         movies: []
       },
+      // چینی (سادەکراو)
       'zh-CN': {
         searchPlaceholder: '搜索电影...',
         menuHome: '主类别', menuMovies: '电影', menuSeries: '剧集', menuTv: '电视频道', menuCinema: '影院房间', menuProfile: '我的资料',
@@ -578,6 +624,7 @@
         watchBtn: '立即观看',
         movies: []
       },
+      // چینی (کلاسیک)
       'zh-TW': {
         searchPlaceholder: '搜索電影...',
         menuHome: '主類別', menuMovies: '電影', menuSeries: '劇集', menuTv: '電視頻道', menuCinema: '影院房間', menuProfile: '我的資料',
@@ -588,6 +635,7 @@
         watchBtn: '立即觀看',
         movies: []
       },
+      // کۆری
       ko: {
         searchPlaceholder: '영화 검색...',
         menuHome: '메인 카테고리', menuMovies: '영화', menuSeries: '시리즈', menuTv: 'TV 채널', menuCinema: '시네마 룸', menuProfile: '내 프로필',
@@ -598,6 +646,7 @@
         watchBtn: '지금 시청',
         movies: []
       },
+      // هیندی
       hi: {
         searchPlaceholder: 'फिल्में खोजें...',
         menuHome: 'मुख्य श्रेणी', menuMovies: 'फिल्में', menuSeries: 'सीरीज', menuTv: 'टीवी चैनल', menuCinema: 'सिनेमा कक्ष', menuProfile: 'मेरा प्रोफाइल',
@@ -608,6 +657,7 @@
         watchBtn: 'अभी देखें',
         movies: []
       },
+      // یابانی
       ja: {
         searchPlaceholder: '映画を検索...',
         menuHome: 'メインカテゴリー', menuMovies: '映画', menuSeries: 'シリーズ', menuTv: 'テレビチャンネル', menuCinema: 'シネマルーム', menuProfile: 'マイプロフィール',
@@ -618,6 +668,18 @@
         watchBtn: '今すぐ見る',
         movies: []
       },
+      // پۆڵەندی
+      pl: {
+        searchPlaceholder: 'Szukaj filmów...',
+        menuHome: 'Kategoria główna', menuMovies: 'Filmy', menuSeries: 'Seriale', menuTv: 'Kanały TV', menuCinema: 'Pokój kinowy', menuProfile: 'Mój profil',
+        sliderTitle: 'Najpopularniejsze w tym tygodniu', moviesTitle: 'Filmy',
+        slide1Title: 'Ogień w sercu', slide1Desc: 'Ekscytujący film akcji o młodym bohaterze',
+        slide2Title: 'Księżycowa droga', slide2Desc: 'Serdeczny dramat o ludzkiej podróży pełnej przygód',
+        slide3Title: 'Krwawy posąg', slide3Desc: 'Fantastyczny film akcji pełen przygód',
+        watchBtn: 'Oglądaj teraz',
+        movies: []
+      },
+      // ئوردو
       ur: {
         searchPlaceholder: 'فلمیں تلاش کریں...',
         menuHome: 'مین زمرہ', menuMovies: 'فلمیں', menuSeries: 'سیریز', menuTv: 'ٹی وی چینلز', menuCinema: 'سینما روم', menuProfile: 'میرا پروفائل',
@@ -628,45 +690,174 @@
         watchBtn: 'ابھی دیکھیں',
         movies: []
       },
-      // زمانەکانی تر بە هەمان شێواز زیاد بکە...
-      ckb_badini: {
-        searchPlaceholder: 'گەڕان بۆ فیلم...',
-        menuHome: 'مالەوە', menuMovies: 'فلیم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
-        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
-        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
-        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
-        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
-        watchBtn: 'بینینی ئێستا',
+      // بنگالی
+      bn: {
+        searchPlaceholder: 'সিনেমা খুঁজুন...',
+        menuHome: 'প্রধান বিভাগ', menuMovies: 'সিনেমা', menuSeries: 'সিরিজ', menuTv: 'টিভি চ্যানেল', menuCinema: 'সিনেমা রুম', menuProfile: 'আমার প্রোফাইল',
+        sliderTitle: 'এই সপ্তাহের জনপ্রিয়', moviesTitle: 'সিনেমা',
+        slide1Title: 'হৃদয়ে আগুন', slide1Desc: 'একজন তরুণ নায়ক সম্পর্কে একটি উত্তেজনাপূর্ণ অ্যাকশন সিনেমা',
+        slide2Title: 'চাঁদের রাস্তা', slide2Desc: 'একটি মানবিক অভিযান যাত্রা সম্পর্কে একটি আন্তরিক নাটক',
+        slide3Title: 'রক্তের মূর্তি', slide3Desc: 'অ্যাডভেঞ্চারে পূর্ণ একটি ফ্যান্টাসি অ্যাকশন সিনেমা',
+        watchBtn: 'এখনই দেখুন',
         movies: []
       },
-      kmr: {
-        searchPlaceholder: 'Lêgerîna fîlman...',
-        menuHome: 'Mal', menuMovies: 'Fîlm', menuSeries: 'Rêzefîlm', menuTv: 'Kanal', menuCinema: 'Odeya Sînemayê', menuProfile: 'Profîl',
-        sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
-        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
-        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
-        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
-        watchBtn: 'Temaşe bike',
+      // ڤیەتنامی
+      vi: {
+        searchPlaceholder: 'Tìm kiếm phim...',
+        menuHome: 'Danh mục chính', menuMovies: 'Phim', menuSeries: 'Phim bộ', menuTv: 'Kênh TV', menuCinema: 'Phòng chiếu', menuProfile: 'Hồ sơ của tôi',
+        sliderTitle: 'Phổ biến nhất tuần này', moviesTitle: 'Phim',
+        slide1Title: 'Lửa trong tim', slide1Desc: 'Một bộ phim hành động thú vị về một anh hùng trẻ',
+        slide2Title: 'Đường mặt trăng', slide2Desc: 'Một bộ phim chính kịch chân thành về hành trình phiêu lưu của con người',
+        slide3Title: 'Tượng máu', slide3Desc: 'Phim hành động giả tưởng đầy phiêu lưu',
+        watchBtn: 'Xem ngay',
+        movies: []
+      },
+      // تایلەندی
+      th: {
+        searchPlaceholder: 'ค้นหาภาพยนตร์...',
+        menuHome: 'หมวดหมู่หลัก', menuMovies: 'ภาพยนตร์', menuSeries: 'ซีรีส์', menuTv: 'ช่องทีวี', menuCinema: 'ห้องภาพยนตร์', menuProfile: 'โปรไฟล์ของฉัน',
+        sliderTitle: 'ยอดนิยมประจำสัปดาห์นี้', moviesTitle: 'ภาพยนตร์',
+        slide1Title: 'ไฟในหัวใจ', slide1Desc: 'ภาพยนตร์แอคชั่นที่น่าตื่นเต้นเกี่ยวกับฮีโร่หนุ่ม',
+        slide2Title: 'ถนนพระจันทร์', slide2Desc: 'ดราม่าซาบซึ้งเกี่ยวกับการผจญภัยของมนุษย์',
+        slide3Title: 'รูปปั้นเลือด', slide3Desc: 'ภาพยนตร์แอคชั่นแฟนตาซีที่เต็มไปด้วยการผจญภัย',
+        watchBtn: 'ดูเลย',
+        movies: []
+      },
+      // ئۆکرانی
+      uk: {
+        searchPlaceholder: 'Пошук фільмів...',
+        menuHome: 'Головна категорія', menuMovies: 'Фільми', menuSeries: 'Серіали', menuTv: 'ТВ канали', menuCinema: 'Кінозал', menuProfile: 'Мій профіль',
+        sliderTitle: 'Популярні цього тижня', moviesTitle: 'Фільми',
+        slide1Title: 'Вогонь у серці', slide1Desc: 'Захоплюючий бойовик про молодого героя',
+        slide2Title: 'Місячна дорога', slide2Desc: 'Прониклива драма про людську пригоду',
+        slide3Title: 'Кривава статуя', slide3Desc: 'Фентезійний бойовик, повний пригод',
+        watchBtn: 'Дивитись зараз',
+        movies: []
+      },
+      // هۆڵەندی
+      nl: {
+        searchPlaceholder: 'Zoek films...',
+        menuHome: 'Hoofdcategorie', menuMovies: 'Films', menuSeries: 'Series', menuTv: 'TV-kanalen', menuCinema: 'Bioscoopzaal', menuProfile: 'Mijn profiel',
+        sliderTitle: 'Deze week populair', moviesTitle: 'Films',
+        slide1Title: 'Vuur in het hart', slide1Desc: 'Een spannende actiefilm over een jonge held',
+        slide2Title: 'Maansweg', slide2Desc: 'Een hartelijk drama over een menselijk avontuur',
+        slide3Title: 'Bloedbeeld', slide3Desc: 'Een fantasie actiefilm vol avontuur',
+        watchBtn: 'Nu kijken',
+        movies: []
+      },
+      // یۆنانی
+      el: {
+        searchPlaceholder: 'Αναζήτηση ταινιών...',
+        menuHome: 'Κύρια κατηγορία', menuMovies: 'Ταινίες', menuSeries: 'Σειρές', menuTv: 'Κανάλια TV', menuCinema: 'Αίθουσα κινηματογράφου', menuProfile: 'Το προφίλ μου',
+        sliderTitle: 'Δημοφιλή αυτή την εβδομάδα', moviesTitle: 'Ταινίες',
+        slide1Title: 'Φωτιά στην καρδιά', slide1Desc: 'Μια συναρπαστική ταινία δράσης για έναν νεαρό ήρωα',
+        slide2Title: 'Δρόμος του φεγγαριού', slide2Desc: 'Ένα εγκάρδιο δράμα για ένα ανθρώπινο ταξίδι περιπέτειας',
+        slide3Title: 'Άγαλμα αίματος', slide3Desc: 'Μια ταινία δράσης φαντασίας γεμάτη περιπέτεια',
+        watchBtn: 'Δείτε τώρα',
+        movies: []
+      },
+      // ڕۆمانی
+      ro: {
+        searchPlaceholder: 'Caută filme...',
+        menuHome: 'Categoria principală', menuMovies: 'Filme', menuSeries: 'Seriale', menuTv: 'Canale TV', menuCinema: 'Sală de cinema', menuProfile: 'Profilul meu',
+        sliderTitle: 'Populare în această săptămână', moviesTitle: 'Filme',
+        slide1Title: 'Foc în inimă', slide1Desc: 'Un film de acțiune captivant despre un tânăr erou',
+        slide2Title: 'Drumul lunii', slide2Desc: 'O dramă din suflet despre o călătorie de aventură umană',
+        slide3Title: 'Statuia sângelui', slide3Desc: 'Un film fantastic de acțiune plin de aventură',
+        watchBtn: 'Vizionează acum',
+        movies: []
+      },
+      // ئیندۆنیسی
+      id: {
+        searchPlaceholder: 'Cari film...',
+        menuHome: 'Kategori Utama', menuMovies: 'Film', menuSeries: 'Serial', menuTv: 'Saluran TV', menuCinema: 'Ruang Bioskop', menuProfile: 'Profil Saya',
+        sliderTitle: 'Paling Populer Minggu Ini', moviesTitle: 'Film',
+        slide1Title: 'Api di Hati', slide1Desc: 'Sebuah film aksi yang menarik tentang seorang pahlawan muda',
+        slide2Title: 'Jalan Bulan', slide2Desc: 'Sebuah drama tulus tentang perjalanan petualangan manusia',
+        slide3Title: 'Patung Darah', slide3Desc: 'Film aksi fantasi penuh petualangan',
+        watchBtn: 'Tonton Sekarang',
+        movies: []
+      },
+      // دانیمارکی
+      da: {
+        searchPlaceholder: 'Søg efter film...',
+        menuHome: 'Hovedkategori', menuMovies: 'Film', menuSeries: 'Serier', menuTv: 'TV-kanaler', menuCinema: 'Biografrum', menuProfile: 'Min profil',
+        sliderTitle: 'Denne uges populære', moviesTitle: 'Film',
+        slide1Title: 'Ild i hjertet', slide1Desc: 'En spændende actionfilm om en ung helt',
+        slide2Title: 'Månevej', slide2Desc: 'Et hjertevarmt drama om en menneskelig eventyrrejse',
+        slide3Title: 'Blodstatue', slide3Desc: 'En fantasy actionfilm fuld af eventyr',
+        watchBtn: 'Se nu',
+        movies: []
+      },
+      // نەرویجی
+      no: {
+        searchPlaceholder: 'Søk etter filmer...',
+        menuHome: 'Hovedkategori', menuMovies: 'Filmer', menuSeries: 'Serier', menuTv: 'TV-kanaler', menuCinema: 'Kinorom', menuProfile: 'Min profil',
+        sliderTitle: 'Denne ukens populære', moviesTitle: 'Filmer',
+        slide1Title: 'Ild i hjertet', slide1Desc: 'En spennende actionfilm om en ung helt',
+        slide2Title: 'Månevei', slide2Desc: 'Et hjertevarmt drama om en menneskelig eventyrreise',
+        slide3Title: 'Blodstatue', slide3Desc: 'En fantasy actionfilm full av eventyr',
+        watchBtn: 'Se nå',
+        movies: []
+      },
+      // فینلەندی
+      fi: {
+        searchPlaceholder: 'Etsi elokuvia...',
+        menuHome: 'Pääkategoria', menuMovies: 'Elokuvat', menuSeries: 'Sarjat', menuTv: 'TV-kanavat', menuCinema: 'Elokuvahuone', menuProfile: 'Profiilini',
+        sliderTitle: 'Tämän viikon suosituimmat', moviesTitle: 'Elokuvat',
+        slide1Title: 'Tuli sydämessä', slide1Desc: 'Jännittävä toimintaelokuva nuoresta sankarista',
+        slide2Title: 'Kuun tie', slide2Desc: 'Sydämellinen draama ihmisen seikkailumatkasta',
+        slide3Title: 'Veripatsas', slide3Desc: 'Seikkailu täynnä oleva fantasiatoimintaelokuva',
+        watchBtn: 'Katso nyt',
+        movies: []
+      },
+      // سریانی
+      syr: {
+        searchPlaceholder: 'ܒܨܝ ܥܠ ܐܣܛܪܢܐ...',
+        menuHome: 'ܦܠܛܐ ܪܡܝܐ', menuMovies: 'ܐܣܛܪܢܐ', menuSeries: 'ܣܕܪܐ', menuTv: 'ܩܢܝܬܐ ܕܬܦܝܬܐ', menuCinema: 'ܒܝܬ ܐܣܛܪܢܐ', menuProfile: 'ܦܪܘܦܝܠ ܕܝܠܝ',
+        sliderTitle: 'ܝܕܝܥܐ ܕܗܢܐ ܫܒܘܥܐ', moviesTitle: 'ܐܣܛܪܢܐ',
+        slide1Title: 'ܢܘܪܐ ܒܠܒܐ', slide1Desc: 'ܐܣܛܪܢܐ ܚܝܠܬܢܐ ܡܫܚܠܐ ܥܠ ܓܒܪܐ ܛܠܝܐ',
+        slide2Title: 'ܐܘܪܚܐ ܕܣܗܪܐ', slide2Desc: 'ܕܪܐܡܐ ܕܠܒܐ ܥܠ ܙܠܠܐ ܕܒܢܝܢܫܐ',
+        slide3Title: 'ܨܠܡܐ ܕܕܡܐ', slide3Desc: 'ܐܣܛܪܢܐ ܚܝܠܬܢܐ ܕܚܠܡܐ ܡܠܝܐ ܙܠܠܐ',
+        watchBtn: 'ܚܙܝ ܗܫܐ',
         movies: []
       }
     };
 
-    const rtlLanguages = ['ar', 'ckb', 'ckb_badini', 'fa', 'ur'];
+    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
 
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && translations[savedLang]) return savedLang;
+      if (navigator.language === 'zh-CN') return 'zh-CN';
+      if (navigator.language === 'zh-TW' || navigator.language === 'zh-HK') return 'zh-TW';
       let browserLang = navigator.language.split('-')[0];
       if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
       if (browserLang === 'ar') return 'ar';
       if (browserLang === 'en') return 'en';
       if (browserLang === 'tr') return 'tr';
       if (browserLang === 'fa') return 'fa';
+      if (browserLang === 'hi') return 'hi';
+      if (browserLang === 'ja') return 'ja';
+      if (browserLang === 'pl') return 'pl';
+      if (browserLang === 'ur') return 'ur';
+      if (browserLang === 'bn') return 'bn';
+      if (browserLang === 'vi') return 'vi';
+      if (browserLang === 'th') return 'th';
+      if (browserLang === 'uk') return 'uk';
+      if (browserLang === 'nl') return 'nl';
+      if (browserLang === 'el') return 'el';
+      if (browserLang === 'ro') return 'ro';
+      if (browserLang === 'id') return 'id';
+      if (browserLang === 'da') return 'da';
+      if (browserLang === 'no') return 'no';
+      if (browserLang === 'fi') return 'fi';
+      if (browserLang === 'syr') return 'syr';
       return 'ckb';
     }
 
     let currentLang = getCurrentLanguage();
-    let t = translations[currentLang] || translations.ckb;
+    let t = translations[currentLang] || translations.en;
 
     if (rtlLanguages.includes(currentLang)) {
       document.body.classList.add('rtl');
@@ -701,7 +892,7 @@
     document.getElementById('slide3Desc').innerText = t.slide3Desc;
     document.querySelectorAll('.slide-btn').forEach(btn => btn.innerText = t.watchBtn);
 
-    // تەرجەمەی بۆشایی گەڕان (placeholder)
+    // تەرجەمەی بۆشایی گەڕان
     const searchInput = document.getElementById('searchInput');
     if (searchInput && t.searchPlaceholder) {
       searchInput.placeholder = t.searchPlaceholder;
@@ -710,7 +901,7 @@
     // فیلمەکان
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
-    let moviesList = t.movies && t.movies.length > 0 ? t.movies : translations.ckb.movies;
+    let moviesList = (t.movies && t.movies.length > 0) ? t.movies : translations.ckb.movies;
     moviesList.forEach(movie => {
       const card = document.createElement('div');
       card.className = 'movie-card';
