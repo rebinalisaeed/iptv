@@ -47,16 +47,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+    }
+    
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
     
     .navbar-logo { height: 35px; width: auto; display: block; }
     
-    /* مینووی ئاسۆیی - کۆمپیوتەر */
+    /* مینووی ئاسۆیی */
     .desktop-menu {
       display: flex;
       gap: 1.2rem;
-      align-items: center;
     }
     
     .desktop-menu a {
@@ -64,31 +68,30 @@
       text-decoration: none;
       font-size: 0.85rem;
       transition: color 0.3s;
-      white-space: nowrap;
     }
     
     .desktop-menu a:hover { color: #FF006E; }
     
-    /* ئایکۆنی گەڕان */
-    .search-icon {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      padding: 0.3rem 0.5rem;
+    /* ئایکۆنەکان */
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
-    .search-icon:hover { color: #FF006E; }
-    
-    /* دوگمەی هەمبەرگر - مۆبایل */
-    .menu-icon {
+    .icon-btn {
       background: none;
       border: none;
       color: white;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       cursor: pointer;
       padding: 0.3rem;
+    }
+    
+    .icon-btn:hover { color: #FF006E; }
+    
+    /* دوگمەی هەمبەرگر - تەنها لە مۆبایل */
+    .menu-icon {
       display: none;
     }
     
@@ -120,26 +123,37 @@
     
     .search-input:focus { border-color: #FF006E; }
     
-    /* Sidebar - مینووی لایەن */
+    /* ==================== سایدبار ==================== */
     .sidebar {
       position: fixed;
       top: 0;
-      bottom: 0;
+      left: -280px;
       width: 280px;
+      height: 100%;
       background: rgba(20, 20, 35, 0.98);
       backdrop-filter: blur(16px);
       z-index: 200;
-      transition: transform 0.3s ease;
+      transition: left 0.3s ease;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
     
-    body.ltr .sidebar { left: 0; transform: translateX(-100%); }
-    body.rtl .sidebar { right: 0; transform: translateX(100%); }
+    body.rtl .sidebar {
+      left: auto;
+      right: -280px;
+      transition: right 0.3s ease;
+    }
     
-    .sidebar.open { transform: translateX(0); }
+    .sidebar.open {
+      left: 0;
+    }
+    
+    body.rtl .sidebar.open {
+      left: auto;
+      right: 0;
+    }
     
     .sidebar-header {
       display: flex;
@@ -149,7 +163,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .sidebar-header img { height: 30px; width: auto; }
+    .sidebar-header img { height: 30px; }
     
     .close-sidebar {
       background: none;
@@ -170,7 +184,6 @@
       text-decoration: none;
       font-size: 1rem;
       padding: 0.6rem 0;
-      transition: color 0.3s;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -197,7 +210,6 @@
       max-width: 1280px;
       margin: 2rem auto;
       padding: 0 1.5rem;
-      position: relative;
     }
     
     .slider-title {
@@ -210,7 +222,7 @@
       gap: 10px;
     }
     
-    .slider-title i { color: #FF006E; font-size: 1.3rem; }
+    .slider-title i { color: #FF006E; }
     
     .slider-wrapper {
       position: relative;
@@ -226,8 +238,6 @@
     .slide {
       min-width: 100%;
       position: relative;
-      border-radius: 1rem;
-      overflow: hidden;
       height: 400px;
     }
     
@@ -250,12 +260,10 @@
     .slide-content h2 {
       font-size: 2rem;
       font-family: 'Exinflix Bold', sans-serif;
-      margin-bottom: 0.5rem;
     }
     
     .slide-content p {
       font-size: 0.9rem;
-      opacity: 0.8;
       max-width: 60%;
     }
     
@@ -281,15 +289,12 @@
       height: 40px;
       border-radius: 50%;
       cursor: pointer;
-      z-index: 10;
       font-size: 1.2rem;
     }
     
     .slider-btn:hover { background: #FF006E; }
     .slider-prev { left: 10px; }
     .slider-next { right: 10px; }
-    body.rtl .slider-prev { left: auto; right: 10px; }
-    body.rtl .slider-next { right: auto; left: 10px; }
     
     /* لیستی فیلمەکان */
     .movies-section {
@@ -309,7 +314,6 @@
       border-right: 4px solid #FF006E;
       padding-right: 15px;
     }
-    body.rtl .section-title { border-right: none; border-left: 4px solid #FF006E; padding-right: 0; padding-left: 15px; }
     
     .movies-grid {
       display: grid;
@@ -319,12 +323,11 @@
     
     .movie-card {
       background: rgba(20, 20, 35, 0.8);
-      backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 1rem;
       overflow: hidden;
-      transition: all 0.3s;
       cursor: pointer;
+      transition: all 0.3s;
     }
     
     .movie-card:hover {
@@ -344,12 +347,12 @@
       font-family: 'Exinflix Bold', sans-serif;
       color: white;
       font-size: 1rem;
-      margin-bottom: 0.25rem;
     }
     
     .movie-year {
       color: rgba(255, 255, 255, 0.5);
       font-size: 0.75rem;
+      margin-top: 0.25rem;
     }
     
     .movie-rating {
@@ -362,13 +365,7 @@
     }
     
     .movie-card.hidden { display: none; }
-    
-    .no-result {
-      text-align: center;
-      padding: 2rem;
-      color: rgba(255, 255, 255, 0.6);
-      grid-column: 1 / -1;
-    }
+    .no-result { text-align: center; padding: 2rem; color: rgba(255,255,255,0.6); grid-column: 1/-1; }
     
     /* ڕیسپۆنسیڤ */
     @media (max-width: 768px) {
@@ -384,32 +381,30 @@
 </head>
 <body class="ltr">
 
-  <!-- بانەڕ -->
   <div class="navbar">
     <div class="navbar-container">
-      <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
-      
-      <div class="desktop-menu">
-        <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
-        <a href="movies.html" id="menuMovies">فیلم</a>
-        <a href="series.html" id="menuSeries">زنجیرە</a>
-        <a href="live-tv.html" id="menuTv">کەناڵەکان</a>
-        <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
-        <a href="profile.html" id="menuProfile">پرۆفایل</a>
+      <div class="left-section">
+        <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
+        <div class="desktop-menu">
+          <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
+          <a href="movies.html" id="menuMovies">فیلم</a>
+          <a href="series.html" id="menuSeries">زنجیرە</a>
+          <a href="live-tv.html" id="menuTv">کەناڵەکان</a>
+          <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
+          <a href="profile.html" id="menuProfile">پرۆفایل</a>
+        </div>
       </div>
-      
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <button class="search-icon" id="searchBtn"><i class="fas fa-search"></i></button>
-        <button class="menu-icon" id="menuIconBtn"><i class="fas fa-bars"></i></button>
+      <div class="icons">
+        <button class="icon-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+        <button class="icon-btn menu-icon" id="menuIconBtn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
-    
     <div class="search-container" id="searchContainer">
       <input type="text" class="search-input" id="searchInput" placeholder="گەڕان بۆ فیلم...">
     </div>
   </div>
 
-  <!-- Sidebar -->
+  <!-- سایدبار -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="assets/logo/logo.png" alt="EXINFLIX">
@@ -464,7 +459,7 @@
     </div>
   </div>
 
-  <!-- لیستی فیلمەکان -->
+  <!-- فیلمەکان -->
   <div class="movies-section">
     <div class="section-title">
       <i class="fas fa-film"></i>
@@ -487,14 +482,16 @@
         movies: [
           { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
           { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' }
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
+          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
+          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' }
         ]
       },
       en: {
         menuHome: 'Main Category', menuMovies: 'Movies', menuSeries: 'Series', menuTv: 'TV Channels', menuCinema: 'Cinema Room', menuProfile: 'Profile',
         sliderTitle: 'This Week\'s Top Picks', moviesTitle: 'Movies',
-        slide1Title: 'Fire in the Heart', slide1Desc: 'An exciting action movie about a young hero\'s journey',
-        slide2Title: 'Moon Road', slide2Desc: 'A heartfelt drama about a human adventure journey',
+        slide1Title: 'Fire in the Heart', slide1Desc: 'An exciting action movie about a young hero',
+        slide2Title: 'Moon Road', slide2Desc: 'A heartfelt drama about a human adventure',
         slide3Title: 'Blood Statue', slide3Desc: 'A fantasy action movie full of adventure',
         watchBtn: 'Watch Now',
         movies: [
@@ -510,9 +507,6 @@
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && translations[savedLang]) return savedLang;
-      let browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
-      if (browserLang === 'en') return 'en';
       return 'ckb';
     }
 
@@ -527,7 +521,7 @@
       document.body.classList.remove('rtl');
     }
 
-    // تەرجەمەکردن
+    // تەرجەمە
     document.getElementById('menuHome').innerText = t.menuHome;
     document.getElementById('menuMovies').innerText = t.menuMovies;
     document.getElementById('menuSeries').innerText = t.menuSeries;
@@ -552,6 +546,7 @@
     document.getElementById('slide3Desc').innerText = t.slide3Desc;
     document.querySelectorAll('.slide-btn').forEach(btn => btn.innerText = t.watchBtn);
 
+    // فیلمەکان
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
     t.movies.forEach(movie => {
@@ -576,46 +571,36 @@
     const totalSlides = slides.length;
     const slider = document.getElementById('slider');
     
-    document.getElementById('prevBtn').addEventListener('click', () => {
+    document.getElementById('prevBtn').onclick = () => {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    });
-    document.getElementById('nextBtn').addEventListener('click', () => {
+    };
+    document.getElementById('nextBtn').onclick = () => {
       currentSlide = (currentSlide + 1) % totalSlides;
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    });
+    };
 
-    // ==================== دوگمەی هەمبەرگر (مۆبایل) ====================
+    // ==================== سایدبار ====================
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
-    const menuIconBtn = document.getElementById('menuIconBtn');
-    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-
-    console.log('menuIconBtn:', menuIconBtn); // بۆ دیباگ کردن
+    const menuBtn = document.getElementById('menuIconBtn');
+    const closeBtn = document.getElementById('closeSidebarBtn');
 
     function openSidebar() {
-      console.log('Opening sidebar');
       sidebar.classList.add('open');
       overlay.classList.add('show');
       document.body.style.overflow = 'hidden';
     }
 
     function closeSidebar() {
-      console.log('Closing sidebar');
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
       document.body.style.overflow = '';
     }
 
-    if (menuIconBtn) {
-      menuIconBtn.addEventListener('click', openSidebar);
-    }
-    if (closeSidebarBtn) {
-      closeSidebarBtn.addEventListener('click', closeSidebar);
-    }
-    if (overlay) {
-      overlay.addEventListener('click', closeSidebar);
-    }
+    if (menuBtn) menuBtn.onclick = openSidebar;
+    if (closeBtn) closeBtn.onclick = closeSidebar;
+    if (overlay) overlay.onclick = closeSidebar;
 
     // ==================== گەڕان ====================
     const searchContainer = document.getElementById('searchContainer');
@@ -623,7 +608,7 @@
     const searchInput = document.getElementById('searchInput');
 
     if (searchBtn) {
-      searchBtn.addEventListener('click', () => {
+      searchBtn.onclick = () => {
         searchContainer.classList.toggle('show');
         if (searchContainer.classList.contains('show')) {
           searchInput.focus();
@@ -633,11 +618,11 @@
           const noResultMsg = document.querySelector('.no-result');
           if (noResultMsg) noResultMsg.remove();
         }
-      });
+      };
     }
 
     if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
+      searchInput.oninput = function(e) {
         const searchTerm = e.target.value.toLowerCase();
         const movieCards = document.querySelectorAll('.movie-card');
         let visibleCount = 0;
@@ -663,7 +648,7 @@
         } else {
           if (noResultMsg) noResultMsg.remove();
         }
-      });
+      };
     }
   </script>
 </body>
