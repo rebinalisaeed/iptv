@@ -272,30 +272,52 @@ function updateLanguage() {
   const texts = translationsData[lang];
   if (!texts) return;
   
-  const elements = {
-    navHome: document.getElementById('navHome'),
-    navMovies: document.getElementById('navMovies'),
-    navSeries: document.getElementById('navSeries'),
-    navTv: document.getElementById('navTv'),
-    langLabel: document.getElementById('langLabel'),
-    boxTvTitle: document.getElementById('boxTvTitle'),
-    boxTvDesc: document.getElementById('boxTvDesc'),
-    boxTvBadge: document.getElementById('boxTvBadge'),
-    boxMoviesTitle: document.getElementById('boxMoviesTitle'),
-    boxMoviesDesc: document.getElementById('boxMoviesDesc'),
-    boxMoviesBadge: document.getElementById('boxMoviesBadge'),
-    boxSeriesTitle: document.getElementById('boxSeriesTitle'),
-    boxSeriesDesc: document.getElementById('boxSeriesDesc'),
-    boxSeriesBadge: document.getElementById('boxSeriesBadge'),
-    boxCinemaTitle: document.getElementById('boxCinemaTitle'),
-    boxCinemaDesc: document.getElementById('boxCinemaDesc'),
-    boxCinemaBadge: document.getElementById('boxCinemaBadge')
-  };
+  // ناوی مینووەکان
+  const navHome = document.getElementById('navHome');
+  const navMovies = document.getElementById('navMovies');
+  const navSeries = document.getElementById('navSeries');
+  const navTv = document.getElementById('navTv');
   
-  for (const [key, element] of Object.entries(elements)) {
-    if (element && texts[key]) element.innerText = texts[key];
-  }
+  // ئایکۆنی زمان (ئەمە بە تایبەتی گرنگە)
+  const langLabel = document.getElementById('langLabel');
   
+  // بۆکسەکان
+  const boxTvTitle = document.getElementById('boxTvTitle');
+  const boxTvDesc = document.getElementById('boxTvDesc');
+  const boxTvBadge = document.getElementById('boxTvBadge');
+  const boxMoviesTitle = document.getElementById('boxMoviesTitle');
+  const boxMoviesDesc = document.getElementById('boxMoviesDesc');
+  const boxMoviesBadge = document.getElementById('boxMoviesBadge');
+  const boxSeriesTitle = document.getElementById('boxSeriesTitle');
+  const boxSeriesDesc = document.getElementById('boxSeriesDesc');
+  const boxSeriesBadge = document.getElementById('boxSeriesBadge');
+  const boxCinemaTitle = document.getElementById('boxCinemaTitle');
+  const boxCinemaDesc = document.getElementById('boxCinemaDesc');
+  const boxCinemaBadge = document.getElementById('boxCinemaBadge');
+  
+  // تەرجەمەکردنی هەر یەکێک
+  if (navHome) navHome.innerText = texts.navHome;
+  if (navMovies) navMovies.innerText = texts.navMovies;
+  if (navSeries) navSeries.innerText = texts.navSeries;
+  if (navTv) navTv.innerText = texts.navTv;
+  
+  // ئەمە بە تایبەتی گرنگە بۆ گۆڕینی ناوی "زمان" لەسەر ئایکۆنەکە
+  if (langLabel) langLabel.innerText = texts.navLanguage;
+  
+  if (boxTvTitle) boxTvTitle.innerText = texts.boxTvTitle;
+  if (boxTvDesc) boxTvDesc.innerText = texts.boxTvDesc;
+  if (boxTvBadge) boxTvBadge.innerText = texts.boxTvBadge;
+  if (boxMoviesTitle) boxMoviesTitle.innerText = texts.boxMoviesTitle;
+  if (boxMoviesDesc) boxMoviesDesc.innerText = texts.boxMoviesDesc;
+  if (boxMoviesBadge) boxMoviesBadge.innerText = texts.boxMoviesBadge;
+  if (boxSeriesTitle) boxSeriesTitle.innerText = texts.boxSeriesTitle;
+  if (boxSeriesDesc) boxSeriesDesc.innerText = texts.boxSeriesDesc;
+  if (boxSeriesBadge) boxSeriesBadge.innerText = texts.boxSeriesBadge;
+  if (boxCinemaTitle) boxCinemaTitle.innerText = texts.boxCinemaTitle;
+  if (boxCinemaDesc) boxCinemaDesc.innerText = texts.boxCinemaDesc;
+  if (boxCinemaBadge) boxCinemaBadge.innerText = texts.boxCinemaBadge;
+  
+  // RTL یان LTR دیاری بکە
   if (rtlLanguages.includes(lang)) {
     document.body.classList.remove('ltr');
     document.body.classList.add('rtl');
