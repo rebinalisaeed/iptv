@@ -99,7 +99,7 @@
       display: none;
     }
     
-    /* بۆشایی گەڕان - لە ژێر بانەڕەکەدا، بە شێوەیەکی خۆکار ناشاردرێتەوە */
+    /* بۆشایی گەڕان - لە بنەڕەتدا شاردراوە */
     .search-container {
       position: absolute;
       top: 100%;
@@ -439,17 +439,17 @@
   <!-- بانەڕ -->
   <div class="navbar">
     <div class="navbar-container">
-      <!-- لای چەپ: لۆگۆ + مینووی ئاسۆیی (کۆمپیوتەر) -->
-      <div style="display: flex; align-items: center; gap: 2rem;">
-        <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
-        <div class="desktop-menu" id="desktopMenu">
-          <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
-          <a href="movies.html" id="menuMovies">فیلم</a>
-          <a href="series.html" id="menuSeries">زنجیرە</a>
-          <a href="live-tv.html" id="menuTv">کەناڵەکان</a>
-          <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
-          <a href="profile.html" id="menuProfile">پرۆفایل</a>
-        </div>
+      <!-- لای چەپ: لۆگۆ -->
+      <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
+      
+      <!-- مینووی ئاسۆیی (کۆمپیوتەر) -->
+      <div class="desktop-menu" id="desktopMenu">
+        <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
+        <a href="movies.html" id="menuMovies">فیلم</a>
+        <a href="series.html" id="menuSeries">زنجیرە</a>
+        <a href="live-tv.html" id="menuTv">کەناڵەکان</a>
+        <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
+        <a href="profile.html" id="menuProfile">پرۆفایل</a>
       </div>
       
       <!-- لای ڕاست: ئایکۆنەکان -->
@@ -626,34 +626,20 @@
     }
 
     // تەرجەمەکردنی مینووی ئاسۆیی
-    const desktopMenuItems = [
-      { id: 'menuHome', key: 'menuHome' },
-      { id: 'menuMovies', key: 'menuMovies' },
-      { id: 'menuSeries', key: 'menuSeries' },
-      { id: 'menuTv', key: 'menuTv' },
-      { id: 'menuCinema', key: 'menuCinema' },
-      { id: 'menuProfile', key: 'menuProfile' }
-    ];
-    
-    desktopMenuItems.forEach(item => {
-      const el = document.getElementById(item.id);
-      if (el && t[item.key]) el.innerText = t[item.key];
-    });
+    document.getElementById('menuHome').innerText = t.menuHome;
+    document.getElementById('menuMovies').innerText = t.menuMovies;
+    document.getElementById('menuSeries').innerText = t.menuSeries;
+    document.getElementById('menuTv').innerText = t.menuTv;
+    document.getElementById('menuCinema').innerText = t.menuCinema;
+    document.getElementById('menuProfile').innerText = t.menuProfile;
     
     // تەرجەمەکردنی مینووی سایدبار
-    const sidebarMenuItems = [
-      { id: 'sidebarHome', key: 'menuHome', icon: 'fas fa-home' },
-      { id: 'sidebarMovies', key: 'menuMovies', icon: 'fas fa-film' },
-      { id: 'sidebarSeries', key: 'menuSeries', icon: 'fas fa-play-circle' },
-      { id: 'sidebarTv', key: 'menuTv', icon: 'fas fa-tv' },
-      { id: 'sidebarCinema', key: 'menuCinema', icon: 'fas fa-users' },
-      { id: 'sidebarProfile', key: 'menuProfile', icon: 'fas fa-user' }
-    ];
-    
-    sidebarMenuItems.forEach(item => {
-      const el = document.getElementById(item.id);
-      if (el && t[item.key]) el.innerHTML = `<i class="${item.icon}"></i> ${t[item.key]}`;
-    });
+    document.getElementById('sidebarHome').innerHTML = `<i class="fas fa-home"></i> ${t.menuHome}`;
+    document.getElementById('sidebarMovies').innerHTML = `<i class="fas fa-film"></i> ${t.menuMovies}`;
+    document.getElementById('sidebarSeries').innerHTML = `<i class="fas fa-play-circle"></i> ${t.menuSeries}`;
+    document.getElementById('sidebarTv').innerHTML = `<i class="fas fa-tv"></i> ${t.menuTv}`;
+    document.getElementById('sidebarCinema').innerHTML = `<i class="fas fa-users"></i> ${t.menuCinema}`;
+    document.getElementById('sidebarProfile').innerHTML = `<i class="fas fa-user"></i> ${t.menuProfile}`;
 
     document.getElementById('sliderTitle').innerHTML = `<i class="fas fa-fire"></i> ${t.sliderTitle}`;
     document.getElementById('moviesTitle').innerHTML = `<i class="fas fa-film"></i> ${t.moviesTitle}`;
@@ -697,12 +683,12 @@
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       updateSlider();
     });
 
-    if (nextBtn) nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % totalSlides;
       updateSlider();
     });
@@ -723,30 +709,22 @@
       overlay.classList.remove('show');
     }
 
-    if (menuIconBtn) {
-      menuIconBtn.addEventListener('click', openSidebar);
-    }
-    if (closeSidebar) {
-      closeSidebar.addEventListener('click', closeSidebarFunc);
-    }
-    if (overlay) {
-      overlay.addEventListener('click', closeSidebarFunc);
-    }
+    menuIconBtn.addEventListener('click', openSidebar);
+    closeSidebar.addEventListener('click', closeSidebarFunc);
+    overlay.addEventListener('click', closeSidebarFunc);
 
-    // ==================== گەڕان (تەنها دوای کلیک کردن لەسەر ئایکۆن دەردەکەوێت) ====================
+    // ==================== گەڕان ====================
     const searchContainer = document.getElementById('searchContainer');
     const searchBtn = document.getElementById('searchBtn');
     const searchInput = document.getElementById('searchInput');
 
     function toggleSearch() {
-      // ئەگەر بۆشایی گەڕان دیار بوو، بیشارە، ئەگەرا نا دیاری بکە
       if (searchContainer.classList.contains('show')) {
         searchContainer.classList.remove('show');
-        // ڕەشکردنەوەی فلتەر کاتێک گەڕان دادەخرێت
+        // ڕێست کردنەوەی فلتەر
         if (searchInput.value !== '') {
           searchInput.value = '';
-          const movieCards = document.querySelectorAll('.movie-card');
-          movieCards.forEach(card => card.classList.remove('hidden'));
+          document.querySelectorAll('.movie-card').forEach(card => card.classList.remove('hidden'));
           const noResultMsg = document.querySelector('.no-result');
           if (noResultMsg) noResultMsg.remove();
         }
@@ -756,41 +734,36 @@
       }
     }
 
-    if (searchBtn) {
-      searchBtn.addEventListener('click', toggleSearch);
-    }
+    searchBtn.addEventListener('click', toggleSearch);
 
-    // فلتەرکردنی فیلمەکان بەپێی گەڕان
-    if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const movieCards = document.querySelectorAll('.movie-card');
-        let visibleCount = 0;
-        
-        movieCards.forEach(card => {
-          const title = card.getAttribute('data-title') || card.querySelector('.movie-title').innerText.toLowerCase();
-          if (title.includes(searchTerm)) {
-            card.classList.remove('hidden');
-            visibleCount++;
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-        
-        // پەیامی "هیچ فیلمێک نەدۆزرایەوە"
-        let noResultMsg = document.querySelector('.no-result');
-        if (visibleCount === 0 && movieCards.length > 0 && searchTerm !== '') {
-          if (!noResultMsg) {
-            const msg = document.createElement('div');
-            msg.className = 'no-result';
-            msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
-            moviesGrid.appendChild(msg);
-          }
+    // فلتەرکردن
+    searchInput.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const movieCards = document.querySelectorAll('.movie-card');
+      let visibleCount = 0;
+      
+      movieCards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        if (title.includes(searchTerm)) {
+          card.classList.remove('hidden');
+          visibleCount++;
         } else {
-          if (noResultMsg) noResultMsg.remove();
+          card.classList.add('hidden');
         }
       });
-    }
+      
+      let noResultMsg = document.querySelector('.no-result');
+      if (visibleCount === 0 && searchTerm !== '') {
+        if (!noResultMsg) {
+          const msg = document.createElement('div');
+          msg.className = 'no-result';
+          msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
+          moviesGrid.appendChild(msg);
+        }
+      } else {
+        if (noResultMsg) noResultMsg.remove();
+      }
+    });
   </script>
 </body>
 </html>
