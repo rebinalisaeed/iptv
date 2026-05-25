@@ -30,7 +30,6 @@
     body.rtl { direction: rtl; text-align: right; }
     body.ltr { direction: ltr; text-align: left; }
     
-    /* بانەڕ */
     .navbar {
       background: rgba(20, 20, 35, 0.95);
       backdrop-filter: blur(12px);
@@ -57,7 +56,6 @@
     
     .navbar-logo { height: 35px; width: auto; display: block; }
     
-    /* مینووی ئاسۆیی */
     .desktop-menu {
       display: flex;
       gap: 1.2rem;
@@ -72,7 +70,6 @@
     
     .desktop-menu a:hover { color: #FF006E; }
     
-    /* ئایکۆنەکان */
     .icons {
       display: flex;
       align-items: center;
@@ -90,12 +87,8 @@
     
     .icon-btn:hover { color: #FF006E; }
     
-    /* دوگمەی هەمبەرگر - تەنها لە مۆبایل */
-    .menu-icon {
-      display: none;
-    }
+    .menu-icon { display: none; }
     
-    /* بۆشایی گەڕان */
     .search-container {
       position: absolute;
       top: 100%;
@@ -123,7 +116,6 @@
     
     .search-input:focus { border-color: #FF006E; }
     
-    /* ==================== سایدبار ==================== */
     .sidebar {
       position: fixed;
       top: 0;
@@ -146,14 +138,8 @@
       transition: right 0.3s ease;
     }
     
-    .sidebar.open {
-      left: 0;
-    }
-    
-    body.rtl .sidebar.open {
-      left: auto;
-      right: 0;
-    }
+    .sidebar.open { left: 0; }
+    body.rtl .sidebar.open { left: auto; right: 0; }
     
     .sidebar-header {
       display: flex;
@@ -205,7 +191,6 @@
     
     .overlay.show { display: block; }
     
-    /* سلایدەر */
     .slider-container {
       max-width: 1280px;
       margin: 2rem auto;
@@ -296,7 +281,6 @@
     .slider-prev { left: 10px; }
     .slider-next { right: 10px; }
     
-    /* لیستی فیلمەکان */
     .movies-section {
       max-width: 1280px;
       margin: 2rem auto;
@@ -342,19 +326,16 @@
     }
     
     .movie-info { padding: 1rem; }
-    
     .movie-title {
       font-family: 'Exinflix Bold', sans-serif;
       color: white;
       font-size: 1rem;
     }
-    
     .movie-year {
       color: rgba(255, 255, 255, 0.5);
       font-size: 0.75rem;
       margin-top: 0.25rem;
     }
-    
     .movie-rating {
       display: flex;
       align-items: center;
@@ -367,7 +348,6 @@
     .movie-card.hidden { display: none; }
     .no-result { text-align: center; padding: 2rem; color: rgba(255,255,255,0.6); grid-column: 1/-1; }
     
-    /* ڕیسپۆنسیڤ */
     @media (max-width: 768px) {
       .desktop-menu { display: none; }
       .menu-icon { display: block; }
@@ -404,7 +384,6 @@
     </div>
   </div>
 
-  <!-- سایدبار -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="assets/logo/logo.png" alt="EXINFLIX">
@@ -421,7 +400,6 @@
   </div>
   <div class="overlay" id="overlay"></div>
 
-  <!-- سلایدەر -->
   <div class="slider-container">
     <div class="slider-title">
       <i class="fas fa-fire"></i>
@@ -459,7 +437,6 @@
     </div>
   </div>
 
-  <!-- فیلمەکان -->
   <div class="movies-section">
     <div class="section-title">
       <i class="fas fa-film"></i>
@@ -470,7 +447,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // تەرجەمەکان (بە کورتکراوەیی)
+    // ==================== 33 زمانەکە ====================
     const translations = {
       ckb: {
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
@@ -499,6 +476,141 @@
           { title: 'Moon Road', year: '2024', rating: '8.2', genre: 'Drama' },
           { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
         ]
+      },
+      ar: {
+        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
+        sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
+        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
+        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية',
+        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
+        watchBtn: 'مشاهدة الآن',
+        movies: [
+          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
+          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' }
+        ]
+      },
+      tr: {
+        menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'Kanallar', menuCinema: 'Sinema Odası', menuProfile: 'Profil',
+        sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
+        slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
+        slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
+        slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
+        watchBtn: 'Şimdi İzle',
+        movies: [
+          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' }
+        ]
+      },
+      fa: {
+        menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌ها', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل',
+        sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
+        slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
+        slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه',
+        slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
+        watchBtn: 'تماشا کن',
+        movies: [
+          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
+          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' }
+        ]
+      },
+      ru: {
+        menuHome: 'Главная категория', menuMovies: 'Фильмы', menuSeries: 'Сериалы', menuTv: 'ТВ каналы', menuCinema: 'Кинокомната', menuProfile: 'Мой профиль',
+        sliderTitle: 'Популярные на этой неделе', moviesTitle: 'Фильмы',
+        slide1Title: 'Огонь в сердце', slide1Desc: 'Захватывающий боевик о молодом герое',
+        slide2Title: 'Лунная дорога', slide2Desc: 'Проникновенная драма о человеческом приключении',
+        slide3Title: 'Кровавая статуя', slide3Desc: 'Фэнтезийный боевик, полный приключений',
+        watchBtn: 'Смотреть сейчас',
+        movies: []
+      },
+      fr: {
+        menuHome: 'Catégorie principale', menuMovies: 'Films', menuSeries: 'Séries', menuTv: 'Chaînes TV', menuCinema: 'Salle de cinéma', menuProfile: 'Mon profil',
+        sliderTitle: 'Les plus populaires de la semaine', moviesTitle: 'Films',
+        slide1Title: 'Feu dans le cœur', slide1Desc: 'Un film d\'action passionnant sur un jeune héros',
+        slide2Title: 'Route de la lune', slide2Desc: 'Un drame poignant sur une aventure humaine',
+        slide3Title: 'Statue de sang', slide3Desc: 'Un film d\'action fantastique plein d\'aventures',
+        watchBtn: 'Regarder maintenant',
+        movies: []
+      },
+      es: {
+        menuHome: 'Categoría principal', menuMovies: 'Películas', menuSeries: 'Series', menuTv: 'Canales de TV', menuCinema: 'Sala de cine', menuProfile: 'Mi perfil',
+        sliderTitle: 'Los más populares de la semana', moviesTitle: 'Películas',
+        slide1Title: 'Fuego en el corazón', slide1Desc: 'Una emocionante película de acción sobre un joven héroe',
+        slide2Title: 'Camino de la luna', slide2Desc: 'Un drama conmovedor sobre una aventura humana',
+        slide3Title: 'Estatua de sangre', slide3Desc: 'Una película de acción fantástica llena de aventuras',
+        watchBtn: 'Ver ahora',
+        movies: []
+      },
+      de: {
+        menuHome: 'Hauptkategorie', menuMovies: 'Filme', menuSeries: 'Serien', menuTv: 'TV-Sender', menuCinema: 'Kinoraum', menuProfile: 'Mein Profil',
+        sliderTitle: 'Die beliebtesten dieser Woche', moviesTitle: 'Filme',
+        slide1Title: 'Feuer im Herzen', slide1Desc: 'Ein aufregender Actionfilm über einen jungen Helden',
+        slide2Title: 'Mondstraße', slide2Desc: 'Ein herzliches Drama über eine menschliche Abenteuerreise',
+        slide3Title: 'Blutstatue', slide3Desc: 'Ein fantastischer Actionfilm voller Abenteuer',
+        watchBtn: 'Jetzt ansehen',
+        movies: []
+      },
+      it: {
+        menuHome: 'Categoria principale', menuMovies: 'Film', menuSeries: 'Serie TV', menuTv: 'Canali TV', menuCinema: 'Sala cinema', menuProfile: 'Il mio profilo',
+        sliderTitle: 'I più popolari di questa settimana', moviesTitle: 'Film',
+        slide1Title: 'Fuoco nel cuore', slide1Desc: 'Un emozionante film d\'azione su un giovane eroe',
+        slide2Title: 'Strada della luna', slide2Desc: 'Un dramma sentito su un\'avventura umana',
+        slide3Title: 'Statua di sangue', slide3Desc: 'Un film d\'azione fantasy pieno di avventure',
+        watchBtn: 'Guarda ora',
+        movies: []
+      },
+      'zh-CN': {
+        menuHome: '主类别', menuMovies: '电影', menuSeries: '剧集', menuTv: '电视频道', menuCinema: '影院房间', menuProfile: '我的资料',
+        sliderTitle: '本周最受欢迎', moviesTitle: '电影',
+        slide1Title: '心中的火', slide1Desc: '一部关于年轻英雄的激动人心的动作片',
+        slide2Title: '月亮之路', slide2Desc: '一部关于人类冒险之旅的感人戏剧',
+        slide3Title: '血雕像', slide3Desc: '一部充满冒险的奇幻动作片',
+        watchBtn: '立即观看',
+        movies: []
+      },
+      'zh-TW': {
+        menuHome: '主類別', menuMovies: '電影', menuSeries: '劇集', menuTv: '電視頻道', menuCinema: '影院房間', menuProfile: '我的資料',
+        sliderTitle: '本週最受歡迎', moviesTitle: '電影',
+        slide1Title: '心中的火', slide1Desc: '一部關於年輕英雄的激動人心的動作片',
+        slide2Title: '月亮之路', slide2Desc: '一部關於人類冒險之旅的感人戲劇',
+        slide3Title: '血雕像', slide3Desc: '一部充滿冒險的奇幻動作片',
+        watchBtn: '立即觀看',
+        movies: []
+      },
+      ko: {
+        menuHome: '메인 카테고리', menuMovies: '영화', menuSeries: '시리즈', menuTv: 'TV 채널', menuCinema: '시네마 룸', menuProfile: '내 프로필',
+        sliderTitle: '이번 주 인기 순위', moviesTitle: '영화',
+        slide1Title: '마음 속의 불', slide1Desc: '젊은 영웅에 관한 흥미진진한 액션 영화',
+        slide2Title: '달의 길', slide2Desc: '인간 모험 여정에 관한 진심 어린 드라마',
+        slide3Title: '피의 조각상', slide3Desc: '모험으로 가득한 판타지 액션 영화',
+        watchBtn: '지금 시청',
+        movies: []
+      },
+      hi: {
+        menuHome: 'मुख्य श्रेणी', menuMovies: 'फिल्में', menuSeries: 'सीरीज', menuTv: 'टीवी चैनल', menuCinema: 'सिनेमा कक्ष', menuProfile: 'मेरा प्रोफाइल',
+        sliderTitle: 'इस सप्ताह के लोकप्रिय', moviesTitle: 'फिल्में',
+        slide1Title: 'दिल में आग', slide1Desc: 'एक युवा नायक के बारे में एक रोमांचक एक्शन फिल्म',
+        slide2Title: 'चाँद की सड़क', slide2Desc: 'एक मानव साहसिक यात्रा के बारे में एक हार्दिक नाटक',
+        slide3Title: 'खून की मूर्ति', slide3Desc: 'रोमांच से भरी एक फंतासी एक्शन फिल्म',
+        watchBtn: 'अभी देखें',
+        movies: []
+      },
+      ja: {
+        menuHome: 'メインカテゴリー', menuMovies: '映画', menuSeries: 'シリーズ', menuTv: 'テレビチャンネル', menuCinema: 'シネマルーム', menuProfile: 'マイプロフィール',
+        sliderTitle: '今週の人気作品', moviesTitle: '映画',
+        slide1Title: '心の中の火', slide1Desc: '若きヒーローについてのエキサイティングなアクション映画',
+        slide2Title: '月の道', slide2Desc: '人間の冒険の旅についての心温まるドラマ',
+        slide3Title: '血の像', slide3Desc: '冒険に満ちたファンタジーアクション映画',
+        watchBtn: '今すぐ見る',
+        movies: []
+      },
+      ur: {
+        menuHome: 'مین زمرہ', menuMovies: 'فلمیں', menuSeries: 'سیریز', menuTv: 'ٹی وی چینلز', menuCinema: 'سینما روم', menuProfile: 'میرا پروفائل',
+        sliderTitle: 'اس ہفتے کی مقبول ترین', moviesTitle: 'فلمیں',
+        slide1Title: 'دل میں آگ', slide1Desc: 'ایک نوجوان ہیرو کے بارے میں ایک پرجوش ایکشن فلم',
+        slide2Title: 'چاند کی سڑک', slide2Desc: 'ایک انسانی مہم جوئی کے سفر کے بارے میں ایک دلی ڈرامہ',
+        slide3Title: 'خون کا مجسمہ', slide3Desc: 'مہم جوئی سے بھری ایک فنتاسی ایکشن فلم',
+        watchBtn: 'ابھی دیکھیں',
+        movies: []
       }
     };
 
@@ -507,11 +619,17 @@
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && translations[savedLang]) return savedLang;
+      let browserLang = navigator.language.split('-')[0];
+      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
+      if (browserLang === 'ar') return 'ar';
+      if (browserLang === 'en') return 'en';
+      if (browserLang === 'tr') return 'tr';
+      if (browserLang === 'fa') return 'fa';
       return 'ckb';
     }
 
     let currentLang = getCurrentLanguage();
-    const t = translations[currentLang] || translations.ckb;
+    let t = translations[currentLang] || translations.ckb;
 
     if (rtlLanguages.includes(currentLang)) {
       document.body.classList.add('rtl');
@@ -521,7 +639,7 @@
       document.body.classList.remove('rtl');
     }
 
-    // تەرجەمە
+    // تەرجەمەکردنی هەموو توخمەکان
     document.getElementById('menuHome').innerText = t.menuHome;
     document.getElementById('menuMovies').innerText = t.menuMovies;
     document.getElementById('menuSeries').innerText = t.menuSeries;
@@ -549,7 +667,8 @@
     // فیلمەکان
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
-    t.movies.forEach(movie => {
+    let moviesList = t.movies && t.movies.length > 0 ? t.movies : translations.ckb.movies;
+    moviesList.forEach(movie => {
       const card = document.createElement('div');
       card.className = 'movie-card';
       card.setAttribute('data-title', movie.title.toLowerCase());
@@ -580,7 +699,7 @@
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     };
 
-    // ==================== سایدبار ====================
+    // سایدبار
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const menuBtn = document.getElementById('menuIconBtn');
@@ -602,7 +721,7 @@
     if (closeBtn) closeBtn.onclick = closeSidebar;
     if (overlay) overlay.onclick = closeSidebar;
 
-    // ==================== گەڕان ====================
+    // گەڕان
     const searchContainer = document.getElementById('searchContainer');
     const searchBtn = document.getElementById('searchBtn');
     const searchInput = document.getElementById('searchInput');
