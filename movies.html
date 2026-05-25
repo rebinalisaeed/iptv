@@ -447,9 +447,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== 33 زمانەکە ====================
+    // ==================== 33 زمانەکە (بە تەرجەمەی بۆشایی گەڕان) ====================
     const translations = {
       ckb: {
+        searchPlaceholder: 'گەڕان بۆ فیلم...',
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
         sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فیلمەکان',
         slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فیلمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
@@ -465,6 +466,7 @@
         ]
       },
       en: {
+        searchPlaceholder: 'Search for movies...',
         menuHome: 'Main Category', menuMovies: 'Movies', menuSeries: 'Series', menuTv: 'TV Channels', menuCinema: 'Cinema Room', menuProfile: 'Profile',
         sliderTitle: 'This Week\'s Top Picks', moviesTitle: 'Movies',
         slide1Title: 'Fire in the Heart', slide1Desc: 'An exciting action movie about a young hero',
@@ -478,6 +480,7 @@
         ]
       },
       ar: {
+        searchPlaceholder: 'البحث عن أفلام...',
         menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
         sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
         slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
@@ -490,6 +493,7 @@
         ]
       },
       tr: {
+        searchPlaceholder: 'Filmlerde ara...',
         menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'Kanallar', menuCinema: 'Sinema Odası', menuProfile: 'Profil',
         sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
         slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
@@ -502,6 +506,7 @@
         ]
       },
       fa: {
+        searchPlaceholder: 'جستجوی فیلم...',
         menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌ها', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل',
         sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
         slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
@@ -514,6 +519,7 @@
         ]
       },
       ru: {
+        searchPlaceholder: 'Поиск фильмов...',
         menuHome: 'Главная категория', menuMovies: 'Фильмы', menuSeries: 'Сериалы', menuTv: 'ТВ каналы', menuCinema: 'Кинокомната', menuProfile: 'Мой профиль',
         sliderTitle: 'Популярные на этой неделе', moviesTitle: 'Фильмы',
         slide1Title: 'Огонь в сердце', slide1Desc: 'Захватывающий боевик о молодом герое',
@@ -523,6 +529,7 @@
         movies: []
       },
       fr: {
+        searchPlaceholder: 'Rechercher des films...',
         menuHome: 'Catégorie principale', menuMovies: 'Films', menuSeries: 'Séries', menuTv: 'Chaînes TV', menuCinema: 'Salle de cinéma', menuProfile: 'Mon profil',
         sliderTitle: 'Les plus populaires de la semaine', moviesTitle: 'Films',
         slide1Title: 'Feu dans le cœur', slide1Desc: 'Un film d\'action passionnant sur un jeune héros',
@@ -532,6 +539,7 @@
         movies: []
       },
       es: {
+        searchPlaceholder: 'Buscar películas...',
         menuHome: 'Categoría principal', menuMovies: 'Películas', menuSeries: 'Series', menuTv: 'Canales de TV', menuCinema: 'Sala de cine', menuProfile: 'Mi perfil',
         sliderTitle: 'Los más populares de la semana', moviesTitle: 'Películas',
         slide1Title: 'Fuego en el corazón', slide1Desc: 'Una emocionante película de acción sobre un joven héroe',
@@ -541,6 +549,7 @@
         movies: []
       },
       de: {
+        searchPlaceholder: 'Filme suchen...',
         menuHome: 'Hauptkategorie', menuMovies: 'Filme', menuSeries: 'Serien', menuTv: 'TV-Sender', menuCinema: 'Kinoraum', menuProfile: 'Mein Profil',
         sliderTitle: 'Die beliebtesten dieser Woche', moviesTitle: 'Filme',
         slide1Title: 'Feuer im Herzen', slide1Desc: 'Ein aufregender Actionfilm über einen jungen Helden',
@@ -550,6 +559,7 @@
         movies: []
       },
       it: {
+        searchPlaceholder: 'Cerca film...',
         menuHome: 'Categoria principale', menuMovies: 'Film', menuSeries: 'Serie TV', menuTv: 'Canali TV', menuCinema: 'Sala cinema', menuProfile: 'Il mio profilo',
         sliderTitle: 'I più popolari di questa settimana', moviesTitle: 'Film',
         slide1Title: 'Fuoco nel cuore', slide1Desc: 'Un emozionante film d\'azione su un giovane eroe',
@@ -559,6 +569,7 @@
         movies: []
       },
       'zh-CN': {
+        searchPlaceholder: '搜索电影...',
         menuHome: '主类别', menuMovies: '电影', menuSeries: '剧集', menuTv: '电视频道', menuCinema: '影院房间', menuProfile: '我的资料',
         sliderTitle: '本周最受欢迎', moviesTitle: '电影',
         slide1Title: '心中的火', slide1Desc: '一部关于年轻英雄的激动人心的动作片',
@@ -568,6 +579,7 @@
         movies: []
       },
       'zh-TW': {
+        searchPlaceholder: '搜索電影...',
         menuHome: '主類別', menuMovies: '電影', menuSeries: '劇集', menuTv: '電視頻道', menuCinema: '影院房間', menuProfile: '我的資料',
         sliderTitle: '本週最受歡迎', moviesTitle: '電影',
         slide1Title: '心中的火', slide1Desc: '一部關於年輕英雄的激動人心的動作片',
@@ -577,6 +589,7 @@
         movies: []
       },
       ko: {
+        searchPlaceholder: '영화 검색...',
         menuHome: '메인 카테고리', menuMovies: '영화', menuSeries: '시리즈', menuTv: 'TV 채널', menuCinema: '시네마 룸', menuProfile: '내 프로필',
         sliderTitle: '이번 주 인기 순위', moviesTitle: '영화',
         slide1Title: '마음 속의 불', slide1Desc: '젊은 영웅에 관한 흥미진진한 액션 영화',
@@ -586,6 +599,7 @@
         movies: []
       },
       hi: {
+        searchPlaceholder: 'फिल्में खोजें...',
         menuHome: 'मुख्य श्रेणी', menuMovies: 'फिल्में', menuSeries: 'सीरीज', menuTv: 'टीवी चैनल', menuCinema: 'सिनेमा कक्ष', menuProfile: 'मेरा प्रोफाइल',
         sliderTitle: 'इस सप्ताह के लोकप्रिय', moviesTitle: 'फिल्में',
         slide1Title: 'दिल में आग', slide1Desc: 'एक युवा नायक के बारे में एक रोमांचक एक्शन फिल्म',
@@ -595,6 +609,7 @@
         movies: []
       },
       ja: {
+        searchPlaceholder: '映画を検索...',
         menuHome: 'メインカテゴリー', menuMovies: '映画', menuSeries: 'シリーズ', menuTv: 'テレビチャンネル', menuCinema: 'シネマルーム', menuProfile: 'マイプロフィール',
         sliderTitle: '今週の人気作品', moviesTitle: '映画',
         slide1Title: '心の中の火', slide1Desc: '若きヒーローについてのエキサイティングなアクション映画',
@@ -604,6 +619,7 @@
         movies: []
       },
       ur: {
+        searchPlaceholder: 'فلمیں تلاش کریں...',
         menuHome: 'مین زمرہ', menuMovies: 'فلمیں', menuSeries: 'سیریز', menuTv: 'ٹی وی چینلز', menuCinema: 'سینما روم', menuProfile: 'میرا پروفائل',
         sliderTitle: 'اس ہفتے کی مقبول ترین', moviesTitle: 'فلمیں',
         slide1Title: 'دل میں آگ', slide1Desc: 'ایک نوجوان ہیرو کے بارے میں ایک پرجوش ایکشن فلم',
@@ -611,10 +627,31 @@
         slide3Title: 'خون کا مجسمہ', slide3Desc: 'مہم جوئی سے بھری ایک فنتاسی ایکشن فلم',
         watchBtn: 'ابھی دیکھیں',
         movies: []
+      },
+      // زمانەکانی تر بە هەمان شێواز زیاد بکە...
+      ckb_badini: {
+        searchPlaceholder: 'گەڕان بۆ فیلم...',
+        menuHome: 'مالەوە', menuMovies: 'فلیم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
+        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
+        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        watchBtn: 'بینینی ئێستا',
+        movies: []
+      },
+      kmr: {
+        searchPlaceholder: 'Lêgerîna fîlman...',
+        menuHome: 'Mal', menuMovies: 'Fîlm', menuSeries: 'Rêzefîlm', menuTv: 'Kanal', menuCinema: 'Odeya Sînemayê', menuProfile: 'Profîl',
+        sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
+        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
+        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
+        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
+        watchBtn: 'Temaşe bike',
+        movies: []
       }
     };
 
-    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
+    const rtlLanguages = ['ar', 'ckb', 'ckb_badini', 'fa', 'ur'];
 
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
@@ -663,6 +700,12 @@
     document.getElementById('slide3Title').innerText = t.slide3Title;
     document.getElementById('slide3Desc').innerText = t.slide3Desc;
     document.querySelectorAll('.slide-btn').forEach(btn => btn.innerText = t.watchBtn);
+
+    // تەرجەمەی بۆشایی گەڕان (placeholder)
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && t.searchPlaceholder) {
+      searchInput.placeholder = t.searchPlaceholder;
+    }
 
     // فیلمەکان
     const moviesGrid = document.getElementById('moviesGrid');
@@ -724,7 +767,6 @@
     // گەڕان
     const searchContainer = document.getElementById('searchContainer');
     const searchBtn = document.getElementById('searchBtn');
-    const searchInput = document.getElementById('searchInput');
 
     if (searchBtn) {
       searchBtn.onclick = () => {
