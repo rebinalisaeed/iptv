@@ -233,8 +233,8 @@ const translationsData = {
   }
 };
 
-// RTL زمانەکان
-const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa'];
+// RTL زمانەکان (ئەردو زیادکرا)
+const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
 
 // زمانی ڕاستەوخۆ دەستنیشان بکە
 function getCurrentLanguage() {
@@ -262,6 +262,7 @@ function getCurrentLanguage() {
   if (browserLang === 'da') return 'da';
   if (browserLang === 'no') return 'no';
   if (browserLang === 'fi') return 'fi';
+  if (browserLang === 'syr') return 'syr';
   return 'ckb';
 }
 
