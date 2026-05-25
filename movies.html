@@ -14,7 +14,7 @@
     }
     @font-face {
       font-family: 'Exinflix Regular';
-      src: url('fonts/exinflix/Exinflix-Reg.ttf') format('truetype');
+      src: url('fonts/Exinflix-Reg.ttf') format('truetype');
       font-weight: normal;
       font-display: swap;
     }
@@ -402,6 +402,13 @@
       display: none;
     }
     
+    .no-result {
+      text-align: center;
+      padding: 2rem;
+      color: rgba(255, 255, 255, 0.6);
+      grid-column: 1 / -1;
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -708,7 +715,6 @@
     const closeSidebar = document.getElementById('closeSidebar');
 
     function openSidebar() {
-      console.log(' opening sidebar');
       sidebar.classList.add('open');
       overlay.classList.add('show');
     }
@@ -749,29 +755,26 @@
       searchInput.addEventListener('input', function(e) {
         const searchTerm = e.target.value.toLowerCase();
         const movieCards = document.querySelectorAll('.movie-card');
-        let hasVisible = false;
+        let visibleCount = 0;
         
         movieCards.forEach(card => {
           const title = card.getAttribute('data-title') || card.querySelector('.movie-title').innerText.toLowerCase();
           if (title.includes(searchTerm)) {
             card.classList.remove('hidden');
-            hasVisible = true;
+            visibleCount++;
           } else {
             card.classList.add('hidden');
           }
         });
         
-        // ئەگەر هیچ فیلمێک نەدۆزرایەوە، پەیامێک پیشان بدە
+        // پەیامی "هیچ فیلمێک نەدۆزرایەوە"
         let noResultMsg = document.querySelector('.no-result');
-        if (!hasVisible && movieCards.length > 0) {
+        if (visibleCount === 0 && movieCards.length > 0) {
           if (!noResultMsg) {
             const msg = document.createElement('div');
             msg.className = 'no-result';
-            msg.style.textAlign = 'center';
-            msg.style.padding = '2rem';
-            msg.style.color = 'rgba(255,255,255,0.6)';
             msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
-            moviesGrid.parentNode.appendChild(msg);
+            moviesGrid.appendChild(msg);
           }
         } else {
           if (noResultMsg) noResultMsg.remove();
