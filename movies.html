@@ -469,7 +469,7 @@
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="assets/logo/logo.png" alt="EXINFLIX">
-      <button class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></button>
+      <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
     </div>
     <div class="sidebar-menu">
       <a href="index.html" id="sidebarHome"><i class="fas fa-home"></i> کەتەگۆری سەرەتا</a>
@@ -697,21 +697,29 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const menuIconBtn = document.getElementById('menuIconBtn');
-    const closeSidebar = document.getElementById('closeSidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
 
     function openSidebar() {
       sidebar.classList.add('open');
       overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeSidebarFunc() {
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
+      document.body.style.overflow = '';
     }
 
-    menuIconBtn.addEventListener('click', openSidebar);
-    closeSidebar.addEventListener('click', closeSidebarFunc);
-    overlay.addEventListener('click', closeSidebarFunc);
+    if (menuIconBtn) {
+      menuIconBtn.addEventListener('click', openSidebar);
+    }
+    if (closeSidebarBtn) {
+      closeSidebarBtn.addEventListener('click', closeSidebarFunc);
+    }
+    if (overlay) {
+      overlay.addEventListener('click', closeSidebarFunc);
+    }
 
     // ==================== گەڕان ====================
     const searchContainer = document.getElementById('searchContainer');
@@ -730,40 +738,44 @@
         }
       } else {
         searchContainer.classList.add('show');
-        searchInput.focus();
+        setTimeout(() => searchInput.focus(), 100);
       }
     }
 
-    searchBtn.addEventListener('click', toggleSearch);
+    if (searchBtn) {
+      searchBtn.addEventListener('click', toggleSearch);
+    }
 
     // فلتەرکردن
-    searchInput.addEventListener('input', function(e) {
-      const searchTerm = e.target.value.toLowerCase();
-      const movieCards = document.querySelectorAll('.movie-card');
-      let visibleCount = 0;
-      
-      movieCards.forEach(card => {
-        const title = card.getAttribute('data-title');
-        if (title.includes(searchTerm)) {
-          card.classList.remove('hidden');
-          visibleCount++;
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const movieCards = document.querySelectorAll('.movie-card');
+        let visibleCount = 0;
+        
+        movieCards.forEach(card => {
+          const title = card.getAttribute('data-title');
+          if (title.includes(searchTerm)) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+        
+        let noResultMsg = document.querySelector('.no-result');
+        if (visibleCount === 0 && searchTerm !== '') {
+          if (!noResultMsg) {
+            const msg = document.createElement('div');
+            msg.className = 'no-result';
+            msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
+            moviesGrid.appendChild(msg);
+          }
         } else {
-          card.classList.add('hidden');
+          if (noResultMsg) noResultMsg.remove();
         }
       });
-      
-      let noResultMsg = document.querySelector('.no-result');
-      if (visibleCount === 0 && searchTerm !== '') {
-        if (!noResultMsg) {
-          const msg = document.createElement('div');
-          msg.className = 'no-result';
-          msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
-          moviesGrid.appendChild(msg);
-        }
-      } else {
-        if (noResultMsg) noResultMsg.remove();
-      }
-    });
+    }
   </script>
 </body>
 </html>
