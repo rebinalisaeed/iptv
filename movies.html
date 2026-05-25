@@ -30,7 +30,7 @@
     body.rtl { direction: rtl; text-align: right; }
     body.ltr { direction: ltr; text-align: left; }
     
-    /* ==================== بانەڕ ==================== */
+    /* بانەڕ */
     .navbar {
       background: rgba(20, 20, 35, 0.95);
       backdrop-filter: blur(12px);
@@ -50,14 +50,9 @@
       gap: 1rem;
     }
     
-    /* لۆگۆ */
-    .navbar-logo {
-      height: 35px;
-      width: auto;
-      display: block;
-    }
+    .navbar-logo { height: 35px; width: auto; display: block; }
     
-    /* مینووی ئاسۆیی بۆ کۆمپیوتەر */
+    /* مینووی ئاسۆیی - کۆمپیوتەر */
     .desktop-menu {
       display: flex;
       gap: 1.2rem;
@@ -69,7 +64,6 @@
       text-decoration: none;
       font-size: 0.85rem;
       transition: color 0.3s;
-      font-family: 'Exinflix Regular', sans-serif;
       white-space: nowrap;
     }
     
@@ -83,12 +77,11 @@
       font-size: 1.1rem;
       cursor: pointer;
       padding: 0.3rem 0.5rem;
-      transition: color 0.3s;
     }
     
     .search-icon:hover { color: #FF006E; }
     
-    /* دوگمەی هەمبەرگر بۆ مۆبایل */
+    /* دوگمەی هەمبەرگر - مۆبایل */
     .menu-icon {
       background: none;
       border: none;
@@ -99,23 +92,20 @@
       display: none;
     }
     
-    /* بۆشایی گەڕان - لە بنەڕەتدا شاردراوە */
+    /* بۆشایی گەڕان */
     .search-container {
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       background: rgba(20, 20, 35, 0.98);
-      backdrop-filter: blur(12px);
       padding: 0.75rem 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: none;
       z-index: 99;
     }
     
-    .search-container.show {
-      display: block;
-    }
+    .search-container.show { display: block; }
     
     .search-input {
       width: 100%;
@@ -126,14 +116,11 @@
       color: white;
       font-size: 0.9rem;
       outline: none;
-      font-family: 'Exinflix Regular', sans-serif;
     }
     
-    .search-input:focus {
-      border-color: #FF006E;
-    }
+    .search-input:focus { border-color: #FF006E; }
     
-    /* ==================== Sidebar مینوو ==================== */
+    /* Sidebar - مینووی لایەن */
     .sidebar {
       position: fixed;
       top: 0;
@@ -149,19 +136,10 @@
       gap: 1.5rem;
     }
     
-    body.ltr .sidebar {
-      left: 0;
-      transform: translateX(-100%);
-    }
+    body.ltr .sidebar { left: 0; transform: translateX(-100%); }
+    body.rtl .sidebar { right: 0; transform: translateX(100%); }
     
-    body.rtl .sidebar {
-      right: 0;
-      transform: translateX(100%);
-    }
-    
-    .sidebar.open {
-      transform: translateX(0);
-    }
+    .sidebar.open { transform: translateX(0); }
     
     .sidebar-header {
       display: flex;
@@ -171,10 +149,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .sidebar-header img {
-      height: 30px;
-      width: auto;
-    }
+    .sidebar-header img { height: 30px; width: auto; }
     
     .close-sidebar {
       background: none;
@@ -199,14 +174,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-family: 'Exinflix Regular', sans-serif;
     }
     
-    .sidebar-menu a i {
-      width: 24px;
-      color: #FF006E;
-    }
-    
+    .sidebar-menu a i { width: 24px; color: #FF006E; }
     .sidebar-menu a:hover { color: #FF006E; }
     
     .overlay {
@@ -220,11 +190,9 @@
       display: none;
     }
     
-    .overlay.show {
-      display: block;
-    }
+    .overlay.show { display: block; }
     
-    /* ==================== سلایدەر ==================== */
+    /* سلایدەر */
     .slider-container {
       max-width: 1280px;
       margin: 2rem auto;
@@ -300,7 +268,6 @@
       font-family: 'Exinflix Bold', sans-serif;
       cursor: pointer;
       margin-top: 1rem;
-      transition: all 0.3s;
     }
     
     .slider-btn {
@@ -324,7 +291,7 @@
     body.rtl .slider-prev { left: auto; right: 10px; }
     body.rtl .slider-next { right: auto; left: 10px; }
     
-    /* ==================== لیستی فیلمەکان ==================== */
+    /* لیستی فیلمەکان */
     .movies-section {
       max-width: 1280px;
       margin: 2rem auto;
@@ -371,9 +338,7 @@
       object-fit: cover;
     }
     
-    .movie-info {
-      padding: 1rem;
-    }
+    .movie-info { padding: 1rem; }
     
     .movie-title {
       font-family: 'Exinflix Bold', sans-serif;
@@ -396,10 +361,7 @@
       font-size: 0.8rem;
     }
     
-    /* هۆک بۆ حەشاردانی کارتە فلتەرکراوەکان */
-    .movie-card.hidden {
-      display: none;
-    }
+    .movie-card.hidden { display: none; }
     
     .no-result {
       text-align: center;
@@ -408,29 +370,15 @@
       grid-column: 1 / -1;
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade { animation: fadeIn 0.5s ease forwards; }
-    
-    /* ==================== ڕیسپۆنسیڤ ==================== */
+    /* ڕیسپۆنسیڤ */
     @media (max-width: 768px) {
-      .desktop-menu {
-        display: none;
-      }
-      .menu-icon {
-        display: block;
-      }
+      .desktop-menu { display: none; }
+      .menu-icon { display: block; }
     }
     
     @media (min-width: 769px) {
-      .menu-icon {
-        display: none;
-      }
-      .desktop-menu {
-        display: flex;
-      }
+      .menu-icon { display: none; }
+      .desktop-menu { display: flex; }
     }
   </style>
 </head>
@@ -439,11 +387,9 @@
   <!-- بانەڕ -->
   <div class="navbar">
     <div class="navbar-container">
-      <!-- لای چەپ: لۆگۆ -->
       <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
       
-      <!-- مینووی ئاسۆیی (کۆمپیوتەر) -->
-      <div class="desktop-menu" id="desktopMenu">
+      <div class="desktop-menu">
         <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
         <a href="movies.html" id="menuMovies">فیلم</a>
         <a href="series.html" id="menuSeries">زنجیرە</a>
@@ -452,20 +398,18 @@
         <a href="profile.html" id="menuProfile">پرۆفایل</a>
       </div>
       
-      <!-- لای ڕاست: ئایکۆنەکان -->
       <div style="display: flex; align-items: center; gap: 0.5rem;">
         <button class="search-icon" id="searchBtn"><i class="fas fa-search"></i></button>
         <button class="menu-icon" id="menuIconBtn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
     
-    <!-- بۆشایی گەڕان - لە بنەڕەتدا شاردراوە -->
     <div class="search-container" id="searchContainer">
       <input type="text" class="search-input" id="searchInput" placeholder="گەڕان بۆ فیلم...">
     </div>
   </div>
 
-  <!-- Sidebar مینوو (بۆ مۆبایل) -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="assets/logo/logo.png" alt="EXINFLIX">
@@ -531,7 +475,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== تەرجەمەکان ====================
+    // تەرجەمەکان (بە کورتکراوەیی)
     const translations = {
       ckb: {
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
@@ -543,10 +487,7 @@
         movies: [
           { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
           { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' },
-          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
-          { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
-          { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' },
-          { title: 'پێکەنین لە هەولێر', year: '2024', rating: '7.5', genre: 'کۆمێدی' }
+          { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' }
         ]
       },
       en: {
@@ -561,42 +502,6 @@
           { title: 'Moon Road', year: '2024', rating: '8.2', genre: 'Drama' },
           { title: 'Blood Statue', year: '2025', rating: '7.9', genre: 'Fantasy' }
         ]
-      },
-      ar: {
-        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
-        sliderTitle: 'الأكثر مشاهدة هذا الأسبوع', moviesTitle: 'الأفلام',
-        slide1Title: 'نار في القلب', slide1Desc: 'فيلم أكشن مثير يحكي قصة بطل شاب',
-        slide2Title: 'طريق القمر', slide2Desc: 'دراما مؤثرة عن رحلة إنسانية مليئة بالمغامرات',
-        slide3Title: 'تمثال الدم', slide3Desc: 'فيلم خيال وأكشن مليء بالمغامرات',
-        watchBtn: 'مشاهدة الآن',
-        movies: [
-          { title: 'نار في القلب', year: '2025', rating: '8.7', genre: 'أكشن' },
-          { title: 'طريق القمر', year: '2024', rating: '8.2', genre: 'دراما' }
-        ]
-      },
-      tr: {
-        menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'Kanallar', menuCinema: 'Sinema Odası', menuProfile: 'Profil',
-        sliderTitle: 'Bu Haftanın Popülerleri', moviesTitle: 'Filmler',
-        slide1Title: 'Kalpteki Ateş', slide1Desc: 'Genç bir kahramanın hikayesini anlatan heyecanlı bir aksiyon filmi',
-        slide2Title: 'Ay Yolu', slide2Desc: 'Bir insan macera yolculuğunu anlatan içten bir dram',
-        slide3Title: 'Kan Heykeli', slide3Desc: 'Macera dolu bir fantastik aksiyon filmi',
-        watchBtn: 'Şimdi İzle',
-        movies: [
-          { title: 'Kalpteki Ateş', year: '2025', rating: '8.7', genre: 'Aksiyon' },
-          { title: 'Ay Yolu', year: '2024', rating: '8.2', genre: 'Dram' }
-        ]
-      },
-      fa: {
-        menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌ها', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل',
-        sliderTitle: 'محبوب‌ترین‌های این هفته', moviesTitle: 'فیلم‌ها',
-        slide1Title: 'آتش در دل', slide1Desc: 'فیلم اکشن هیجان‌انگیز درباره قهرمانی جوان',
-        slide2Title: 'راه ماه', slide2Desc: 'درام احساسی درباره یک سفر ماجراجویانه انسانی',
-        slide3Title: 'مجسمه خون', slide3Desc: 'فیلم فانتزی و اکشن پر از ماجراجویی',
-        watchBtn: 'تماشا کن',
-        movies: [
-          { title: 'آتش در دل', year: '2025', rating: '8.7', genre: 'اکشن' },
-          { title: 'راه ماه', year: '2024', rating: '8.2', genre: 'درام' }
-        ]
       }
     };
 
@@ -607,10 +512,7 @@
       if (savedLang && translations[savedLang]) return savedLang;
       let browserLang = navigator.language.split('-')[0];
       if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
-      if (browserLang === 'ar') return 'ar';
       if (browserLang === 'en') return 'en';
-      if (browserLang === 'tr') return 'tr';
-      if (browserLang === 'fa') return 'fa';
       return 'ckb';
     }
 
@@ -625,7 +527,7 @@
       document.body.classList.remove('rtl');
     }
 
-    // تەرجەمەکردنی مینووی ئاسۆیی
+    // تەرجەمەکردن
     document.getElementById('menuHome').innerText = t.menuHome;
     document.getElementById('menuMovies').innerText = t.menuMovies;
     document.getElementById('menuSeries').innerText = t.menuSeries;
@@ -633,7 +535,6 @@
     document.getElementById('menuCinema').innerText = t.menuCinema;
     document.getElementById('menuProfile').innerText = t.menuProfile;
     
-    // تەرجەمەکردنی مینووی سایدبار
     document.getElementById('sidebarHome').innerHTML = `<i class="fas fa-home"></i> ${t.menuHome}`;
     document.getElementById('sidebarMovies').innerHTML = `<i class="fas fa-film"></i> ${t.menuMovies}`;
     document.getElementById('sidebarSeries').innerHTML = `<i class="fas fa-play-circle"></i> ${t.menuSeries}`;
@@ -653,59 +554,54 @@
 
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '';
-    if (t.movies && t.movies.length) {
-      t.movies.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = 'movie-card';
-        card.setAttribute('data-title', movie.title.toLowerCase());
-        card.onclick = () => alert(`فیلمی ${movie.title} - لە داهاتوودا زیاد دەکرێت`);
-        card.innerHTML = `
-          <img src="https://placehold.co/300x450/1A1E2F/FF006E?text=${encodeURIComponent(movie.title)}">
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-year">${movie.year} • ${movie.genre}</div>
-            <div class="movie-rating"><i class="fas fa-star"></i> ${movie.rating}</div>
-          </div>
-        `;
-        moviesGrid.appendChild(card);
-      });
-    }
+    t.movies.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'movie-card';
+      card.setAttribute('data-title', movie.title.toLowerCase());
+      card.onclick = () => alert(`فیلمی ${movie.title} - لە داهاتوودا زیاد دەکرێت`);
+      card.innerHTML = `
+        <img src="https://placehold.co/300x450/1A1E2F/FF006E?text=${encodeURIComponent(movie.title)}">
+        <div class="movie-info">
+          <div class="movie-title">${movie.title}</div>
+          <div class="movie-year">${movie.year} • ${movie.genre}</div>
+          <div class="movie-rating"><i class="fas fa-star"></i> ${movie.rating}</div>
+        </div>
+      `;
+      moviesGrid.appendChild(card);
+    });
 
     // سلایدەر
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
     const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    prevBtn.addEventListener('click', () => {
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateSlider();
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     });
-
-    nextBtn.addEventListener('click', () => {
+    document.getElementById('nextBtn').addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlider();
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     });
 
-    // ==================== Sidebar مینوو (دوگمەی هەمبەرگر) ====================
+    // ==================== دوگمەی هەمبەرگر (مۆبایل) ====================
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const menuIconBtn = document.getElementById('menuIconBtn');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
 
+    console.log('menuIconBtn:', menuIconBtn); // بۆ دیباگ کردن
+
     function openSidebar() {
+      console.log('Opening sidebar');
       sidebar.classList.add('open');
       overlay.classList.add('show');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeSidebarFunc() {
+    function closeSidebar() {
+      console.log('Closing sidebar');
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
       document.body.style.overflow = '';
@@ -715,10 +611,10 @@
       menuIconBtn.addEventListener('click', openSidebar);
     }
     if (closeSidebarBtn) {
-      closeSidebarBtn.addEventListener('click', closeSidebarFunc);
+      closeSidebarBtn.addEventListener('click', closeSidebar);
     }
     if (overlay) {
-      overlay.addEventListener('click', closeSidebarFunc);
+      overlay.addEventListener('click', closeSidebar);
     }
 
     // ==================== گەڕان ====================
@@ -726,27 +622,20 @@
     const searchBtn = document.getElementById('searchBtn');
     const searchInput = document.getElementById('searchInput');
 
-    function toggleSearch() {
-      if (searchContainer.classList.contains('show')) {
-        searchContainer.classList.remove('show');
-        // ڕێست کردنەوەی فلتەر
-        if (searchInput.value !== '') {
+    if (searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        searchContainer.classList.toggle('show');
+        if (searchContainer.classList.contains('show')) {
+          searchInput.focus();
+        } else {
           searchInput.value = '';
           document.querySelectorAll('.movie-card').forEach(card => card.classList.remove('hidden'));
           const noResultMsg = document.querySelector('.no-result');
           if (noResultMsg) noResultMsg.remove();
         }
-      } else {
-        searchContainer.classList.add('show');
-        setTimeout(() => searchInput.focus(), 100);
-      }
+      });
     }
 
-    if (searchBtn) {
-      searchBtn.addEventListener('click', toggleSearch);
-    }
-
-    // فلتەرکردن
     if (searchInput) {
       searchInput.addEventListener('input', function(e) {
         const searchTerm = e.target.value.toLowerCase();
