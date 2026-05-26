@@ -367,9 +367,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== تەرجەمەکان ====================
-    // تەنها بۆ ئەوەی کۆدەکە کورت بێت، تەنها چەند زمانێکی سەرەکی داناوە
-    // بەڵام هەمان سیستەم بۆ هەموو 33 زمانەکە کاردەکات
+    // ==================== ناوی "زمان" بە هەموو زمانەکان ====================
     const languageNames = {
       ckb: 'زمان',
       'ckb-badini': 'زوان',
@@ -406,9 +404,7 @@
       syr: 'ܠܫܢܐ'
     };
     
-    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
-    
-    // تەرجەمەکانی تر بۆ ناوەڕۆکەکە
+    // تەرجەمەکانی تر بۆ ناوەڕۆکەکە (تەنها چەند زمانێک بۆ کورتکردنەوە)
     const translations = {
       ckb: {
         navHome: 'ماڵەوە', navMovies: 'فیلم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
@@ -447,57 +443,31 @@
       }
     };
     
-    // بۆ زمانەکانی تر، هەر وەک ئینگلیزی دەمێننەوە
+    // بۆ کورتکردنەوە، زمانەکانی تر هەر وەک ئینگلیزی دەمێننەوە
+    const otherLangs = ['ru', 'fr', 'es', 'pt', 'de', 'sv', 'it', 'zh-CN', 'zh-TW', 'ko', 'hi', 'ja', 'pl', 'ur', 'bn', 'vi', 'th', 'uk', 'nl', 'el', 'ro', 'id', 'da', 'no', 'fi', 'syr', 'kmr'];
+    otherLangs.forEach(lang => {
+      translations[lang] = translations.en;
+    });
     translations['ckb-badini'] = translations.ckb;
-    translations['kmr'] = translations.en;
-    translations['ru'] = translations.en;
-    translations['fr'] = translations.en;
-    translations['es'] = translations.en;
-    translations['pt'] = translations.en;
-    translations['de'] = translations.en;
-    translations['sv'] = translations.en;
-    translations['it'] = translations.en;
-    translations['zh-CN'] = translations.en;
-    translations['zh-TW'] = translations.en;
-    translations['ko'] = translations.en;
-    translations['hi'] = translations.en;
-    translations['ja'] = translations.en;
-    translations['pl'] = translations.en;
-    translations['ur'] = translations.en;
-    translations['bn'] = translations.en;
-    translations['vi'] = translations.en;
-    translations['th'] = translations.en;
-    translations['uk'] = translations.en;
-    translations['nl'] = translations.en;
-    translations['el'] = translations.en;
-    translations['ro'] = translations.en;
-    translations['id'] = translations.en;
-    translations['da'] = translations.en;
-    translations['no'] = translations.en;
-    translations['fi'] = translations.en;
-    translations['syr'] = translations.en;
+    
+    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
     
     function getCurrentLanguage() {
       let savedLang = localStorage.getItem('exinflix_language');
       if (savedLang && languageNames[savedLang]) return savedLang;
-      let browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
-      if (browserLang === 'ar') return 'ar';
-      if (browserLang === 'en') return 'en';
-      if (browserLang === 'tr') return 'tr';
-      if (browserLang === 'fa') return 'fa';
       return 'ckb';
     }
     
     function updateLanguage() {
       const lang = getCurrentLanguage();
       const texts = translations[lang] || translations.en;
-      const langName = languageNames[lang] || 'Language';
       
-      // گۆڕینی ناوی "زمان" لەسەر ئایکۆنەکە
-      const langLabel = document.getElementById('langLabel');
-      if (langLabel) {
-        langLabel.innerText = langName;
+      // 🔥 ئەمە گرنگترین بەشە - گۆڕینی ناوی "زمان" لەسەر ئایکۆنەکە
+      const langLabelSpan = document.getElementById('langLabel');
+      if (langLabelSpan) {
+        const newLangName = languageNames[lang] || 'Language';
+        langLabelSpan.innerText = newLangName;
+        console.log('زمان گۆڕا بۆ:', lang, 'نوسینی نوێ:', newLangName);
       }
       
       // گۆڕینی مینووەکان
@@ -505,7 +475,6 @@
       const navMovies = document.getElementById('navMovies');
       const navSeries = document.getElementById('navSeries');
       const navTv = document.getElementById('navTv');
-      
       if (navHome) navHome.innerText = texts.navHome;
       if (navMovies) navMovies.innerText = texts.navMovies;
       if (navSeries) navSeries.innerText = texts.navSeries;
