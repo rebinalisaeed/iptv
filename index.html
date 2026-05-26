@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>EXINFLIX</title>
   
-  <!-- فایلەکانی CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  
-  <!-- فۆنتەکان -->
   <style>
     @font-face {
       font-family: 'Exinflix Bold';
@@ -21,6 +17,256 @@
       src: url('fonts/Exinflix-Reg.ttf') format('truetype');
       font-weight: normal;
       font-display: swap;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; }
+    
+    body {
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+      background-image: url('assets/images/background/9736.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    body.rtl { direction: rtl; text-align: right; }
+    body.ltr { direction: ltr; text-align: left; }
+    
+    .navbar {
+      background: rgba(20, 20, 35, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .navbar-logo { height: 32px; width: auto; display: block; }
+    
+    .nav-menu {
+      position: absolute;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    body.ltr .nav-menu { left: 50%; right: auto; transform: translateX(-50%); }
+    body.rtl .nav-menu { left: auto; right: 50%; transform: translateX(50%); }
+    
+    .menu-link {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+    
+    .menu-link:hover { color: #FF006E; }
+    
+    .language-icon {
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(255, 122, 0, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      backdrop-filter: blur(4px);
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+    
+    .language-icon:hover {
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.4), rgba(255, 122, 0, 0.4));
+      border-color: #FF006E;
+    }
+    
+    .language-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: rgba(20, 20, 35, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 0.75rem;
+      padding: 0.5rem;
+      min-width: 240px;
+      max-height: 400px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    
+    body.rtl .language-dropdown { right: auto; left: 0; }
+    
+    .language-dropdown::-webkit-scrollbar { width: 5px; }
+    .language-dropdown::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+    .language-dropdown::-webkit-scrollbar-thumb { background: #FF006E; border-radius: 10px; }
+    .language-dropdown.show { display: block; }
+    
+    .language-option {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.8rem;
+      color: #e5e5e5;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+    
+    .language-option:hover { background: rgba(255, 0, 110, 0.3); color: white; }
+    
+    .navbar-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .navbar-right { display: flex; align-items: center; }
+    .language-container { position: relative; }
+    
+    .boxes-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+      overflow-y: auto;
+      padding: 2rem 0;
+    }
+    
+    .boxes-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .box-card {
+      width: 220px;
+      height: 260px;
+      cursor: pointer;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+      background: rgba(20, 20, 35, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .box-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+    }
+    
+    .box-card .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .box-card .icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .box-card .icon i { font-size: 2.5rem; color: white; }
+    
+    .box-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: white;
+      font-family: 'Exinflix Bold', 'Poppins', sans-serif;
+    }
+    
+    .box-card p {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.75rem;
+      white-space: pre-line;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+    }
+    
+    .box-card .badge {
+      background: rgba(255, 0, 110, 0.6);
+      padding: 0.25rem 0.75rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: bold;
+      font-family: 'Exinflix Bold', 'Poppins', sans-serif;
+      color: white;
+    }
+    
+    .box-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: rgba(255, 0, 110, 0.5);
+      box-shadow: 0 0 30px rgba(255, 0, 110, 0.2);
+      background: rgba(255, 0, 110, 0.15);
+    }
+    
+    .box-card:hover .icon { background: rgba(255, 0, 110, 0.4); transform: scale(1.1); }
+    
+    .box-card.cinema-room {
+      border-color: rgba(123, 44, 255, 0.5);
+    }
+    
+    .box-card.cinema-room .badge {
+      background: rgba(123, 44, 255, 0.7);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade { animation: fadeIn 0.6s ease forwards; }
+    
+    .boxes-wrapper::-webkit-scrollbar {
+      width: 5px;
+    }
+    
+    .boxes-wrapper::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    
+    .boxes-wrapper::-webkit-scrollbar-thumb {
+      background: #FF006E;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -120,6 +366,155 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
-  <script src="js/main.js"></script>
+  <script>
+    // ==================== ناوی "زمان" بە هەموو زمانەکان ====================
+    const languageNames = {
+      ckb: 'زمان', 'ckb-badini': 'زوان', kmr: 'Ziman', ar: 'اللغة', en: 'Language', tr: 'Dil', fa: 'زبان',
+      ru: 'Язык', fr: 'Langue', es: 'Idioma', pt: 'Idioma', de: 'Sprache', sv: 'Språk', it: 'Lingua',
+      'zh-CN': '语言', 'zh-TW': '語言', ko: '언어', hi: 'भाषा', ja: '言語', pl: 'Język', ur: 'زبان',
+      bn: 'ভাষা', vi: 'Ngôn ngữ', th: 'ภาษา', uk: 'Мова', nl: 'Taal', el: 'Γλώσσα', ro: 'Limba',
+      id: 'Bahasa', da: 'Sprog', no: 'Språk', fi: 'Kieli', syr: 'ܠܫܢܐ'
+    };
+    
+    // تەرجەمەکان
+    const translations = {
+      ckb: {
+        navHome: 'ماڵەوە', navMovies: 'فیلم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
+        boxTvTitle: 'تەلەڤزیۆن', boxTvDesc: 'زیاتر لە ١٠٠٠ کەناڵی جیهانی\nوەرزش • هەواڵ • فیلم • منداڵان', boxTvBadge: 'ڕاستەوخۆ',
+        boxMoviesTitle: 'فیلم', boxMoviesDesc: 'هەزاران فیلمی بەناوبانگ\nئەکشن • دراما • کۆمێدی • ڕۆمانسی', boxMoviesBadge: 'نوێترین فیلمەکان',
+        boxSeriesTitle: 'زنجیرە', boxSeriesDesc: 'بەناوبانگترین زنجیرەکان\nوەرزی نوێ • هەفتانە', boxSeriesBadge: 'بەردەوام بینین',
+        boxCinemaTitle: 'ژووری سینەما', boxCinemaDesc: 'هاوڕێکانت بانگهێشت بکە\nبەیەکەوە سەیری فیلم بکەن و تاوتوێ بکەن', boxCinemaBadge: 'دروستکردنی ژوور'
+      },
+      en: {
+        navHome: 'Home', navMovies: 'Movies', navSeries: 'Series', navTv: 'TV',
+        boxTvTitle: 'TV', boxTvDesc: '1000+ World Channels\nSports • News • Movies • Kids', boxTvBadge: 'LIVE',
+        boxMoviesTitle: 'Movies', boxMoviesDesc: 'Thousands of Movies\nAction • Drama • Comedy • Romance', boxMoviesBadge: 'New Releases',
+        boxSeriesTitle: 'Series', boxSeriesDesc: 'Trending Series\nNew Seasons • Weekly', boxSeriesBadge: 'Continue Watching',
+        boxCinemaTitle: 'Cinema Room', boxCinemaDesc: 'Invite your friends\nWatch and discuss movies together', boxCinemaBadge: 'Create Room'
+      },
+      ar: {
+        navHome: 'الرئيسية', navMovies: 'أفلام', navSeries: 'مسلسلات', navTv: 'تلفزيون',
+        boxTvTitle: 'تلفزيون', boxTvDesc: 'أكثر من ١٠٠٠ قناة عالمية\nرياضة • أخبار • أفلام • أطفال', boxTvBadge: 'مباشر',
+        boxMoviesTitle: 'أفلام', boxMoviesDesc: 'آلاف الأفلام الشهيرة\nأكشن • دراما • كوميدي • رومانسي', boxMoviesBadge: 'أحدث الأفلام',
+        boxSeriesTitle: 'مسلسلات', boxSeriesDesc: 'أشهر المسلسلات\nمواسم جديدة • أسبوعياً', boxSeriesBadge: 'متابعة',
+        boxCinemaTitle: 'غرفة السينما', boxCinemaDesc: 'ادعُ أصدقائك\nشاهدوا الفيلم معاً وناقشوه', boxCinemaBadge: 'إنشاء غرفة'
+      },
+      tr: {
+        navHome: 'Ana Sayfa', navMovies: 'Filmler', navSeries: 'Diziler', navTv: 'TV',
+        boxTvTitle: 'Televizyon', boxTvDesc: '1000+ Dünya Kanalı\nSpor • Haber • Film • Çocuk', boxTvBadge: 'CANLI',
+        boxMoviesTitle: 'Filmler', boxMoviesDesc: 'Binlerce Film\nAksiyon • Dram • Komedi • Romantik', boxMoviesBadge: 'Yeni Filmler',
+        boxSeriesTitle: 'Diziler', boxSeriesDesc: 'Popüler Diziler\nYeni Sezonlar • Haftalık', boxSeriesBadge: 'İzlemeye Devam Et',
+        boxCinemaTitle: 'Sinema Odası', boxCinemaDesc: 'Arkadaşlarını davet et\nBirlikte film izleyin ve tartışın', boxCinemaBadge: 'Oda Oluştur'
+      },
+      fa: {
+        navHome: 'صفحه اصلی', navMovies: 'فیلم‌ها', navSeries: 'سریال‌ها', navTv: 'تلویزیون',
+        boxTvTitle: 'تلویزیون', boxTvDesc: 'بیش از ۱۰۰۰ کانال جهانی\nورزش • اخبار • فیلم • کودکان', boxTvBadge: 'زنده',
+        boxMoviesTitle: 'فیلم', boxMoviesDesc: 'هزاران فیلم محبوب\nاکشن • درام • کمدی • رمانتیک', boxMoviesBadge: 'جدیدترین فیلم‌ها',
+        boxSeriesTitle: 'سریال', boxSeriesDesc: 'محبوب‌ترین سریال‌ها\nفصل جدید • هفتگی', boxSeriesBadge: 'ادامه تماشا',
+        boxCinemaTitle: 'اتاق سینما', boxCinemaDesc: 'دوستان خود را دعوت کنید\nبا هم فیلم تماشا کنید و بحث کنید', boxCinemaBadge: 'ایجاد اتاق'
+      }
+    };
+    
+    // زمانەکانی تر بۆ ئینگلیزی
+    const otherLangs = ['ru', 'fr', 'es', 'pt', 'de', 'sv', 'it', 'zh-CN', 'zh-TW', 'ko', 'hi', 'ja', 'pl', 'ur', 'bn', 'vi', 'th', 'uk', 'nl', 'el', 'ro', 'id', 'da', 'no', 'fi', 'syr', 'kmr'];
+    otherLangs.forEach(lang => { translations[lang] = translations.en; });
+    translations['ckb-badini'] = translations.ckb;
+    
+    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
+    
+    function getCurrentLanguage() {
+      let savedLang = localStorage.getItem('exinflix_language');
+      if (savedLang && languageNames[savedLang]) return savedLang;
+      return 'ckb';
+    }
+    
+    function updateLanguage() {
+      const lang = getCurrentLanguage();
+      const texts = translations[lang] || translations.en;
+      
+      // گۆڕینی نوسینی "زمان" لەسەر ئایکۆنەکە
+      const langLabel = document.getElementById('langLabel');
+      if (langLabel) {
+        langLabel.innerText = languageNames[lang] || 'Language';
+      }
+      
+      // گۆڕینی مینووەکان
+      document.getElementById('navHome').innerText = texts.navHome;
+      document.getElementById('navMovies').innerText = texts.navMovies;
+      document.getElementById('navSeries').innerText = texts.navSeries;
+      document.getElementById('navTv').innerText = texts.navTv;
+      
+      // گۆڕینی بۆکسەکان
+      document.getElementById('boxTvTitle').innerText = texts.boxTvTitle;
+      document.getElementById('boxTvDesc').innerText = texts.boxTvDesc;
+      document.getElementById('boxTvBadge').innerText = texts.boxTvBadge;
+      document.getElementById('boxMoviesTitle').innerText = texts.boxMoviesTitle;
+      document.getElementById('boxMoviesDesc').innerText = texts.boxMoviesDesc;
+      document.getElementById('boxMoviesBadge').innerText = texts.boxMoviesBadge;
+      document.getElementById('boxSeriesTitle').innerText = texts.boxSeriesTitle;
+      document.getElementById('boxSeriesDesc').innerText = texts.boxSeriesDesc;
+      document.getElementById('boxSeriesBadge').innerText = texts.boxSeriesBadge;
+      document.getElementById('boxCinemaTitle').innerText = texts.boxCinemaTitle;
+      document.getElementById('boxCinemaDesc').innerText = texts.boxCinemaDesc;
+      document.getElementById('boxCinemaBadge').innerText = texts.boxCinemaBadge;
+      
+      // RTL یان LTR
+      if (rtlLanguages.includes(lang)) {
+        document.body.classList.remove('ltr');
+        document.body.classList.add('rtl');
+      } else {
+        document.body.classList.remove('rtl');
+        document.body.classList.add('ltr');
+      }
+    }
+    
+    function setLanguage(langCode) {
+      if (languageNames[langCode]) {
+        localStorage.setItem('exinflix_language', langCode);
+        updateLanguage();
+        document.getElementById('languageDropdown').classList.remove('show');
+      }
+    }
+    
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+    
+    // کاتێک پەڕەکە بار دەبێت
+    updateLanguage();
+    
+    // ئایکۆنی زمان
+    document.getElementById('languageIcon').onclick = function(e) {
+      e.stopPropagation();
+      const dropdown = document.getElementById('languageDropdown');
+      if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      } else {
+        dropdown.classList.add('show');
+      }
+    };
+    
+    // داخستنی لیست کاتێک لە دەرەوە کلیک دەکەیت
+    document.onclick = function() {
+      document.getElementById('languageDropdown').classList.remove('show');
+    };
+    
+    document.getElementById('languageDropdown').onclick = function(e) {
+      e.stopPropagation();
+    };
+    
+    // هەڵبژاردنی زمان
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.onclick = function() {
+        setLanguage(this.getAttribute('data-lang'));
+      };
+    });
+    
+    // بۆکسەکان
+    document.getElementById('boxTv').onclick = () => navigateTo('live-tv.html');
+    document.getElementById('boxMovies').onclick = () => navigateTo('movies.html');
+    document.getElementById('boxSeries').onclick = () => navigateTo('series.html');
+    document.getElementById('boxCinemaRoom').onclick = () => alert('پەڕەی ژووری سینەما - لە داهاتوودا زیاد دەکرێت');
+  </script>
 </body>
 </html>
