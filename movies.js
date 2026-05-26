@@ -1,38 +1,10 @@
-// ==================== ناوی "زمان" بە هەموو زمانەکان (هامان کۆدەکانی main.js) ====================
+// ناوی "زمان" بە هەموو زمانەکان (هامان کۆدەکانی index.js)
 const languageNames = {
-  ckb: 'زمان',
-  'ckb-badini': 'زوان',
-  kmr: 'Ziman',
-  ar: 'اللغة',
-  en: 'Language',
-  tr: 'Dil',
-  fa: 'زبان',
-  ru: 'Язык',
-  fr: 'Langue',
-  es: 'Idioma',
-  pt: 'Idioma',
-  de: 'Sprache',
-  sv: 'Språk',
-  it: 'Lingua',
-  'zh-CN': '语言',
-  'zh-TW': '語言',
-  ko: '언어',
-  hi: 'भाषा',
-  ja: '言語',
-  pl: 'Język',
-  ur: 'زبان',
-  bn: 'ভাষা',
-  vi: 'Ngôn ngữ',
-  th: 'ภาษา',
-  uk: 'Мова',
-  nl: 'Taal',
-  el: 'Γλώσσα',
-  ro: 'Limba',
-  id: 'Bahasa',
-  da: 'Sprog',
-  no: 'Språk',
-  fi: 'Kieli',
-  syr: 'ܠܫܢܐ'
+  ckb: 'زمان', 'ckb-badini': 'زوان', kmr: 'Ziman', ar: 'اللغة', en: 'Language', tr: 'Dil', fa: 'زبان',
+  ru: 'Язык', fr: 'Langue', es: 'Idioma', pt: 'Idioma', de: 'Sprache', sv: 'Språk', it: 'Lingua',
+  'zh-CN': '语言', 'zh-TW': '語言', ko: '언어', hi: 'भाषा', ja: '言語', pl: 'Język', ur: 'زبان',
+  bn: 'ভাষা', vi: 'Ngôn ngữ', th: 'ภาษา', uk: 'Мова', nl: 'Taal', el: 'Γλώσσα', ro: 'Limba',
+  id: 'Bahasa', da: 'Sprog', no: 'Språk', fi: 'Kieli', syr: 'ܠܫܢܐ'
 };
 
 // تەرجەمەکانی پەڕەی فیلم
@@ -110,9 +82,7 @@ const translations = {
 
 // زمانەکانی تر بۆ ئینگلیزی
 const otherLangs = ['ru', 'fr', 'es', 'pt', 'de', 'sv', 'it', 'zh-CN', 'zh-TW', 'ko', 'hi', 'ja', 'pl', 'ur', 'bn', 'vi', 'th', 'uk', 'nl', 'el', 'ro', 'id', 'da', 'no', 'fi', 'syr', 'kmr', 'ckb-badini'];
-otherLangs.forEach(lang => {
-  translations[lang] = translations.en;
-});
+otherLangs.forEach(lang => { translations[lang] = translations.en; });
 
 const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
 
@@ -122,8 +92,10 @@ function getCurrentLanguage() {
   return 'ckb';
 }
 
+let currentLanguage = getCurrentLanguage();
+
 function updateLanguage() {
-  const lang = getCurrentLanguage();
+  const lang = currentLanguage;
   const t = translations[lang] || translations.en;
   
   // گۆڕینی مینووی ئاسۆیی
@@ -191,20 +163,25 @@ function updateLanguage() {
 
 // سلایدەر
 let currentSlide = 0;
+
 function initSlider() {
   const slides = document.querySelectorAll('.slide');
   const totalSlides = slides.length;
   const slider = document.getElementById('slider');
   
-  document.getElementById('prevBtn').onclick = () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-  };
+  if (document.getElementById('prevBtn')) {
+    document.getElementById('prevBtn').onclick = () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    };
+  }
   
-  document.getElementById('nextBtn').onclick = () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-  };
+  if (document.getElementById('nextBtn')) {
+    document.getElementById('nextBtn').onclick = () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    };
+  }
 }
 
 // سایدبار
@@ -213,6 +190,8 @@ function initSidebar() {
   const overlay = document.getElementById('overlay');
   const menuBtn = document.getElementById('menuIconBtn');
   const closeBtn = document.getElementById('closeSidebarBtn');
+  
+  if (!sidebar || !overlay) return;
   
   function openSidebar() {
     sidebar.classList.add('open');
@@ -238,51 +217,50 @@ function initSearch() {
   const searchInput = document.getElementById('searchInput');
   const moviesGrid = document.getElementById('moviesGrid');
   
-  if (searchBtn) {
-    searchBtn.onclick = () => {
-      searchContainer.classList.toggle('show');
-      if (searchContainer.classList.contains('show')) {
-        searchInput.focus();
-      } else {
-        searchInput.value = '';
-        document.querySelectorAll('.movie-card').forEach(card => card.classList.remove('hidden'));
-        const noResultMsg = document.querySelector('.no-result');
-        if (noResultMsg) noResultMsg.remove();
-      }
-    };
-  }
+  if (!searchContainer || !searchBtn || !searchInput) return;
   
-  if (searchInput) {
-    searchInput.oninput = function(e) {
-      const searchTerm = e.target.value.toLowerCase();
-      const movieCards = document.querySelectorAll('.movie-card');
-      let visibleCount = 0;
-      
-      movieCards.forEach(card => {
-        const title = card.getAttribute('data-title');
-        if (title.includes(searchTerm)) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-      
-      let noResultMsg = document.querySelector('.no-result');
-      if (visibleCount === 0 && searchTerm !== '') {
-        if (!noResultMsg) {
-          const msg = document.createElement('div');
-          msg.className = 'no-result';
-          msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
-          moviesGrid.appendChild(msg);
-        }
+  searchBtn.onclick = () => {
+    searchContainer.classList.toggle('show');
+    if (searchContainer.classList.contains('show')) {
+      searchInput.focus();
+    } else {
+      searchInput.value = '';
+      document.querySelectorAll('.movie-card').forEach(card => card.classList.remove('hidden'));
+      const noResultMsg = document.querySelector('.no-result');
+      if (noResultMsg) noResultMsg.remove();
+    }
+  };
+  
+  searchInput.oninput = function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const movieCards = document.querySelectorAll('.movie-card');
+    let visibleCount = 0;
+    
+    movieCards.forEach(card => {
+      const title = card.getAttribute('data-title');
+      if (title && title.includes(searchTerm)) {
+        card.classList.remove('hidden');
+        visibleCount++;
       } else {
-        if (noResultMsg) noResultMsg.remove();
+        card.classList.add('hidden');
       }
-    };
-  }
+    });
+    
+    let noResultMsg = document.querySelector('.no-result');
+    if (visibleCount === 0 && searchTerm !== '') {
+      if (!noResultMsg) {
+        const msg = document.createElement('div');
+        msg.className = 'no-result';
+        msg.innerText = 'هیچ فیلمێک نەدۆزرایەوە';
+        moviesGrid.appendChild(msg);
+      }
+    } else {
+      if (noResultMsg) noResultMsg.remove();
+    }
+  };
 }
 
+// کاتێک پەڕەکە بار دەبێت
 document.addEventListener('DOMContentLoaded', function() {
   updateLanguage();
   initSlider();
