@@ -1,41 +1,13 @@
-// ==================== ناوی "زمان" بە هەموو زمانەکان ====================
+// ناوی "زمان" بە هەموو زمانەکان
 const languageNames = {
-  ckb: 'زمان',
-  'ckb-badini': 'زوان',
-  kmr: 'Ziman',
-  ar: 'اللغة',
-  en: 'Language',
-  tr: 'Dil',
-  fa: 'زبان',
-  ru: 'Язык',
-  fr: 'Langue',
-  es: 'Idioma',
-  pt: 'Idioma',
-  de: 'Sprache',
-  sv: 'Språk',
-  it: 'Lingua',
-  'zh-CN': '语言',
-  'zh-TW': '語言',
-  ko: '언어',
-  hi: 'भाषा',
-  ja: '言語',
-  pl: 'Język',
-  ur: 'زبان',
-  bn: 'ভাষা',
-  vi: 'Ngôn ngữ',
-  th: 'ภาษา',
-  uk: 'Мова',
-  nl: 'Taal',
-  el: 'Γλώσσα',
-  ro: 'Limba',
-  id: 'Bahasa',
-  da: 'Sprog',
-  no: 'Språk',
-  fi: 'Kieli',
-  syr: 'ܠܫܢܐ'
+  ckb: 'زمان', 'ckb-badini': 'زوان', kmr: 'Ziman', ar: 'اللغة', en: 'Language', tr: 'Dil', fa: 'زبان',
+  ru: 'Язык', fr: 'Langue', es: 'Idioma', pt: 'Idioma', de: 'Sprache', sv: 'Språk', it: 'Lingua',
+  'zh-CN': '语言', 'zh-TW': '語言', ko: '언어', hi: 'भाषा', ja: '言語', pl: 'Język', ur: 'زبان',
+  bn: 'ভাষা', vi: 'Ngôn ngữ', th: 'ภาษา', uk: 'Мова', nl: 'Taal', el: 'Γλώσσα', ro: 'Limba',
+  id: 'Bahasa', da: 'Sprog', no: 'Språk', fi: 'Kieli', syr: 'ܠܫܢܐ'
 };
 
-// تەرجەمەکان بۆ ناوەڕۆکی پەڕەکە
+// تەرجەمەکان
 const translations = {
   ckb: {
     navHome: 'ماڵەوە', navMovies: 'فیلم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
@@ -76,9 +48,7 @@ const translations = {
 
 // زمانەکانی تر بۆ ئینگلیزی
 const otherLangs = ['ru', 'fr', 'es', 'pt', 'de', 'sv', 'it', 'zh-CN', 'zh-TW', 'ko', 'hi', 'ja', 'pl', 'ur', 'bn', 'vi', 'th', 'uk', 'nl', 'el', 'ro', 'id', 'da', 'no', 'fi', 'syr', 'kmr'];
-otherLangs.forEach(lang => {
-  translations[lang] = translations.en;
-});
+otherLangs.forEach(lang => { translations[lang] = translations.en; });
 translations['ckb-badini'] = translations.ckb;
 
 const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
@@ -94,37 +64,28 @@ function updateLanguage() {
   const texts = translations[lang] || translations.en;
   
   // گۆڕینی نوسینی "زمان" لەسەر ئایکۆنەکە
-  const langLabelSpan = document.getElementById('langLabel');
-  if (langLabelSpan) {
-    const newName = languageNames[lang] || 'Language';
-    langLabelSpan.textContent = newName;
-    console.log('✅ زبان تغییر کرد به:', lang, '→ متن جدید:', newName);
-  } else {
-    console.error('❌ عنصر langLabel پیدا نشد!');
-  }
+  const langLabel = document.getElementById('langLabel');
+  if (langLabel) langLabel.innerText = languageNames[lang] || 'Language';
   
   // گۆڕینی مینووەکان
-  const navHome = document.getElementById('navHome');
-  const navMovies = document.getElementById('navMovies');
-  const navSeries = document.getElementById('navSeries');
-  const navTv = document.getElementById('navTv');
-  if (navHome) navHome.textContent = texts.navHome;
-  if (navMovies) navMovies.textContent = texts.navMovies;
-  if (navSeries) navSeries.textContent = texts.navSeries;
-  if (navTv) navTv.textContent = texts.navTv;
+  document.getElementById('navHome').innerText = texts.navHome;
+  document.getElementById('navMovies').innerText = texts.navMovies;
+  document.getElementById('navSeries').innerText = texts.navSeries;
+  document.getElementById('navTv').innerText = texts.navTv;
   
   // گۆڕینی بۆکسەکان
-  const elements = [
-    'boxTvTitle', 'boxTvDesc', 'boxTvBadge',
-    'boxMoviesTitle', 'boxMoviesDesc', 'boxMoviesBadge',
-    'boxSeriesTitle', 'boxSeriesDesc', 'boxSeriesBadge',
-    'boxCinemaTitle', 'boxCinemaDesc', 'boxCinemaBadge'
-  ];
-  
-  elements.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && texts[id]) el.textContent = texts[id];
-  });
+  document.getElementById('boxTvTitle').innerText = texts.boxTvTitle;
+  document.getElementById('boxTvDesc').innerText = texts.boxTvDesc;
+  document.getElementById('boxTvBadge').innerText = texts.boxTvBadge;
+  document.getElementById('boxMoviesTitle').innerText = texts.boxMoviesTitle;
+  document.getElementById('boxMoviesDesc').innerText = texts.boxMoviesDesc;
+  document.getElementById('boxMoviesBadge').innerText = texts.boxMoviesBadge;
+  document.getElementById('boxSeriesTitle').innerText = texts.boxSeriesTitle;
+  document.getElementById('boxSeriesDesc').innerText = texts.boxSeriesDesc;
+  document.getElementById('boxSeriesBadge').innerText = texts.boxSeriesBadge;
+  document.getElementById('boxCinemaTitle').innerText = texts.boxCinemaTitle;
+  document.getElementById('boxCinemaDesc').innerText = texts.boxCinemaDesc;
+  document.getElementById('boxCinemaBadge').innerText = texts.boxCinemaBadge;
   
   // RTL یان LTR
   if (rtlLanguages.includes(lang)) {
@@ -140,8 +101,7 @@ function setLanguage(langCode) {
   if (languageNames[langCode]) {
     localStorage.setItem('exinflix_language', langCode);
     updateLanguage();
-    const dropdown = document.getElementById('languageDropdown');
-    if (dropdown) dropdown.classList.remove('show');
+    document.getElementById('languageDropdown').classList.remove('show');
   }
 }
 
@@ -149,42 +109,36 @@ function navigateTo(page) {
   window.location.href = page;
 }
 
+// کاتێک پەڕەکە بار دەبێت
 document.addEventListener('DOMContentLoaded', function() {
   updateLanguage();
   
-  const langIcon = document.getElementById('languageIcon');
-  const langDropdown = document.getElementById('languageDropdown');
+  // ئایکۆنی زمان
+  document.getElementById('languageIcon').onclick = function(e) {
+    e.stopPropagation();
+    const dropdown = document.getElementById('languageDropdown');
+    dropdown.classList.toggle('show');
+  };
   
-  if (langIcon) {
-    langIcon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (langDropdown) langDropdown.classList.toggle('show');
-    });
-  }
+  // داخستنی لیست کاتێک لە دەرەوە کلیک دەکەیت
+  document.onclick = function() {
+    document.getElementById('languageDropdown').classList.remove('show');
+  };
   
-  document.addEventListener('click', () => {
-    if (langDropdown) langDropdown.classList.remove('show');
-  });
+  document.getElementById('languageDropdown').onclick = function(e) {
+    e.stopPropagation();
+  };
   
-  if (langDropdown) {
-    langDropdown.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  }
-  
+  // هەڵبژاردنی زمان
   document.querySelectorAll('.language-option').forEach(opt => {
-    opt.addEventListener('click', function() {
+    opt.onclick = function() {
       setLanguage(this.getAttribute('data-lang'));
-    });
+    };
   });
   
-  const boxTv = document.getElementById('boxTv');
-  const boxMovies = document.getElementById('boxMovies');
-  const boxSeries = document.getElementById('boxSeries');
-  const boxCinemaRoom = document.getElementById('boxCinemaRoom');
-  
-  if (boxTv) boxTv.onclick = () => navigateTo('live-tv.html');
-  if (boxMovies) boxMovies.onclick = () => navigateTo('movies.html');
-  if (boxSeries) boxSeries.onclick = () => navigateTo('series.html');
-  if (boxCinemaRoom) boxCinemaRoom.onclick = () => alert('پەڕەی ژووری سینەما - لە داهاتوودا زیاد دەکرێت');
+  // بۆکسەکان
+  document.getElementById('boxTv').onclick = () => navigateTo('live-tv.html');
+  document.getElementById('boxMovies').onclick = () => navigateTo('movies.html');
+  document.getElementById('boxSeries').onclick = () => navigateTo('series.html');
+  document.getElementById('boxCinemaRoom').onclick = () => alert('پەڕەی ژووری سینەما - لە داهاتوودا زیاد دەکرێت');
 });
