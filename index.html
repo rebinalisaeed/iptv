@@ -404,7 +404,7 @@
       syr: 'ܠܫܢܐ'
     };
     
-    // تەرجەمەکانی تر بۆ ناوەڕۆکەکە (تەنها چەند زمانێک بۆ کورتکردنەوە)
+    // تەرجەمەکان بۆ ناوەڕۆکی پەڕەکە
     const translations = {
       ckb: {
         navHome: 'ماڵەوە', navMovies: 'فیلم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
@@ -443,7 +443,7 @@
       }
     };
     
-    // بۆ کورتکردنەوە، زمانەکانی تر هەر وەک ئینگلیزی دەمێننەوە
+    // زمانەکانی تر بۆ ئینگلیزی
     const otherLangs = ['ru', 'fr', 'es', 'pt', 'de', 'sv', 'it', 'zh-CN', 'zh-TW', 'ko', 'hi', 'ja', 'pl', 'ur', 'bn', 'vi', 'th', 'uk', 'nl', 'el', 'ro', 'id', 'da', 'no', 'fi', 'syr', 'kmr'];
     otherLangs.forEach(lang => {
       translations[lang] = translations.en;
@@ -462,12 +462,16 @@
       const lang = getCurrentLanguage();
       const texts = translations[lang] || translations.en;
       
-      // 🔥 ئەمە گرنگترین بەشە - گۆڕینی ناوی "زمان" لەسەر ئایکۆنەکە
+      // 🔥 گۆڕینی نوسینی "زمان" لەسەر ئایکۆنەکە - بە دوو شێوەی جیاواز هەوڵبدە
       const langLabelSpan = document.getElementById('langLabel');
       if (langLabelSpan) {
-        const newLangName = languageNames[lang] || 'Language';
-        langLabelSpan.innerText = newLangName;
-        console.log('زمان گۆڕا بۆ:', lang, 'نوسینی نوێ:', newLangName);
+        const newName = languageNames[lang] || 'Language';
+        // هەوڵبدە بە هەردوو شێوە
+        langLabelSpan.textContent = newName;
+        langLabelSpan.innerText = newName;
+        console.log('✅ زمان گۆڕا بۆ:', lang, '→ ناوی نوێ:', newName);
+      } else {
+        console.error('❌ langLabel نەدۆزرایەوە!');
       }
       
       // گۆڕینی مینووەکان
@@ -475,10 +479,10 @@
       const navMovies = document.getElementById('navMovies');
       const navSeries = document.getElementById('navSeries');
       const navTv = document.getElementById('navTv');
-      if (navHome) navHome.innerText = texts.navHome;
-      if (navMovies) navMovies.innerText = texts.navMovies;
-      if (navSeries) navSeries.innerText = texts.navSeries;
-      if (navTv) navTv.innerText = texts.navTv;
+      if (navHome) navHome.textContent = texts.navHome;
+      if (navMovies) navMovies.textContent = texts.navMovies;
+      if (navSeries) navSeries.textContent = texts.navSeries;
+      if (navTv) navTv.textContent = texts.navTv;
       
       // گۆڕینی بۆکسەکان
       const boxTvTitle = document.getElementById('boxTvTitle');
@@ -494,18 +498,18 @@
       const boxCinemaDesc = document.getElementById('boxCinemaDesc');
       const boxCinemaBadge = document.getElementById('boxCinemaBadge');
       
-      if (boxTvTitle) boxTvTitle.innerText = texts.boxTvTitle;
-      if (boxTvDesc) boxTvDesc.innerText = texts.boxTvDesc;
-      if (boxTvBadge) boxTvBadge.innerText = texts.boxTvBadge;
-      if (boxMoviesTitle) boxMoviesTitle.innerText = texts.boxMoviesTitle;
-      if (boxMoviesDesc) boxMoviesDesc.innerText = texts.boxMoviesDesc;
-      if (boxMoviesBadge) boxMoviesBadge.innerText = texts.boxMoviesBadge;
-      if (boxSeriesTitle) boxSeriesTitle.innerText = texts.boxSeriesTitle;
-      if (boxSeriesDesc) boxSeriesDesc.innerText = texts.boxSeriesDesc;
-      if (boxSeriesBadge) boxSeriesBadge.innerText = texts.boxSeriesBadge;
-      if (boxCinemaTitle) boxCinemaTitle.innerText = texts.boxCinemaTitle;
-      if (boxCinemaDesc) boxCinemaDesc.innerText = texts.boxCinemaDesc;
-      if (boxCinemaBadge) boxCinemaBadge.innerText = texts.boxCinemaBadge;
+      if (boxTvTitle) boxTvTitle.textContent = texts.boxTvTitle;
+      if (boxTvDesc) boxTvDesc.textContent = texts.boxTvDesc;
+      if (boxTvBadge) boxTvBadge.textContent = texts.boxTvBadge;
+      if (boxMoviesTitle) boxMoviesTitle.textContent = texts.boxMoviesTitle;
+      if (boxMoviesDesc) boxMoviesDesc.textContent = texts.boxMoviesDesc;
+      if (boxMoviesBadge) boxMoviesBadge.textContent = texts.boxMoviesBadge;
+      if (boxSeriesTitle) boxSeriesTitle.textContent = texts.boxSeriesTitle;
+      if (boxSeriesDesc) boxSeriesDesc.textContent = texts.boxSeriesDesc;
+      if (boxSeriesBadge) boxSeriesBadge.textContent = texts.boxSeriesBadge;
+      if (boxCinemaTitle) boxCinemaTitle.textContent = texts.boxCinemaTitle;
+      if (boxCinemaDesc) boxCinemaDesc.textContent = texts.boxCinemaDesc;
+      if (boxCinemaBadge) boxCinemaBadge.textContent = texts.boxCinemaBadge;
       
       // RTL یان LTR
       if (rtlLanguages.includes(lang)) {
