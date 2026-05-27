@@ -460,7 +460,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== 33 زمانەکە (تەواو - هەمان کۆدی index.html) ====================
+    // ==================== ناوی "زمان" (بۆ کار ناکات، تەنها بۆ پێکهاتە) ====================
     const languageNames = {
       ckb: 'زمان', 'ckb-badini': 'زوان', kmr: 'Ziman', ar: 'اللغة', en: 'Language', tr: 'Dil', fa: 'زبان',
       ru: 'Язык', fr: 'Langue', es: 'Idioma', pt: 'Idioma', de: 'Sprache', sv: 'Språk', it: 'Lingua',
@@ -469,7 +469,7 @@
       id: 'Bahasa', da: 'Sprog', no: 'Språk', fi: 'Kieli', syr: 'ܠܫܢܐ'
     };
     
-    // تەرجەمەکانی پەڕەی فیلم بۆ هەموو زمانەکان
+    // تەرجەمەکانی پەڕەی فیلم بۆ هەموو 33 زمانەکان
     const translations = {
       ckb: {
         menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
@@ -485,6 +485,34 @@
           { title: 'پەیکەری خوێن', year: '2025', rating: '7.9', genre: 'فانتازی' },
           { title: 'خەونی کۆتایی', year: '2024', rating: '8.4', genre: 'هەستبزوێن' },
           { title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', genre: 'ئەکشن' }
+        ]
+      },
+      // کوردی بادینی - تەرجەمەی تایبەت
+      'ckb-badini': {
+        menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فلیم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
+        sliderTitle: 'بەناوبانگەکانی ئەم هەفتەیە', moviesTitle: 'فلیمەکان',
+        slide1Title: 'ئاگر لە دڵدا', slide1Desc: 'فلیمێکی ئەکشنی هەستبزوێن کە چیرۆکی پاڵەوانێکی گەنج دەگێڕێتەوە',
+        slide2Title: 'ڕێگای مانگ', slide2Desc: 'درامایەکی دڵسۆز کە گەشتێکی سەرکێشیی مرۆڤی دەگێڕێتەوە',
+        slide3Title: 'پەیکەری خوێن', slide3Desc: 'فلیمێکی فانتازی و ئەکشنی پڕ لە سەرکێشی',
+        watchBtn: 'بینینی ئێستا',
+        searchPlaceholder: 'گەڕان بۆ فیلم...',
+        movies: [
+          { title: 'ئاگر لە دڵدا', year: '2025', rating: '8.7', genre: 'ئەکشن' },
+          { title: 'ڕێگای مانگ', year: '2024', rating: '8.2', genre: 'دراما' }
+        ]
+      },
+      // کوردی کورمانجی - تەرجەمەی تایبەت
+      kmr: {
+        menuHome: 'Kategorî Seretayî', menuMovies: 'Fîlm', menuSeries: 'Rêzefîlm', menuTv: 'Kanal', menuCinema: 'Odeya Sînemayê', menuProfile: 'Profîl',
+        sliderTitle: 'Yên herî populer ên vê hefteyê', moviesTitle: 'Fîlm',
+        slide1Title: 'Agir di dil de', slide1Desc: 'Fîlmekî aksiyonê yê heyecan ku çîroka lehengekî ciwan vedibêje',
+        slide2Title: 'Rêya Heyvê', slide2Desc: 'Dramayeke dilşewat ku rêwîtiyekî serpêhatiyê yê mirovî vedibêje',
+        slide3Title: 'Peykerê Xwînê', slide3Desc: 'Fîlmekî fantazî û aksiyonê yê tijî serpêhatî',
+        watchBtn: 'Temaşe bike',
+        searchPlaceholder: 'Lêgerîna fîlman...',
+        movies: [
+          { title: 'Agir di dil de', year: '2025', rating: '8.7', genre: 'Aksiyon' },
+          { title: 'Rêya Heyvê', year: '2024', rating: '8.2', genre: 'Drama' }
         ]
       },
       en: {
@@ -801,10 +829,6 @@
         movies: []
       }
     };
-    
-    // زمانەکانی تر بۆ ئینگلیزی
-    const otherLangs = ['ckb-badini', 'kmr'];
-    otherLangs.forEach(lang => { translations[lang] = translations.en; });
     
     const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
     
