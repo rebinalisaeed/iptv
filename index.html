@@ -367,16 +367,44 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
   <script>
-    // ==================== 33 زمانەکە (تەواو) ====================
+    // ==================== ناوی "زمان" بە هەموو زمانەکان ====================
     const languageNames = {
-      ckb: 'زمان', 'ckb-badini': 'زوان', kmr: 'Ziman', ar: 'اللغة', en: 'Language', tr: 'Dil', fa: 'زبان',
-      ru: 'Язык', fr: 'Langue', es: 'Idioma', pt: 'Idioma', de: 'Sprache', sv: 'Språk', it: 'Lingua',
-      'zh-CN': '语言', 'zh-TW': '語言', ko: '언어', hi: 'भाषा', ja: '言語', pl: 'Język', ur: 'زبان',
-      bn: 'ভাষা', vi: 'Ngôn ngữ', th: 'ภาษา', uk: 'Мова', nl: 'Taal', el: 'Γλώσσα', ro: 'Limba',
-      id: 'Bahasa', da: 'Sprog', no: 'Språk', fi: 'Kieli', syr: 'ܠܫܢܐ'
+      ckb: 'زمان',
+      'ckb-badini': 'زوان',
+      kmr: 'Ziman',
+      ar: 'اللغة',
+      en: 'Language',
+      tr: 'Dil',
+      fa: 'زبان',
+      ru: 'Язык',
+      fr: 'Langue',
+      es: 'Idioma',
+      pt: 'Idioma',
+      de: 'Sprache',
+      sv: 'Språk',
+      it: 'Lingua',
+      'zh-CN': '语言',
+      'zh-TW': '語言',
+      ko: '언어',
+      hi: 'भाषा',
+      ja: '言語',
+      pl: 'Język',
+      ur: 'زبان',
+      bn: 'ভাষা',
+      vi: 'Ngôn ngữ',
+      th: 'ภาษา',
+      uk: 'Мова',
+      nl: 'Taal',
+      el: 'Γλώσσα',
+      ro: 'Limba',
+      id: 'Bahasa',
+      da: 'Sprog',
+      no: 'Språk',
+      fi: 'Kieli',
+      syr: 'ܠܫܢܐ'
     };
     
-    // تەرجەمەکانی ناوەڕۆک بۆ هەموو 33 زمانەکان
+    // تەرجەمەکانی ناوەڕۆک بۆ هەموو 33 زمانەکان (بە تایبەتی بادینی و کورمانجی)
     const translations = {
       ckb: {
         navHome: 'ماڵەوە', navMovies: 'فیلم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
@@ -384,6 +412,22 @@
         boxMoviesTitle: 'فیلم', boxMoviesDesc: 'هەزاران فیلمی بەناوبانگ\nئەکشن • دراما • کۆمێدی • ڕۆمانسی', boxMoviesBadge: 'نوێترین فیلمەکان',
         boxSeriesTitle: 'زنجیرە', boxSeriesDesc: 'بەناوبانگترین زنجیرەکان\nوەرزی نوێ • هەفتانە', boxSeriesBadge: 'بەردەوام بینین',
         boxCinemaTitle: 'ژووری سینەما', boxCinemaDesc: 'هاوڕێکانت بانگهێشت بکە\nبەیەکەوە سەیری فیلم بکەن و تاوتوێ بکەن', boxCinemaBadge: 'دروستکردنی ژوور'
+      },
+      // کوردی بادینی - تەرجەمەی تایبەت بە خۆی
+      'ckb-badini': {
+        navHome: 'مالەوە', navMovies: 'فلیم', navSeries: 'زنجیرە', navTv: 'تەلەڤزیۆن',
+        boxTvTitle: 'تەلەڤزیۆن', boxTvDesc: 'ژێدەر لە ١٠٠٠ کەناڵی جیهانی\nوەرزش • هەواڵ • فلیم • مناڵان', boxTvBadge: 'ڕاستەوخۆ',
+        boxMoviesTitle: 'فلیم', boxMoviesDesc: 'هەزاران فلیمی بەناوبانگ\nئەکشن • دراما • کۆمێدی • ڕۆمانس', boxMoviesBadge: 'نوێترین فلیمەکان',
+        boxSeriesTitle: 'زنجیرە', boxSeriesDesc: 'بەناوبانگترین زنجیرەکان\nوەرزی نوێ • هەفتانە', boxSeriesBadge: 'بەردەوام بینین',
+        boxCinemaTitle: 'ژووری سینەما', boxCinemaDesc: 'هاوڕێکانت بانگهێشت بکە\nبەیەکەوە سەیری فلیم بکەن و تاوتوێ بکەن', boxCinemaBadge: 'دروستکردنی ژوور'
+      },
+      // کوردی کورمانجی - تەرجەمەی تایبەت بە خۆی
+      kmr: {
+        navHome: 'Mal', navMovies: 'Fîlm', navSeries: 'Rêzefîlm', navTv: 'Televîzyon',
+        boxTvTitle: 'Televîzyon', boxTvDesc: 'Zêdetirî 1000 kanalên cîhanê\nWerziş • Nûçe • Fîlm • Zarok', boxTvBadge: 'Rastewexo',
+        boxMoviesTitle: 'Fîlm', boxMoviesDesc: 'Hezaran fîlmên navdar\nAksiyon • Drama • Komedî • Romantîk', boxMoviesBadge: 'Fîlmên nû',
+        boxSeriesTitle: 'Rêzefîlm', boxSeriesDesc: 'Rêzefîlmên herî navdar\nSezona nû • Haftane', boxSeriesBadge: 'Berdewam temaşe',
+        boxCinemaTitle: 'Odeya Sînemayê', boxCinemaDesc: 'Hevalên xwe vexwîne\nBi hev re fîlmê temaşe bikin û nîqaş bikin', boxCinemaBadge: 'Odeyê çêbike'
       },
       en: {
         navHome: 'Home', navMovies: 'Movies', navSeries: 'Series', navTv: 'TV',
@@ -596,10 +640,6 @@
         boxCinemaTitle: 'ܒܝܬ ܐܣܛܪܢܐ', boxCinemaDesc: 'ܩܪܐ ܠܪܚܡܟ\nܚܙܝ ܘܐܫܬܘܬܦ ܥܠ ܐܣܛܪܢܐ ܟܚܕܐ', boxCinemaBadge: 'ܥܒܕ ܫܘܫܠܐ'
       }
     };
-    
-    // زمانەکانی تر بۆ ئینگلیزی
-    const otherLangs = ['ckb-badini', 'kmr'];
-    otherLangs.forEach(lang => { translations[lang] = translations.en; });
     
     const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
     
