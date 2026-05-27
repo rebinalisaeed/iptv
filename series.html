@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EXINFLIX - زنجیرەکان</title>
+  
   <style>
     @font-face {
       font-family: 'Exinflix Bold';
@@ -17,21 +18,29 @@
       font-weight: normal;
       font-display: swap;
     }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
-      font-family: 'Exinflix Regular', sans-serif;
-      background: #0B0B12;
+      font-family: 'Exinflix Regular', 'Poppins', sans-serif;
+      background-color: #2E2E2E;
       min-height: 100vh;
     }
+    
+    body.rtl { direction: rtl; text-align: right; }
+    body.ltr { direction: ltr; text-align: left; }
+    
+    /* ==================== بانەڕ ==================== */
     .navbar {
-      background: rgba(20, 20, 35, 0.9);
+      background: rgba(20, 20, 35, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.5rem 1.5rem;
+      padding: 0.75rem 1rem;
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
     }
+    
     .navbar-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -39,57 +48,826 @@
       justify-content: space-between;
       align-items: center;
     }
-    .navbar-logo { height: 32px; width: auto; }
-    .nav-menu { display: flex; gap: 1.5rem; }
-    .menu-link { color: #e5e5e5; text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
-    .menu-link:hover { color: #FF006E; }
-    .glass-card {
-      background: rgba(20, 20, 35, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1rem;
-      transition: all 0.3s;
+    
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .navbar-logo { height: 35px; width: auto; display: block; }
+    
+    .desktop-menu {
+      display: flex;
+      gap: 1.2rem;
+    }
+    
+    .desktop-menu a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .desktop-menu a:hover { color: #FF006E; }
+    
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .icon-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.3rem;
+    }
+    
+    .icon-btn:hover { color: #FF006E; }
+    
+    .menu-icon { display: none; }
+    
+    /* ==================== سلایدەر ==================== */
+    .hero-carousel {
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 27 / 40;
+      overflow: hidden;
+      margin-top: 0;
+      background-color: #000;
+    }
+    
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .carousel-slide.active {
+      opacity: 1;
+    }
+    
+    .carousel-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    
+    @media (min-width: 1025px) {
+      .hero-carousel {
+        aspect-ratio: auto;
+        height: 85vh;
+        min-height: 600px;
+      }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .hero-carousel {
+        aspect-ratio: auto;
+        height: 60vh;
+        min-height: 450px;
+      }
+    }
+    
+    .carousel-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 30%, transparent 100%);
+      padding: 2rem 2rem 2rem 2rem;
+      text-align: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+    
+    .carousel-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .carousel-genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    
+    .genre-tag {
+      background-color: rgba(0,0,0,0.6);
+      padding: 0.3rem 0.9rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+    }
+    
+    .carousel-year {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      background-color: rgba(0,0,0,0.6);
+      padding: 0.3rem 0.9rem;
+      border-radius: 25px;
+    }
+    
+    .carousel-desc {
+      font-size: 1rem;
+      max-width: 70%;
+      margin: 0.25rem 0;
+      line-height: 1.5;
+    }
+    
+    .carousel-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .carousel-btn {
+      padding: 0.6rem 1.8rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    
+    .carousel-btn.watch {
+      background: linear-gradient(135deg, #FF006E, #FF7A00);
+      color: white;
+    }
+    
+    .carousel-btn.info {
+      background-color: rgba(0,0,0,0.6);
+      color: white;
+    }
+    
+    .carousel-btn.watch:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+    
+    .carousel-btn.info:hover {
+      background-color: rgba(0,0,0,0.8);
+      transform: scale(1.02);
+    }
+    
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      z-index: 10;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+      background-color: #FF006E;
+      width: 24px;
+      border-radius: 5px;
+    }
+    
+    /* ==================== بەشی زنجیرەکان ==================== */
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .series-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .section-header h2 {
+      color: white;
+      font-size: 1.3rem;
+      font-family: 'Exinflix Bold', sans-serif;
+      border-right: 4px solid #FF006E;
+      padding-right: 0.8rem;
+    }
+    
+    body.rtl .section-header h2 {
+      border-right: none;
+      border-left: 4px solid #FF006E;
+      padding-right: 0;
+      padding-left: 0.8rem;
+    }
+    
+    .slider-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .slider-btn {
+      background: rgba(20, 20, 35, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    
+    .slider-btn:hover {
+      background: #FF006E;
+      transform: scale(1.05);
+    }
+    
+    .slider-container {
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    .series-slider {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      padding: 0.5rem 0.2rem;
+    }
+    
+    .series-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .series-slider::-webkit-scrollbar-track {
+      background: rgba(20, 20, 35, 0.5);
+      border-radius: 10px;
+    }
+    
+    .series-slider::-webkit-scrollbar-thumb {
+      background: #FF006E;
+      border-radius: 10px;
+    }
+    
+    .series-card {
+      flex: 0 0 160px;
+      background: rgba(20, 20, 35, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .series-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-color: #FF006E;
+    }
+    
+    .series-poster {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    
+    .series-info {
+      padding: 0.6rem;
+      text-align: center;
+    }
+    
+    .series-title {
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+      font-family: 'Exinflix Bold', sans-serif;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .series-year {
+      font-size: 0.75rem;
+      color: #FF7A00;
+    }
+    
+    /* ==================== سایدبار ==================== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: rgba(20, 20, 35, 0.98);
+      backdrop-filter: blur(16px);
+      z-index: 200;
+      transition: left 0.3s ease;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    body.rtl .sidebar {
+      left: auto;
+      right: -280px;
+      transition: right 0.3s ease;
+    }
+    
+    .sidebar.open { left: 0; }
+    body.rtl .sidebar.open { left: auto; right: 0; }
+    
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-header img { height: 30px; }
+    
+    .close-sidebar {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
       cursor: pointer;
     }
-    .glass-card:hover { transform: translateY(-5px); border-color: #FF006E; }
-    .series-card { overflow: hidden; }
-    .series-card img { width: 100%; height: 200px; object-fit: cover; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-    h1 { font-size: 2rem; margin-bottom: 1.5rem; color: white; font-family: 'Exinflix Bold', sans-serif; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-    .back-link { color: #FF006E; text-decoration: none; display: inline-block; margin-bottom: 1rem; }
+    
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .sidebar-menu a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.6rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .sidebar-menu a i { width: 24px; color: #FF006E; }
+    .sidebar-menu a:hover { color: #FF006E; }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 199;
+      display: none;
+    }
+    
+    .overlay.show { display: block; }
+    
+    /* ==================== ڕیسپۆنسیڤ ==================== */
+    @media (max-width: 768px) {
+      .desktop-menu { display: none; }
+      .menu-icon { display: block; }
+      
+      .hero-carousel {
+        aspect-ratio: 27 / 40;
+        height: auto;
+      }
+      
+      .carousel-content {
+        padding: 1rem 1rem 1.5rem 1rem;
+      }
+      
+      .carousel-desc {
+        font-size: 0.85rem;
+        max-width: 95%;
+      }
+      
+      .carousel-btn {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.85rem;
+      }
+      
+      .genre-tag, .carousel-year {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.7rem;
+      }
+      
+      .carousel-dots {
+        bottom: 8px;
+      }
+      
+      .series-card {
+        flex: 0 0 130px;
+      }
+      
+      .series-poster {
+        height: 180px;
+      }
+      
+      .section-header h2 {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .series-card {
+        flex: 0 0 110px;
+      }
+      .series-poster {
+        height: 150px;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade { animation: fadeIn 0.5s ease forwards; }
   </style>
 </head>
-<body>
+<body class="ltr">
+
   <div class="navbar">
     <div class="navbar-container">
-      <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
-      <div class="nav-menu">
-        <a href="index.html" class="menu-link">ماڵەوە</a>
-        <a href="movies.html" class="menu-link">فیلم</a>
-        <a href="series.html" class="menu-link">زنجیرە</a>
-        <a href="live-tv.html" class="menu-link">تەلەڤزیۆن</a>
+      <div class="left-section">
+        <img src="assets/logo/logo.png" alt="EXINFLIX" class="navbar-logo">
+        <div class="desktop-menu">
+          <a href="index.html" id="menuHome">کەتەگۆری سەرەتا</a>
+          <a href="movies.html" id="menuMovies">فیلم</a>
+          <a href="series.html" id="menuSeries">زنجیرە</a>
+          <a href="live-tv.html" id="menuTv">کەناڵەکان</a>
+          <a href="cinema-room.html" id="menuCinema">ژووری سینەما</a>
+          <a href="profile.html" id="menuProfile">پرۆفایل</a>
+        </div>
+      </div>
+      <div class="icons">
+        <button class="icon-btn menu-icon" id="menuIconBtn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </div>
-  <div class="container">
-    <a href="index.html" class="back-link">← گەڕانەوە</a>
-    <h1>زنجیرەکان</h1>
-    <div class="grid">
-      <div class="glass-card series-card" onclick="alert('پەڕەی زنجیرە - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/FF006E/white?text=CRIME+SERIES">
-        <div class="p-3"><h3 style="color:white;">زنجیرەی تاوان</h3><p style="color:gray; font-size:0.75rem;">وەرزی ٣ · دراما</p></div>
-      </div>
-      <div class="glass-card series-card" onclick="alert('پەڕەی زنجیرە - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/FF7A00/white?text=FANTASY+SERIES">
-        <div class="p-3"><h3 style="color:white;">پەیکەری خوێن</h3><p style="color:gray; font-size:0.75rem;">وەرزی ١ · فانتازی</p></div>
-      </div>
-      <div class="glass-card series-card" onclick="alert('پەڕەی زنجیرە - لە داهاتوودا زیاد دەکرێت')">
-        <img src="https://placehold.co/400x500/7B2CFF/white?text=ACTION+SERIES">
-        <div class="p-3"><h3 style="color:white;">شەقامەکانی تاران</h3><p style="color:gray; font-size:0.75rem;">وەرزی ٢ · ئەکشن</p></div>
-      </div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/logo/logo.png" alt="EXINFLIX">
+      <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-menu">
+      <a href="index.html" id="sidebarHome"><i class="fas fa-home"></i> کەتەگۆری سەرەتا</a>
+      <a href="movies.html" id="sidebarMovies"><i class="fas fa-film"></i> فیلم</a>
+      <a href="series.html" id="sidebarSeries"><i class="fas fa-play-circle"></i> زنجیرە</a>
+      <a href="live-tv.html" id="sidebarTv"><i class="fas fa-tv"></i> کەناڵەکان</a>
+      <a href="cinema-room.html" id="sidebarCinema"><i class="fas fa-users"></i> ژووری سینەما</a>
+      <a href="profile.html" id="sidebarProfile"><i class="fas fa-user"></i> پرۆفایل</a>
     </div>
   </div>
-  <style>.p-3 { padding: 0.75rem; }</style>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- سلایدەر -->
+  <section class="hero-carousel">
+    <div class="carousel-container" id="carouselContainer"></div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </section>
+
+  <!-- بەشی زنجیرەکان -->
+  <main class="container">
+    <section class="series-section">
+      <div class="section-header">
+        <h2 id="newSeriesTitle">نوێترین زنجیرەکان</h2>
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" data-slider="latest-slider"><i class="fas fa-chevron-right"></i></button>
+          <button class="slider-btn next-btn" data-slider="latest-slider"><i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+      <div class="slider-container" id="latest-slider">
+        <div class="series-slider" id="latestSeriesSlider"></div>
+      </div>
+    </section>
+
+    <section class="series-section">
+      <div class="section-header">
+        <h2 id="popularSeriesTitle">بەناوبانگترین زنجیرەکان</h2>
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" data-slider="popular-slider"><i class="fas fa-chevron-right"></i></button>
+          <button class="slider-btn next-btn" data-slider="popular-slider"><i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+      <div class="slider-container" id="popular-slider">
+        <div class="series-slider" id="popularSeriesSlider"></div>
+      </div>
+    </section>
+
+    <section class="series-section">
+      <div class="section-header">
+        <h2 id="turkishSeriesTitle">زنجیرە تورکیەکان</h2>
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" data-slider="turkish-slider"><i class="fas fa-chevron-right"></i></button>
+          <button class="slider-btn next-btn" data-slider="turkish-slider"><i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+      <div class="slider-container" id="turkish-slider">
+        <div class="series-slider" id="turkishSeriesSlider"></div>
+      </div>
+    </section>
+
+    <section class="series-section">
+      <div class="section-header">
+        <h2 id="kurdishSeriesTitle">زنجیرە کوردیەکان</h2>
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" data-slider="kurdish-slider"><i class="fas fa-chevron-right"></i></button>
+          <button class="slider-btn next-btn" data-slider="kurdish-slider"><i class="fas fa-chevron-left"></i></button>
+        </div>
+      </div>
+      <div class="slider-container" id="kurdish-slider">
+        <div class="series-slider" id="kurdishSeriesSlider"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+  <script>
+    // ==================== تەرجەمەکان ====================
+    const translations = {
+      ckb: {
+        menuHome: 'کەتەگۆری سەرەتا', menuMovies: 'فیلم', menuSeries: 'زنجیرە', menuTv: 'کەناڵەکان', menuCinema: 'ژووری سینەما', menuProfile: 'پرۆفایل',
+        newSeriesTitle: 'نوێترین زنجیرەکان', popularSeriesTitle: 'بەناوبانگترین زنجیرەکان',
+        turkishSeriesTitle: 'زنجیرە تورکیەکان', kurdishSeriesTitle: 'زنجیرە کوردیەکان',
+        watchBtn: 'بینینی ئێستا', infoBtn: 'زانیاری زیاتر'
+      },
+      en: {
+        menuHome: 'Main Category', menuMovies: 'Movies', menuSeries: 'Series', menuTv: 'TV Channels', menuCinema: 'Cinema Room', menuProfile: 'Profile',
+        newSeriesTitle: 'Latest Series', popularSeriesTitle: 'Popular Series',
+        turkishSeriesTitle: 'Turkish Series', kurdishSeriesTitle: 'Kurdish Series',
+        watchBtn: 'Watch Now', infoBtn: 'More Info'
+      },
+      ar: {
+        menuHome: 'الفئة الرئيسية', menuMovies: 'أفلام', menuSeries: 'مسلسلات', menuTv: 'قنوات', menuCinema: 'غرفة السينما', menuProfile: 'الملف الشخصي',
+        newSeriesTitle: 'أحدث المسلسلات', popularSeriesTitle: 'المسلسلات الأكثر مشاهدة',
+        turkishSeriesTitle: 'المسلسلات التركية', kurdishSeriesTitle: 'المسلسلات الكردية',
+        watchBtn: 'مشاهدة الآن', infoBtn: 'مزيد من المعلومات'
+      },
+      tr: {
+        menuHome: 'Ana Kategori', menuMovies: 'Filmler', menuSeries: 'Diziler', menuTv: 'Kanallar', menuCinema: 'Sinema Odası', menuProfile: 'Profil',
+        newSeriesTitle: 'Yeni Diziler', popularSeriesTitle: 'Popüler Diziler',
+        turkishSeriesTitle: 'Türk Dizileri', kurdishSeriesTitle: 'Kürt Dizileri',
+        watchBtn: 'Şimdi İzle', infoBtn: 'Daha Fazla'
+      },
+      fa: {
+        menuHome: 'دسته اصلی', menuMovies: 'فیلم‌ها', menuSeries: 'سریال‌ها', menuTv: 'کانال‌ها', menuCinema: 'اتاق سینما', menuProfile: 'پروفایل',
+        newSeriesTitle: 'جدیدترین سریال‌ها', popularSeriesTitle: 'محبوب‌ترین سریال‌ها',
+        turkishSeriesTitle: 'سریال‌های ترکی', kurdishSeriesTitle: 'سریال‌های کردی',
+        watchBtn: 'تماشا کن', infoBtn: 'اطلاعات بیشتر'
+      }
+    };
+
+    const rtlLanguages = ['ar', 'ckb', 'ckb-badini', 'fa', 'ur'];
+
+    function getCurrentLanguage() {
+      let savedLang = localStorage.getItem('exinflix_language');
+      if (savedLang && translations[savedLang]) return savedLang;
+      let browserLang = navigator.language.split('-')[0];
+      if (browserLang === 'ckb' || browserLang === 'ku') return 'ckb';
+      if (browserLang === 'ar') return 'ar';
+      if (browserLang === 'en') return 'en';
+      if (browserLang === 'tr') return 'tr';
+      if (browserLang === 'fa') return 'fa';
+      return 'ckb';
+    }
+
+    let currentLang = getCurrentLanguage();
+    const t = translations[currentLang] || translations.ckb;
+
+    if (rtlLanguages.includes(currentLang)) {
+      document.body.classList.add('rtl');
+      document.body.classList.remove('ltr');
+    } else {
+      document.body.classList.add('ltr');
+      document.body.classList.remove('rtl');
+    }
+
+    // تەرجەمەکردنی مینووەکان
+    document.getElementById('menuHome').innerText = t.menuHome;
+    document.getElementById('menuMovies').innerText = t.menuMovies;
+    document.getElementById('menuSeries').innerText = t.menuSeries;
+    document.getElementById('menuTv').innerText = t.menuTv;
+    document.getElementById('menuCinema').innerText = t.menuCinema;
+    document.getElementById('menuProfile').innerText = t.menuProfile;
+
+    document.getElementById('sidebarHome').innerHTML = `<i class="fas fa-home"></i> ${t.menuHome}`;
+    document.getElementById('sidebarMovies').innerHTML = `<i class="fas fa-film"></i> ${t.menuMovies}`;
+    document.getElementById('sidebarSeries').innerHTML = `<i class="fas fa-play-circle"></i> ${t.menuSeries}`;
+    document.getElementById('sidebarTv').innerHTML = `<i class="fas fa-tv"></i> ${t.menuTv}`;
+    document.getElementById('sidebarCinema').innerHTML = `<i class="fas fa-users"></i> ${t.menuCinema}`;
+    document.getElementById('sidebarProfile').innerHTML = `<i class="fas fa-user"></i> ${t.menuProfile}`;
+
+    document.getElementById('newSeriesTitle').innerText = t.newSeriesTitle;
+    document.getElementById('popularSeriesTitle').innerText = t.popularSeriesTitle;
+    document.getElementById('turkishSeriesTitle').innerText = t.turkishSeriesTitle;
+    document.getElementById('kurdishSeriesTitle').innerText = t.kurdishSeriesTitle;
+
+    // ==================== داتاکانی سلایدەر و زنجیرەکان ====================
+    const carouselSlides = [
+      { id: 1, title: 'زنجیرەی تاوان', year: '2025', description: 'زنجیرەیەکی ئەکشنی هەستبزوێن', genres: ['ئەکشن', 'دراما'], image: 'https://placehold.co/1920x1080/1A1A2E/FF006E?text=Series+1' },
+      { id: 2, title: 'شەقامەکانی تاران', year: '2025', description: 'زنجیرەیەکی ئەکشنی کوردی', genres: ['ئەکشن', 'تاوان'], image: 'https://placehold.co/1920x1080/1E1E2F/FF7A00?text=Series+2' },
+      { id: 3, title: 'پەیکەری خوێن', year: '2025', description: 'زنجیرەیەکی فانتازی', genres: ['فانتازی', 'سەرکێشی'], image: 'https://placehold.co/1920x1080/1A1E2F/7B2CFF?text=Series+3' }
+    ];
+
+    const seriesData = {
+      latest: [
+        { id: 1, title: 'زنجیرەی تاوان', year: '2025', rating: '8.7', poster: 'https://placehold.co/300x450/1A1A2E/FF006E?text=Series+1' },
+        { id: 2, title: 'شەقامەکانی تاران', year: '2025', rating: '9.1', poster: 'https://placehold.co/300x450/1E1E2F/FF7A00?text=Series+2' },
+        { id: 3, title: 'پەیکەری خوێن', year: '2025', rating: '7.9', poster: 'https://placehold.co/300x450/1A1E2F/7B2CFF?text=Series+3' },
+        { id: 4, title: 'ڕێگای مانگ', year: '2024', rating: '8.2', poster: 'https://placehold.co/300x450/1A1A2E/FF006E?text=Series+4' }
+      ],
+      popular: [
+        { id: 5, title: 'خەونی کۆتایی', year: '2024', rating: '8.4', poster: 'https://placehold.co/300x450/1A1A2E/FF7A00?text=Popular+1' },
+        { id: 6, title: 'ئاگر لە دڵدا', year: '2025', rating: '8.9', poster: 'https://placehold.co/300x450/1E1E2F/FF006E?text=Popular+2' }
+      ],
+      turkish: [
+        { id: 7, title: 'Kızıl Elma', year: '2025', rating: '8.5', poster: 'https://placehold.co/300x450/1A1A2E/FF7A00?text=Turkish+1' },
+        { id: 8, title: 'Kuruluş Osman', year: '2025', rating: '9.0', poster: 'https://placehold.co/300x450/1E1E2F/FF006E?text=Turkish+2' }
+      ],
+      kurdish: [
+        { id: 9, title: 'شەقامەکانی سلێمانی', year: '2025', rating: '8.8', poster: 'https://placehold.co/300x450/1A1A2E/FF006E?text=Kurdish+1' },
+        { id: 10, title: 'چیای ڕەش', year: '2024', rating: '8.1', poster: 'https://placehold.co/300x450/1E1E2F/FF7A00?text=Kurdish+2' }
+      ]
+    };
+
+    // سلایدەر
+    let currentCarouselIndex = 0;
+    let carouselInterval;
+
+    function renderCarousel() {
+      const container = document.getElementById('carouselContainer');
+      const dotsContainer = document.getElementById('carouselDots');
+      if (!container) return;
+
+      container.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      carouselSlides.forEach((slide, index) => {
+        const slideDiv = document.createElement('div');
+        slideDiv.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+
+        const genresHtml = slide.genres && slide.genres.length > 0
+          ? `<div class="carousel-genres">${slide.genres.slice(0, 3).map(g => `<span class="genre-tag">${g}</span>`).join('')}</div>`
+          : '';
+
+        slideDiv.innerHTML = `
+          <img src="${slide.image}" alt="${slide.title}" class="carousel-bg-img">
+          <div class="carousel-content">
+            <div class="carousel-meta-row">
+              ${genresHtml}
+              ${slide.year ? `<span class="carousel-year">${slide.year}</span>` : ''}
+            </div>
+            <p class="carousel-desc">${slide.description}</p>
+            <div class="carousel-buttons">
+              <button class="carousel-btn watch" data-id="${slide.id}">${t.watchBtn}</button>
+              <button class="carousel-btn info" data-id="${slide.id}">${t.infoBtn}</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(slideDiv);
+
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.dataset.index = index;
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      document.querySelectorAll('.carousel-btn.watch').forEach(btn => {
+        btn.addEventListener('click', () => alert('پەڕەی زنجیرە - لە داهاتوودا زیاد دەکرێت'));
+      });
+      document.querySelectorAll('.carousel-btn.info').forEach(btn => {
+        btn.addEventListener('click', () => alert('زانیاری زیاتر - لە داهاتوودا زیاد دەکرێت'));
+      });
+    }
+
+    function goToSlide(index) {
+      if (index < 0) index = carouselSlides.length - 1;
+      if (index >= carouselSlides.length) index = 0;
+      document.querySelectorAll('.carousel-slide').forEach((slide, i) => slide.classList.toggle('active', i === index));
+      document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
+      currentCarouselIndex = index;
+    }
+
+    function startCarouselAutoPlay() {
+      if (carouselInterval) clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => goToSlide(currentCarouselIndex + 1), 6000);
+    }
+
+    // ڕێن دەری سلایدەرەکان
+    function renderSlider(containerId, movies) {
+      const slider = document.getElementById(containerId);
+      if (!slider) return;
+      if (movies.length === 0) {
+        slider.innerHTML = '<div style="padding: 2rem; text-align: center;">هیچ زنجیرەیەک نەدۆزرایەوە</div>';
+        return;
+      }
+      slider.innerHTML = movies.map(series => `
+        <div class="series-card" onclick="alert('زنجیرەی ${series.title} - لە داهاتوودا زیاد دەکرێت')">
+          <img src="${series.poster}" class="series-poster" onerror="this.src='https://placehold.co/300x450/1A1A2E/FF006E?text=Series'">
+          <div class="series-info">
+            <h3 class="series-title">${series.title}</h3>
+            <div class="series-year">${series.year} • <i class="fas fa-star"></i> ${series.rating}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAllSections() {
+      renderSlider('latestSeriesSlider', seriesData.latest);
+      renderSlider('popularSeriesSlider', seriesData.popular);
+      renderSlider('turkishSeriesSlider', seriesData.turkish);
+      renderSlider('kurdishSeriesSlider', seriesData.kurdish);
+    }
+
+    // سایدبار
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuIconBtn = document.getElementById('menuIconBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    if (menuIconBtn) menuIconBtn.onclick = openSidebar;
+    if (closeSidebarBtn) closeSidebarBtn.onclick = closeSidebar;
+    if (overlay) overlay.onclick = closeSidebar;
+
+    // سلایدەر کۆنتڕۆڵەکان
+    function initSliderControls() {
+      document.querySelectorAll('.slider-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sliderId = btn.dataset.slider;
+          const slider = document.querySelector(`#${sliderId} .series-slider`);
+          if (slider) {
+            slider.scrollBy({ left: btn.classList.contains('next-btn') ? 300 : -300, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCarousel();
+      startCarouselAutoPlay();
+      renderAllSections();
+      initSliderControls();
+    });
+  </script>
 </body>
 </html>
